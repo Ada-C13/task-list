@@ -120,7 +120,7 @@ describe TasksController do
   end
 
   # Complete for Wave 4
-  describe "toggle_complete" do
+  describe "mark_complete" do
     # Your tests go here
   end
 end

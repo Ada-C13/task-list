@@ -2,7 +2,7 @@
 <ul>
   <% @tasks.each do |task|  %>
     <li>
-      <%= task[:title] %> By: <%= task[:date] %>
+      <%= task[:title] %> Due date: <%= task[:date] %>
     </li>
   <% end %>
 </ul>

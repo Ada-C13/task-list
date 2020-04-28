@@ -4,7 +4,7 @@ Let's build a Task List in Rails! We will solve the problem of tracking tasks in
 
 ## At a Glance
 - Individual, [stage 1](https://github.com/Ada-Developers-Academy/pedagogy/blob/master/classroom/rule-of-three.md#stage-1) project
-- Due before class on **Monday May 4th**
+- Due before class on **Tuesday May 5th**
 
 ## Learning Goals
 
@@ -28,7 +28,7 @@ In this baseline, you'll create a new Rails application and get started with two
 
 ### Controller Tests
 
-Tests have been created for waves 1 & 2.  You can find the tests in `test/controllers/tasks_controller_test.rb`, and you can execute the tests with `$ rails test`.  You may need to update the test file if your schema differs from the one in the spec.  For waves 3 & 4, you will need to fill in your own tests.
+Tests have been created for waves 1 & 2.  You can find the tests in `test/controllers/tasks_controller_test.rb`, and you can execute the tests with `$ rails test`.  You may need to update the test file if your schema differs from the one in the spec.  For waves 3 & 4, we have not provided tests. You will learn how to write controller tests on Monday. It is an optional requirement to to create your own wave 3 and wave 4 tests.
 
 ## Wave 1
 
@@ -64,19 +64,19 @@ In this wave, we will expand the actions we support and introduce forms for user
 
 In this wave we will extend the interactivity with users, allowing them to edit existing tasks.
 
-1. Complete tests by uncommenting and filling in the contents of the Wave 3 tests for the `edit` and `update` actions.  
 1. Edit a task
     - update each task's show page to include an edit link
       - this will give the user a new page with a **form** that is pre-populated with the data about that task
       - the site should take the user back to the task's show page after the task is updated
 
-1. **Optional**
+1. **Optionals**
+  - Complete tests by uncommenting and filling in the contents of the Wave 3 tests for the `edit` and `update` actions.  
   - DRY up your code by reusing the view code from the `new` functionality
     - Hint: Rendering _partials_ in Rails
 
 ## Wave 4
 
-In this wave, we will add the ability to delete tasks. We will also add the ability for a user to mark a task complete. Note: Marking a task complete will require going above and beyond the examples provided in lecture.  You will also need to write controller tests for the delete and mark complete actions.
+In this wave, we will add the ability to delete tasks. We will also add the ability for a user to mark a task complete. Note: Marking a task complete will require going above and beyond the examples provided in lecture.  
 
 1. Delete a task  
     On the task list, add a button or link for each task that will, once clicked:
@@ -85,8 +85,10 @@ In this wave, we will add the ability to delete tasks. We will also add the abil
 1. Mark a task complete
     - Add a button to the list of tasks on the home page that, when clicked, will mark a task complete
     - Update the database with the task's completed_at date
+1. **Optional**
+    Write controller tests for the delete and mark complete actions.
 
-### Optional Design
+## Optional Wave 5: Design
 
 The focus of this project is to familiarize yourself with rails. Design of this application is optional and secondary to learning goals this project. If you do find you have time to style the design of your application, you can use or own design or the wireframes below.
 

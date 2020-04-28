@@ -1,0 +1,14 @@
+
+<h2>Tasks</h2>
+
+<% if @tasks.length > 0 %>
+  <ul>
+    <% @tasks.each do |task|%>
+      <li>
+        <%= task[:number] %> by <%= task[:text] %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <h4>No task for you today!! Yeii!! </h4>
+<% end %>

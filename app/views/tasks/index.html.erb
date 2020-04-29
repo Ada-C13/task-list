@@ -1,0 +1,7 @@
+<h2>Stuff to do:</h2>
+<%= 'tasks'.upcase%>
+<ul>
+  <% @tasks.each do |task| %>
+    <li><%= "#{task[:person]} is assigned to #{task[:task]}" %></li>
+  <% end %>
+</ul>

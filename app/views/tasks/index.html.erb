@@ -2,9 +2,10 @@
 <ul>
   <% @tasks.each do |task|  %>
     <li>
-      <%= task.id %>
+      <%= task.name %>
       <%= task.description %>
       <%=task.completed_at %>
+      <button><a href='/tasks/<%= task.id %>'>Show</a></button>
     </li>
   <% end %>
 </ul>

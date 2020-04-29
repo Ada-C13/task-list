@@ -2,6 +2,8 @@
 <ul>
   <% @tasks.each do |task|  %>
     <li>
+      <%= task.name %>
+      <%= task.description %>
       <%= task.completed_at %>
     </li>
   <% end %>

@@ -1,0 +1,13 @@
+<h1>Tasks</h1>
+
+
+<% if @tasks.length > 0 %>
+    <ul>  
+        <% @tasks.each do |task| %>
+            <li> <%= task[:name] %> </li>
+            <p><%= task[:description] %> is <%= task[:completed_at] %></p>
+        <% end %>
+    </ul>
+<% else %>
+    <h3> No tasks in the system! </h3>
+<% end %>

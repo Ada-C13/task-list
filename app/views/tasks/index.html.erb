@@ -1,0 +1,8 @@
+<h1>TASKLIST</h1>
+<ul>
+  <% @tasks.each_with_index do |task, index| %>
+    <li>
+    <%= index+1 %> : <%= task[:task_name] %>
+    </li>
+  <% end %>
+</ul>

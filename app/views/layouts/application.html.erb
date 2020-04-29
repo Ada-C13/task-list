@@ -2,14 +2,29 @@
 <html>
   <head>
     <title>TaskList</title>
+    <%# for forms %>
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <%= csp_meta_tag %> 
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+      <section class="title"><h1>Your Tasks</h1></section>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <%# <li><a href="/tasks">Tasks list</a></li> will create link to tasks%>
+          <%# <li>New Task</li>  if we want to create a new task but still functionality%>
+        </ul>
+    </header>
+    <main>
     <%= yield %>
+    </main>
+    <footer>
+      <p>All Rights Reserved</p>
+    </footer>
   </body>
 </html>

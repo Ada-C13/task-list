@@ -1,6 +1,6 @@
 TASKS = [
-  {title: "Do dishes", date: "Today"},
-  {title: "finish baseline", date: "Tomorrow"}
+  {task: "Do dishes", date: "Today"},
+  {task: "finish baseline", date: "Tomorrow"}
 ]
 class TasksController < ApplicationController
   def index

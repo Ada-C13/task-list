@@ -1,8 +1,13 @@
 <h1>Tasks</h1>
-<ul>
-  <% @tasks.each do |task|  %>
-    <li>
-      <%= task[:title] %> Due date: <%= task[:date] %>
-    </li>
-  <% end %>
-</ul>
+
+<% if @tasks.length > 0 %>
+  <ul>
+    <% @tasks.each do |task|  %>
+      <li>
+        <%= task[:task] %> -due date: <%= task[:date] %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <h3>There are no tasks</h3>
+<% end %>

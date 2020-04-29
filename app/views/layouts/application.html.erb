@@ -10,6 +10,21 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <section class="title"><h1>Tasks</h1></section>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/tasks">Taks List</a></li>
+          <li>New Task</li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+      <p>All rights reserved</p>
+    </footer>
   </body>
 </html>

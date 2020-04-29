@@ -1,0 +1,11 @@
+<h2>Tasks for today</h2>
+
+<% if @tasks.length > 0 %>
+  <ul>
+    <% @tasks.each do |task| %>
+      <li> Task: <%= task[:name]%> Description: <%= task[:description]%></li>
+    <% end %>
+  </ul>
+<% else %>
+  <h3>No tasks for today!</h3>
+<% end %>

@@ -16,3 +16,41 @@
 @import "bootstrap";
 
 @import "**/*";
+
+// * {
+//   margin-left: 50px;
+//   margin-right: 50px;
+// }
+
+.all {
+  width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
+}
+
+header {
+  grid-column-start: 1;
+  grid-column-end: 1;
+}
+
+.titlemain {
+  text-align: left;
+  border: red solid;
+}
+
+.mainnav {
+  border: red solid;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-evenly;
+}
+
+.navtitles {
+  padding: 0px;
+  list-style: none;
+  border: red solid;
+  display: flex;
+  flex-direction: column;
+}

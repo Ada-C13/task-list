@@ -9,9 +9,22 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <main>
-    <body>
+  <body class="all">
+  <header>
+    <section class="titlemain"><h1>Task List</h1></section>
+    <nav class="mainnav">
+      <ul class="navtitles">
+        <li><a href="/">Home</a></li>
+        <li><a href="/books">Task List</a></li>
+        <li>Add Task</li>
+      </ul>
+    </nav>
+  </header>
+    <main class="content">
       <%= yield %>
-    </body>
-  </main>
+    </main>
+    <footer>
+    <p>Like and subscribe.</p>
+    </footer>
+  </body>
 </html>

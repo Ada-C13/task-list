@@ -1,8 +1,8 @@
-<body>
-<h2 class="title">I am a task.</h2>
+<body class="wholelist">
+<h2 class="title">Today's to-do's:</h2>
 
   <% if @tasks.length > 0 %>
-    <ul>
+    <ul class="tasklist">
       <% @tasks.each do |task|%>
         <li>
           <input type="checkbox" class="checkbox">

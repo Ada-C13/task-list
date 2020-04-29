@@ -5,9 +5,7 @@
     <ul class="tasklist">
       <% @tasks.each do |task|%>
         <li>
-          <input type="checkbox" class="checkbox">
-          <span class="checkmark"></span>
-          <%= task[:title]%> by <%= task[:author] %>
+          <%= task[:name]%> : <%= task[:description] %>
         </li>
       <% end %>
     </ul>

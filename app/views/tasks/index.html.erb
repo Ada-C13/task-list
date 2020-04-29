@@ -1,11 +1,13 @@
 <h1>TASKLIST</h1>
 
+<h3>YOUR TASKS</h3>
+
 <% if @tasks.length > 0 %>
-  <ul>
+  <ol>
     <% @tasks.each do |task| %>
       <li><%= task[:name] %></li>
     <% end %>
-  </ul>
+  </ol>
 <% else %>
   <h3>No tasks in the system!</h3>
 <% end %>

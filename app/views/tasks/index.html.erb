@@ -1,0 +1,8 @@
+<h1>TASKS</h1>
+<ul>
+  <% @tasks.each do |task|  %>
+    <li>
+      <%= task[:todo] %> By: <%= task[:text] %>
+    </li>
+  <% end %>
+</ul>

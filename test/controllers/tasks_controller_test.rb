@@ -16,6 +16,8 @@ describe TasksController do
       must_respond_with :success
     end
     
+
+    # TODO Why isn't this one working?
     it "can get the root path" do
       # Act
       get root_path

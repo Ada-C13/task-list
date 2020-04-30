@@ -23,7 +23,6 @@ class TasksController < ApplicationController
     end 
 
     def create
-
       task = Task.new(
         name: params[:task][:name], 
         description: params[:task][:description]
@@ -33,10 +32,11 @@ class TasksController < ApplicationController
         redirect_to tasks_path
         return 
       else 
-        redirect_to new_task_path #tasks_path(new_task_path.id)
+        redirect_to new_task_path
         return 
       end 
     end 
+
 
     def edit 
       task_id = params[:id]
@@ -50,7 +50,24 @@ class TasksController < ApplicationController
     end 
 
     def update 
-  
+      @task = Task.find_by(id: params[:id])
+
+      if @task.nil?
+        flash[:error] = "Could not find task with id: #{task_id}"
+        redirect_to edit_task_path
+        return
+        
+      elsif @task.update(
+        author: params[:task][:name], 
+        description: params[:task][:description], 
+        completion_at: params[:task][:completion_at]
+      )
+        redirect_to edit_task_path 
+        return
+      else 
+        render :edit 
+        return
+      end
     end 
 
     def destroy 
@@ -67,10 +84,3 @@ end
 
 
 
-# def update_dollars
-#   @user = User.find(params[:user_id])
-#   new_dollars = params[:updatedFunds]
-#   @user.dollars = new_dollars.to_i
-
-#   @user.save #store to database!
-# end

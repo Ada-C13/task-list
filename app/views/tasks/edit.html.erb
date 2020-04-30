@@ -1,1 +1,19 @@
 <h3> Edit Task </h3>
+
+<p> edit below: <p> 
+
+
+
+<%= form_with model: @task, class: 'edit-task' do |f|%>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, placeholder: "#{@task.name}"%>
+
+  <%= f.label :description %>
+  <%= f.text_field :description, placeholder: "#{@task.description}"%>
+
+  <%= f.label :completed_at %>
+  <%= f.text_field :completed_at%>
+
+  <%= f.submit "Edit Task", class: "task-button" %>
+<% end %>

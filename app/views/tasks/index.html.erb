@@ -1,10 +1,9 @@
 <h1>YOUR TASKS</h1>
 <ul>
-  <% if @tasks.length > 0  %>
-    <% @tasks.each do |task| %>
-      <li><%= task.name %>: <%= task.description %></li>
-    <% end %> 
-  <% else %>
-    <li>NO tasks data</li>
-  <% end %>
+
+  <% @tasks.each do |task| %>
+    <li><%= task.name %>: <%= task.description %></li>
+  <% end %> 
+  
 </ul>
+

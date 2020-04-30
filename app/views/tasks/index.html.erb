@@ -2,7 +2,9 @@
 <ul>
   <% @tasks.each do |task| %>
     <li>
-      <%= task[:task] %> Completed: <%= task[:completed]%>
+      <%= task.name %> /
+      Description: <%= task.description %> /
+      Completed: <%= task.completed_at ? task.completed_at : "Not Completed"%>
     </li>
     <% end %>
 </ul>

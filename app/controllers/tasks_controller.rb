@@ -14,8 +14,20 @@ class TasksController < ApplicationController
     end  
   end
 
-  def new_task
+  def new
 
+  end
+
+  def update
+  end
+
+  def edit
+  end
+
+  def destroy
+  end
+
+  def create
   end
 
 end

@@ -29,7 +29,7 @@ class TasksController < ApplicationController
       )
     
       if task.save
-        redirect_to tasks_path
+        redirect_to task_path(task)
         return 
       else 
         redirect_to new_task_path
@@ -44,7 +44,7 @@ class TasksController < ApplicationController
 
       if @task.nil?
         flash[:error] = "Could not find task with id: #{task_id}"
-        redirect_to edit_task_path
+        redirect_to tasks_path
       end 
     end 
 

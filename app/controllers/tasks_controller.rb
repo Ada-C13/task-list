@@ -1,7 +1,4 @@
-# TASKS = [
-#   {task: "Do dishes", date: "Today"},
-#   {task: "finish baseline", date: "Tomorrow"}
-# ]
+
 class TasksController < ApplicationController
   def index
     @tasks = Task.all
@@ -25,5 +22,7 @@ class TasksController < ApplicationController
   def new
   end
   def create
+  end
+  def mark_done
   end
 end

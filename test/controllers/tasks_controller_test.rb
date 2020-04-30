@@ -1,8 +1,6 @@
 require "test_helper"
 
 describe TasksController do
-  before do
-    @task
   let (:task) {
     Task.create name: "sample task", description: "this is an example for a test",
     completed_at: Time.now + 5.days
@@ -28,10 +26,10 @@ describe TasksController do
   end
   
   # Unskip these tests for Wave 2
-  # update test path ? https://github.com/Ada-Developers-Academy/textbook-curriculum/blob/master/08-rails/using-active-record-in-code.md
+  # update test path ?https://github.com/Ada-Developers-Academy/textbook-curriculum/blob/master/08-rails/using-active-record-in-code.md
   describe "show" do
     it "can get a valid task" do
-      skip
+      
       # Act
       get task_path(task.id)
       
@@ -40,7 +38,7 @@ describe TasksController do
     end
     
     it "will redirect for an invalid task" do
-      skip
+      
       # Act
       get task_path(-1)
       
@@ -51,7 +49,7 @@ describe TasksController do
   
   describe "new" do
     it "can get the new task page" do
-      skip
+      
       
       # Act
       get new_task_path
@@ -63,7 +61,7 @@ describe TasksController do
   
   describe "create" do
     it "can create a new task" do
-      skip
+      
       
       # Arrange
       task_hash = {

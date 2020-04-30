@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   # Routes that deal with a specific Task
   get '/tasks/:id', to: 'tasks#show', as: 'task' # Shows details for a task
   get '/tasks/:id/edit', to: 'tasks#edit', as: 'edit_task' # Brings up form to edit task
-  patch '/tasks/:id', to: 'tasks#update'
-  delete '/tasks/:id', to: 'tasks#destroy'
+  patch '/tasks/:id', to: 'tasks#update' # Update an existing task
+  delete '/tasks/:id', to: 'tasks#destroy' # Destroys a given task
 end

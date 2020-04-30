@@ -6,15 +6,15 @@ TASKS = [
 
 class TasksController < ApplicationController
   def index
-    @tasks = TASKS
+    @tasks = Task.all
   end
 
   def show
-    id = params[:id].to_i
-    @task = TASKS[id]
+    task_id = params[:id].to_i
+    @task = Task.find_by(id: task_id)
 
     if @task.nil?
-      head :redirect
+      head :temporary_redirect
       return
     end
   end

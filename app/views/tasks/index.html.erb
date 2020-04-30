@@ -4,8 +4,8 @@
 <% if @tasks.length > 0 %>
     <ul>  
         <% @tasks.each do |task| %>
-            <li> <%= task[:name] %> </li>
-            <p><%= task[:description] %> is <%= task[:completed_at] %></p>
+            <li> <%= task.name %> </li>
+            <p><%= task.description %> needs to be completed by <%= task.completed_at %></p>
         <% end %>
     </ul>
 <% else %>

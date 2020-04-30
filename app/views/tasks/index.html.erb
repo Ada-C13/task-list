@@ -2,9 +2,10 @@
 
 <ul>
   <% @tasks.each do |task| %>
-    <li>
+    <li class="task">
       <%= task[:name] %>
       <p><%= task[:description] %></p>
+      <p><%= task[:completed_at] %></p>
     </li>
   <% end %>
 </ul>

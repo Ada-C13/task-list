@@ -1,14 +1,13 @@
 class TasksController < ApplicationController
 
-  TASKS = [
-    { name: "Learn Ruby", description: "Do Task List Project and read lecture notes"},
-    { name: "Grocery shopping", description: "Buy milk, eggs, and vegetables"},
-    { name: "Call mom", description: "Wish her happy birthday"}
-  ]
-
   def index
-    @tasks = TASKS
+    @tasks = Task.all
   end
 
-  
+  # request checkbox checked (put)
+  # update model, save to db
+  # redirect user to reload another page
+ # send to redirect to index, reload the whole thing
+ # since model updated, re-render whole page
+
 end

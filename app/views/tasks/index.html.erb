@@ -1,9 +1,10 @@
-<h3> Task List </h3>
+<h4> Things you need to complete:  </h4>
+<p><i> *click task to edit* </i><p> 
 
 <ol>
   <% @tasks.each do |task| %>
     <li>
-     <%= link_to task.name, task_path(task)%> 
+     <%= link_to task.name.capitalize(), task_path(task)%> 
     </li>
   <% end %>
 

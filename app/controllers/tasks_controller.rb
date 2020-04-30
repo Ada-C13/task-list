@@ -45,11 +45,11 @@ class TasksController < ApplicationController
       if @task.nil?
         flash[:error] = "Could not find task with id: #{task_id}"
         redirect_to edit_task_path
-        return 
       end 
     end 
 
     def update 
+    
       @task = Task.find_by(id: params[:id])
 
       if @task.nil?
@@ -58,11 +58,11 @@ class TasksController < ApplicationController
         return
         
       elsif @task.update(
-        author: params[:task][:name], 
+        name: params[:task][:name], 
         description: params[:task][:description], 
-        completion_at: params[:task][:completion_at]
+        completed_at: params[:task][:completed_at]
       )
-        redirect_to edit_task_path 
+        redirect_to edit_task_path(@task)
         return
       else 
         render :edit 

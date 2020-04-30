@@ -6,6 +6,7 @@
       <% @tasks.each do |task|%>
         <li>
           <%= task[:name]%> : <%= task[:description] %>
+          <a href='/tasks/<%= task[:id]%>'><input class="button" type="button" value="Show Details"></a>
         </li>
       <% end %>
     </ul>

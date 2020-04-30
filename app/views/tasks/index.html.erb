@@ -1,0 +1,13 @@
+<h2>All Your Tasks - Pulled from the DATABASE</h2>
+
+<% if @tasks.length > 0%>
+  <ul>
+    <% @tasks.each do |task| %>
+      <li><input type='checkbox'><%= link_to task.title, task_path(task.id) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <h3>No tasks yet!</h3>
+<% end %>
+
+

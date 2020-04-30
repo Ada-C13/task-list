@@ -10,6 +10,21 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <h1>Ada Task List</h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="<%= tasks_path %>">Task List</a></li>
+          <li><a href="<%= new_task_path %>">Add a task</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
   </body>
+  <footer>
+    <p>All rights reserved</p>
+  </footer>
 </html>

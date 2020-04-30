@@ -2,7 +2,9 @@
 <ul>
   <% @tasks.each_with_index do |task, index| %>
     <li>
-    <%= index+1 %> : <%= task[:task_name] %>
+    <%= index+1 %> : <%= task.name %>
+    <br>
+    Description => <%= task.description%>
     </li>
   <% end %>
 </ul>

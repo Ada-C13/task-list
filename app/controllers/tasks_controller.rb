@@ -1,12 +1,12 @@
-TASKS = [
-  {task_name: "Grocery shopping"},
-  {task_name: "cooking"},
-  {task_name: "water flowers"},
-]
+# TASKS = [
+#   {task_name: "Grocery shopping"},
+#   {task_name: "cooking"},
+#   {task_name: "water flowers"},
+# ]
 
 
 class TasksController < ApplicationController
   def index
-    @tasks = TASKS
+    @tasks = Task.all
   end
 end

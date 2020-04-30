@@ -1,11 +1,17 @@
-TASKS = [
-  { task: "Dishes", person: "Chelsea"},
-  { task: "Laundry", person: "Justin"},
-  { task: "Sweep", person: "Huxley"}
-]
 
 class TasksController < ApplicationController
   def index
-    @tasks = TASKS
+    @tasks = Task.all
+  end
+
+
+  def show
+    id = params[:id].to_i
+    @task = Task.find_by(id)
+
+    if @task.nil?
+      head :not_found
+      return
+    end
   end
 end

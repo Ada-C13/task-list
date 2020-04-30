@@ -2,6 +2,8 @@
 <%= 'tasks'.upcase%>
 <ul>
   <% @tasks.each do |task| %>
-    <li><%= "#{task[:person]} is assigned to #{task[:task]}" %></li>
+    <li>
+    <%= task.name.upcase %> Means: <%= task.description %> Completed?: <%= task.completed_at%>
+    </li>
   <% end %>
 </ul>

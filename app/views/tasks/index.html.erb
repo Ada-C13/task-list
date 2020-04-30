@@ -4,7 +4,7 @@
   <ul>
     <% @tasks.each do |task|  %>
       <li>
-        <%= task[:task] %> -due date: <%= task[:date] %>
+        <%= task.name %> -due date: <%= task.completed_at %>
       </li>
     <% end %>
   </ul>

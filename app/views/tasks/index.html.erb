@@ -1,0 +1,12 @@
+<%# app/views/tasks/index.html.erb%>
+<h3>Your Tasks</h3>
+
+<% if @tasks.length > 0 %>
+  <ul>
+    <% @tasks.each do |task| %>
+      <li> <%= task[:name] %> (<%=  task[:description] %>) </li>
+    <% end %>
+  </ul>
+<% else %>
+  You currently have no tasks at hand. Yay!
+<% end %>

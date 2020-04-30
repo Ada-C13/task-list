@@ -10,6 +10,22 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <section class="title"><h1>TASKLIST</h1></section>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/tasks">Your Tasks</a></li>
+          <li><a>New Task</li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer>All Rights Reserved 2020</footer>
+
   </body>
 </html>

@@ -2,7 +2,7 @@
 <ul>
   <% if @tasks.length > 0  %>
     <% @tasks.each do |task| %>
-      <li><%= task[:name] %></li>
+      <li><%= task[:name] %>: <%= task[:description]%></li>
     <% end %> 
   <% else %>
     <li>NO tasks data</li>

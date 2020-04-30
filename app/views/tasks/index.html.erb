@@ -1,13 +1,13 @@
-<h4>Your tasks</h4>
 <%= link_to "Add Task", new_task_path %>
+
+<h4>Your tasks</h4>
 <% if @tasks.length > 0 %>
   <ol>
     <% @tasks.each do |task|  %>
       <li>
-        <header><strong><%= task.name %></strong></header>
+        <header><strong><%= link_to(task.name, task_path(task.id) ) %></strong></header>
         <%= task.description %>
         <%=task.completed_at %>
-        <button><a href='/tasks/<%= task.id %>'>Show</a></button>
       </li>
     <% end %>
   </ol>

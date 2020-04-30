@@ -1,0 +1,14 @@
+<h2>Your Tasks</h2>
+
+<% if @tasks.length > 0 %>
+  <ol>
+    <% @tasks.each do |task|%>
+      <li class='task_name'><%= link_to task.name, task_path(task.id) %></li>
+      <br>
+      <p><%= task.description %></p>
+      <p><%="complete by #{task.completed_at}"%></p>
+    <%end%>
+  </ol>
+<% else %>
+  <h3>Yay! There is no Tasks in the system!</h3>
+<%end%>

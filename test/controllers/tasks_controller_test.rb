@@ -3,13 +3,15 @@ require "test_helper"
 describe TasksController do
   let (:task) {
     Task.create name: "sample task", description: "this is an example for a test",
-    completed_at: Time.now + 5.days
+    completed_at: "sample day/time for testing"
   }
   
   # Tests for Wave 1
   describe "index" do
     it "can get the index path" do
+    
       # Act
+      
       get tasks_path
       
       # Assert
@@ -17,6 +19,7 @@ describe TasksController do
     end
     
     it "can get the root path" do
+    skip
       # Act
       get root_path
       

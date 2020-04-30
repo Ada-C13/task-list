@@ -1,0 +1,11 @@
+<h2>Charlotte's Tasks</h2>
+
+<% if @tasks.length > 0 %>
+  <ul>
+    <% @tasks.each do |task|%>
+      <li> This task: <%= task[:name] %> is described as: <%= task[:description] %> and will be completed on: <%= task[:completed_at] %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <h3>No tasks in the system!</h3>
+<% end %>

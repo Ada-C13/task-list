@@ -1,6 +1,8 @@
 require "test_helper"
 
 describe TasksController do
+  before do
+    @task
   let (:task) {
     Task.create name: "sample task", description: "this is an example for a test",
     completed_at: Time.now + 5.days
@@ -26,6 +28,7 @@ describe TasksController do
   end
   
   # Unskip these tests for Wave 2
+  # update test path ? https://github.com/Ada-Developers-Academy/textbook-curriculum/blob/master/08-rails/using-active-record-in-code.md
   describe "show" do
     it "can get a valid task" do
       skip

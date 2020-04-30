@@ -1,0 +1,10 @@
+<h2>Tasks for Today<h2>
+
+<ul>
+  <% @tasks.each do |task| %>
+    <li>
+      <%= task[:name] %>
+      <p><%= task[:description] %></p>
+    </li>
+  <% end %>
+</ul>

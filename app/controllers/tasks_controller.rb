@@ -22,6 +22,10 @@ class TasksController < ApplicationController
   end
 
   def edit
+    task_id = params[:id]
+    @task = Task.find_by(id: task_id)
+
+
   end
 
   def destroy

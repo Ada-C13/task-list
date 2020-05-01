@@ -1,1 +1,13 @@
 <h2>Edit Page</h2>
+<%= form_with model: @task, class:'task-form' do |f| %>
+  <p>Please edit: STILL UPDATE THIS PAGE</p>
+  <div>
+    <%= f.label :name%>
+    <%= f.text_field :name %>
+  </div>
+    <div>
+    <%= f.label :description%>
+    <%= f.text_area :description %>
+  </div>
+  <%= f.submit "Update task"%>
+<% end %>

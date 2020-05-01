@@ -7,6 +7,7 @@
         <li>
           <%= task[:name] %> : <%= task[:description] %>
           <%= button_to "Show Details", task_path(task.id), :method => :get%> 
+          <%= button_to "Edit Task", edit_task_path(task.id), :method => :get%> 
         </li>
       <% end %>
     </ul>

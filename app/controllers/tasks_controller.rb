@@ -44,9 +44,6 @@ class TasksController < ApplicationController
   end 
   
   
-  def destroy
-  end 
-  
   def new
     @task = Task.new
   end 
@@ -61,6 +58,9 @@ class TasksController < ApplicationController
     else 
       render :new, :bad_request
     end 
+  end 
+  
+  def destroy
   end 
   
 end

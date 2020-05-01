@@ -32,11 +32,37 @@ class ApplicationController < ActionController::Base
     if @task.save # save returns true if the database insert succeeds
       redirect_to task_path(@task.id)
       return
-    else # save failed :(
-      render :new # show the new book form view again
+    else 
+      render :new 
       return
     end
+  end
 
+  def edit
+    @task = Task.find_by(id: params[:id])
+
+    if @task.nil?
+      head :not_found
+      return
+    end
+  end
+
+  def update
+    @task = Task.find_by(id: params[:id])
+    if @task.nil?
+      head :not_found
+      return
+    elsif @task.update(
+      name: params[:task][:name], 
+      completed_at: params[:task][:completed_at], 
+      description: params[:task][:description]
+    )
+      redirect_to task_path(@task.id)
+      return
+    else # save failed :(
+      render :edit 
+      return
+    end
   end
 
 end

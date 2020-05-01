@@ -11,4 +11,19 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
+  def show
+    # Raise an exception.
+    # Be aware that any string will be converted to 0
+    task_id = params[:id].to_i
+    # It needs to handle this exception. 
+    @task = Task.find_by(id: task_id) 
+    
+    puts @task
+
+    if @task.nil?
+      head :not_found
+      return 
+    end
+  end
+
 end

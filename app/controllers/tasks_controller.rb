@@ -1,9 +1,3 @@
-TASKS = [
-  { name: "Finish wave 1", description: "Work on the task-list project wave 1", completed_at: "April, 28, 2020" },
-  { name: "Attend the Zulily meeting", description: "Attend and take notes from the Zulily company meeting", completed_at: "April, 28, 2020" },
-  { name: "Leg workout", description: "Do 45-60 mins of physical therapy leg workout for left leg", completed_at: "April, 28, 2020" },
-]
-
 class TasksController < ApplicationController
   def index
     @tasks = Task.all
@@ -16,6 +10,20 @@ class TasksController < ApplicationController
     if @task.nil?
       head :temporary_redirect
       return
+    end
+  end
+
+  def new
+    @task = Task.new
+  end
+
+  def create
+    task = Task.new name: params[:task][:name], description: params[:task][:description], completed_at: params[:task][:completed_at]
+
+    if task.save
+      redirect_to task_path(task.id) ##TODO- ask why the completed at is not being saved????
+    else
+      render :new, :bad_request
     end
   end
 end

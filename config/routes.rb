@@ -3,5 +3,8 @@ Rails.application.routes.draw do
   
   root to: 'tasks#index'
   get '/tasks', to: 'tasks#index'
+  get '/tasks/new', to: 'tasks#new', as: 'new_task'
   get '/tasks/:id', to: 'tasks#show', as: 'task' #an alias 
+
+  post '/tasks', to: 'tasks#create', as: 'create_task'
 end

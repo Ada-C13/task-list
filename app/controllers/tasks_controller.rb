@@ -11,7 +11,7 @@ class TasksController < ApplicationController
   
   def show #id does not have to be a number, by default is a string 
     id = params[:id].to_i
-    @task = Task.find_by(id: id)
+    @task = Task.find_by(id: id) 
     
     if @task.nil?
       head :not_found
@@ -29,9 +29,20 @@ class TasksController < ApplicationController
   end 
   
   def new
+    @task = Task.new
   end 
   
   def create 
-  end 
+    get_task = params[:task]
+    task = Task.new(
+      
+      name: get_task[:name],
+      description: get_task[:description]
+      
+    )
+    if book.save
+      redirect_to tasks_path #send them to the '/tasks' path
+    end 
+    
+  end
   
-end

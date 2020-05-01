@@ -5,7 +5,7 @@
     <ul class="tasklist">
       <% @tasks.each do |task|%>
         <li>
-          <%= link_to(task.name, task_path(task.id))%>: <%= task[:description] %>
+          <%= task[:name] %> : <%= task[:description] %>
           <%= button_to "Show Details", task_path(task.id), :method => :get%> 
         </li>
       <% end %>

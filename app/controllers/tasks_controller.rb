@@ -33,7 +33,7 @@ class TasksController < ApplicationController
       description: params[:task][:description])
 
     if @task.save
-      redirect_to tasks_path
+      redirect_to @task
     else
       render :new, :bad_request
     end

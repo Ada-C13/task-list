@@ -17,4 +17,26 @@ class ApplicationController < ActionController::Base
       return
     end
   end
+
+  def new
+    @task = Task.new
+  end
+
+  def create
+    @task = Task.new(
+      name: params[:task][:name], 
+      completed_at: params[:task][:completed_at], 
+      description: params[:task][:description]
+    ) 
+
+    if @task.save # save returns true if the database insert succeeds
+      redirect_to tasks_path # go to the index so we can see the book in the list
+      return
+    else # save failed :(
+      render :new # show the new book form view again
+      return
+    end
+    
+  end
+
 end

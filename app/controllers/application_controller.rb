@@ -6,6 +6,6 @@ TASKS = [
 
 class ApplicationController < ActionController::Base
   def index
-    @tasks = TASKS
+    @tasks = Task.all
   end
 end

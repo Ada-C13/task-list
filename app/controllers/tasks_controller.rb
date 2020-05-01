@@ -6,7 +6,7 @@ TASKS = [
     todo: "Buy dahlia tubers"
   },
   {
-    todo: "Made dinner"
+    todo: "Make dinner"
   }
 ]
 

@@ -1,0 +1,13 @@
+<h1>Nataliya's TODOs</h1>
+
+<% if @tasks.length > 0 %>
+  <ul>
+    <% @tasks.each do |task|  %>
+      <li>
+        <%= task[:todo] %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <h3>All tasks completed!</h3>
+<% end %>

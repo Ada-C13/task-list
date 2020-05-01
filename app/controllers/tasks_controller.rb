@@ -35,6 +35,22 @@ class TasksController < ApplicationController
     end
   end
 
+  def mark_complete
+    @task = Task.find_by(id: params[:id])
+    if @task.nil?
+      head :not_found
+      return
+    elsif @task.update(
+      completed_at: 'completed'
+    )
+      redirect_to 'tasks'
+      return
+    else 
+      raise
+      return
+    end
+  end
+
   def edit
     task_id = params[:id]
     @task = Task.find_by(id: task_id)

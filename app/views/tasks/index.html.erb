@@ -6,9 +6,15 @@
       <% @tasks.each do |task|%>
         <li>
           <%= task[:name] %> : <%= task[:description] %>
+          <% if task[:completed_at] == 'completed' %>
+            <h3>Task Completed</h3>
+          <% end %>
           <%= button_to "Show Details", task_path(task.id), :method => :get%> 
           <%= button_to "Edit Task", edit_task_path(task.id), :method => :get%>
-          <%= button_to "Delete Task", delete_path(task.id), :method => :delete%> 
+          <%= button_to "Delete Task", delete_path(task.id), :method => :delete%>
+          <% if task[:completed_at] != 'completed'%> 
+            <%= button_to "Mark Task Complete", completed_path(task.id), :method => :get%>
+          <% end %> 
         </li>
       <% end %>
     </ul>

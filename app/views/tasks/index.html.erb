@@ -1,0 +1,11 @@
+<h1>Tasks#index</h1>
+<p>Find me in app/views/tasks/index.html.erb</p>
+
+<h1>Tasks</h1>
+<ul>
+  <% @tasks.each do |task|  %>
+    <li>
+      <%= task[:assignee] %> By: <%= task[:task] %>
+    </li>
+  <% end %>
+</ul>

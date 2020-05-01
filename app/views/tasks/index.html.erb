@@ -5,7 +5,7 @@
   <ul>
     <% @tasks.each do |task|%>
       <li>
-        <%= task[:number] %> by <%= task[:text] %>
+        <%= task.name %> description: <%= task.description %>  Completed_at: <%= task.completed_at %> 
       </li>
     <% end %>
   </ul>

@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   # why as singular task below?
   get '/tasks/:id', to: 'tasks#show', as: 'task'
   post '/tasks', to: 'tasks#create'
+  # resources :tasks
   
 end

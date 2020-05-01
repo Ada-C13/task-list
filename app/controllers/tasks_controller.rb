@@ -19,11 +19,17 @@ class TasksController < ApplicationController
 
   # No route matches {:action=>"show", :controller=>"tasks", :id=>nil}, possible unmatched constraints: [:id]
   def create
-    @task = Task.new(name: params[:task][:name], description: params[:task][:description], completed_at: params[:task][:completed_at])
+    @task = Task.new(
+      # id: params[:task][:id],
+      name: params[:task][:name],
+      description: params[:task][:description],
+      completed_at: params[:task][:completed_at]
+      )
     if @task.save
-      redirect_to tasks_path
+      redirect_to task_path(@task.id)
       return
     else
+      # do we need to redirect to make tests pass or render :new?
       render :new
       return
     end

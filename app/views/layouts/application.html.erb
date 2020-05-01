@@ -12,11 +12,12 @@
   <body>
   <header>
     <section class='title'><h1>TaksList<h1></section>
-    <li><%= link_to 'Add New Task', new_task_path %></li>
   </header>
     <nav>
       <ul>
-      </ul>
+      <%= link_to '<button type="button">Home</button>'.html_safe, tasks_path %></li>
+      <%= link_to '<button type="button">Add New Task</button>'.html_safe, new_task_path %></li>
+      <ul>
     </nav>
     <%= yield %>
   </body>

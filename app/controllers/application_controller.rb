@@ -1,9 +1,3 @@
-TASKS = [
-  { assignee: "Jay", task: "wash the dishes"},
-  { assignee: "Sarah", task: "wash the clothes"},
-  { assignee: "Sam", task: "walk the dog"}
-]
-
 class ApplicationController < ActionController::Base
   def index
     @tasks = Task.all
@@ -29,7 +23,7 @@ class ApplicationController < ActionController::Base
       description: params[:task][:description]
     ) 
 
-    if @task.save # save returns true if the database insert succeeds
+    if @task.save #
       redirect_to task_path(@task.id)
       return
     else 
@@ -59,10 +53,25 @@ class ApplicationController < ActionController::Base
     )
       redirect_to task_path(@task.id)
       return
-    else # save failed :(
+    else 
       render :edit 
       return
     end
+  end
+
+  def destroy
+    task_id = params[:id]
+    @task = Task.find_by(id: task_id)
+
+    if @task.nil?
+      head :not_found
+      return
+    end
+
+    @task.destroy
+
+    redirect_to tasks_path
+    return
   end
 
 end

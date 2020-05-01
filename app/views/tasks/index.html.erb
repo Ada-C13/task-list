@@ -4,9 +4,14 @@
 <ul>
   <% @tasks.each do |task|  %>
     <li>
-      <%= task[:name] %> is assigned to complete <%= task[:description] %>
+      <%= link_to "Task ##{task[:id]}" , task_path(task[:id]) %><br>
+      <%= task[:name] %> must <%= task[:description] %><br>
+      <%= link_to "Edit Task", edit_task_path(task[:id]) %> |
+      <%= link_to "Delete Task", task_path(task[:id]), method: :delete, data: {confirm: "Are you sure?"}%>
     </li>
   <% end %>
 </ul>
-
 <%= link_to "Add Task", new_task_path %>
+
+
+

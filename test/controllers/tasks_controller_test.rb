@@ -37,6 +37,24 @@ describe TasksController do
       # Assert
       must_respond_with :success
     end
+
+    # ? Do I need to change the test for show really?
+    # TODO from lesson: Here is the updated show test for reference.
+    # describe "show" do
+    #   before do
+    #     @task = task.create(name: "hello world")
+    #   end
+  
+    #   it "will get show for valid ids" do
+    #     # Arrange
+    #     valid_task_id = @task.id
+    
+    #     # Act
+    #     get "/tasks/#{valid_task_id}"
+    
+    #     # Assert
+    #     must_respond_with :success
+    #   end
     
     it "will redirect for an invalid task" do
       skip

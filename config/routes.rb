@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   post '/tasks', to: 'tasks#create'
 
   
-  get '/tasks/:id' => 'tasks#show' as: "task"
+  get '/tasks/:id' => 'tasks#show', as: "task"
   root to: "tasks#index"
 end

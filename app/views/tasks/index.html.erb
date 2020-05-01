@@ -5,7 +5,8 @@
     <ul>  
         <% @tasks.each do |task| %>
             <li> <%= link_to task.name, task_path(task.id) %> </li>
-            <p><%= task.description %> needs to be completed by <%= task.completed_at %></p>
+            <p><%= task.description %> needs to be completed by <%= task.completed_at %> <%= link_to "Edit Task", edit_task_path(task.id) %></p>
+            <%# <%= link_to "Mark task as completed", ///%> %>
         <% end %>
     </ul>
     

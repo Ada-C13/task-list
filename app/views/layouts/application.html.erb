@@ -8,19 +8,28 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  <div class="app">
 
-  <header>  
-    <h1> TaskList </h1>
-    <nav> 
-      <ul>
-        <li> <%= link_to "List Tasks", tasks_path %> </li>
-        <li> <%= link_to "Add Task", new_task_path %> </li>
-        
-      </ul>
-    </nav>
+  
+
+  <header> 
+  <h1> TaskList </h1> 
   </header>
+
+ 
+  <h2> </h2>
+
+  <nav> 
+    <ul class="links">
+      <li> <%= link_to "List Tasks", tasks_path %> </li>
+      <li> <%= link_to "Add Task", new_task_path %> </li>
+    </ul>
+  </nav>
 
   <body>
     <%= yield %>
   </body>
+
+
+  </div>
 </html>

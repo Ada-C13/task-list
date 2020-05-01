@@ -78,7 +78,21 @@ class TasksController < ApplicationController
       @task.destroy 
       redirect_to tasks_path 
     else 
-      render :notfound, :bad_request
+      render :notfound, :bad_request # TODO
     end
+  end
+
+
+  def complete 
+    task_id = params[:id]
+    @task = Task.find_by(id: task_id)
+
+    if @task.completed_at == nil 
+      @task.update(completed_at: Time.now) # update database
+    else 
+      @task.update(completed_at: nil)
+    end 
+
+    redirect_to tasks_path 
   end
 end

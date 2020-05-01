@@ -25,7 +25,7 @@ describe TasksController do
     end
   end
   
-  # Unskip these tests for Wave 2
+  # Tests for Wave 2
   # update test path ?https://github.com/Ada-Developers-Academy/textbook-curriculum/blob/master/08-rails/using-active-record-in-code.md
   describe "show" do
     it "can get a valid task" do

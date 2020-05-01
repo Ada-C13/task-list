@@ -5,9 +5,9 @@ class TasksController < ApplicationController
 
   def show
     id = params[:id].to_i
-    @task = Task.find(id)
+    @task = Task.find_by(id: id)
     if @task.nil?
-      head :not_found
+      redirect_to tasks_path
       return
     end
   end

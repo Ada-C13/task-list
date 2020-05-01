@@ -87,6 +87,18 @@ class TasksController < ApplicationController
 
   def markcomplete
     raise 
+    # task_id = params[:id].to_i
+    # @task = Task.find_by(id: task_id )
+
+    # if @task.completed_at.nil?
+    #   @task.completed_at = Time.now
+    #   redirect_to tasks_path
+    #   return 
+    # else  
+    #   head :not_found
+    #   return 
+    # end 
+
   end 
 
   

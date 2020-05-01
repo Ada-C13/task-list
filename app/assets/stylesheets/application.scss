@@ -16,3 +16,20 @@
 @import "bootstrap";
 
 @import "**/*";
+
+
+* {
+  display: flex;
+  // justify-content: center;
+  flex-direction: column;
+  align-content: center;
+
+}
+
+.task {
+  font-style: italic;
+}
+
+.application-footer {
+  justify-content: flex-end;
+}

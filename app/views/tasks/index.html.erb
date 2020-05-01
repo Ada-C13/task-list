@@ -7,7 +7,7 @@
       <%= link_to "Task ##{task[:id]}" , task_path(task[:id]) %><br>
       <%= task[:name] %> must <%= task[:description] %><br>
       <%= button_to "Edit Task", edit_task_path(task[:id]), method: :get %> 
-      <%= button_to "#{task.task_completed ? "Not Completed" : "Completed"}", completed_task_path(task.id), method: :patch %> 
+      <%= button_to "#{task.task_completed ? "Completed" : "Not Completed"}", completed_task_path(task.id), method: :patch %> 
       <%= button_to "Delete", task_path(task.id), method: :delete, data: {confirm: "Sure about that?"} %>
     </li>
   <% end %>

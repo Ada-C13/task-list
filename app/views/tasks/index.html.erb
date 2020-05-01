@@ -1,0 +1,13 @@
+<h2>Task</h2>
+
+<% if @tasks.length > 0 %>
+<ul>
+  <% @tasks.each do |task| %>
+  <li>
+  <%= task[:item] %> TODO: <%= task[:todo] %>
+  </li>
+<% end %>
+</ul>
+<% else %>
+<h3>No Task<h3>
+<% end %>

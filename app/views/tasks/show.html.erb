@@ -5,7 +5,9 @@
 
 
 
- <%= link_to "Edit Task", edit_task_path(@task) %>
+ <%= button_to "Edit Task", edit_task_path(@task), :method => "get" %>
+
+ <%= button_to "Delete", @task, :method => "delete", data: {confirm: "Are you sure?"} %>
 
  
 

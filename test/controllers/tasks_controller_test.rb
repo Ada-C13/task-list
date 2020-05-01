@@ -4,6 +4,7 @@ describe TasksController do
   let (:task) {
     Task.create name: "sample task", description: "this is an example for a test",
     completed_at: Time.now + 5.days
+    
   }
   
   # Tests for Wave 1

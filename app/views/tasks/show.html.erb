@@ -1,3 +1,8 @@
-<h2> <%= @task[:name]%> </h2>
-<p> <%= @task[:description]%> </p>
-<h3> <%= @task[:completed_at]%> </h3>
+<h1> <%= @task.name %> </h1>
+<p> <%= @task.description %> </p>
+<h3> <%= @task.complete_at %> </h3>
+
+
+<p><%= link_to "Return to Task list", tasks_path %></p> 
+
+

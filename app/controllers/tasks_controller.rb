@@ -9,7 +9,7 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: id)
 
     if @task.nil?
-      redirect_to tasks_path
+      redirect_to tasks_path, notice: 'Task not found'
       return
     end
   end
@@ -36,6 +36,7 @@ class TasksController < ApplicationController
   def edit
     id = params[:id].to_i
     @task = Task.find_by(id: id)
+
   end
 
   def update
@@ -52,10 +53,15 @@ class TasksController < ApplicationController
       redirect_to tasks_path
     else
       render :edit, :bad_request
+      return
     end
   end
 
   def destroy
+    id = params[:id].to_i
+    @task = Task.find_by(id: id)
+    @task.destroy
+    redirect_to root_path
   end
 
 

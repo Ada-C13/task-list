@@ -6,11 +6,19 @@
         <%= link_to task.name, task_path(task.id) %>
         -
         <%= task.description %>
+
+        <%= link_to " ✏️", edit_task_path(task.id) %>
+        <%= link_to "  🚮 ", task_path(task.id), method: :delete, data: { confirm: '❗️ Would you like to delete the task?'} %>
       </li>
     <% end %>
   </ul>
+  
 <% else %>
   <h3>No tasks in the system!</h3>
 <% end %>
 
-<%= link_to "Add Task", new_task_path %>
+<%= link_to "➕ Add Task", new_task_path %>
+
+
+<%# reference: how to update confirm pop up page %>
+<%# https://stackoverflow.com/questions/15771582/rails-how-to-put-a-confirmation-popup-on-a-f-submit %>

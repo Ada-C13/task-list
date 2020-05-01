@@ -1,13 +1,7 @@
 <h2>Edit Page</h2>
+
 <%= form_with model: @task, class:'task-form' do |f| %>
-  <p>Task to edit:/p>
-  <div>
-    <%= f.label :name%>
-    <%= f.text_field :name %>
-  </div>
-    <div>
-    <%= f.label :description%>
-    <%= f.text_area :description %>
-  </div>
-  <%= f.submit "Update task"%>
+  <p>Task to edit:</p>
+  <%= render partial: 'form' %>
+  <%= f.submit "Update task"%>  
 <% end %>

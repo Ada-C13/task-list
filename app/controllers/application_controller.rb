@@ -30,13 +30,13 @@ class ApplicationController < ActionController::Base
     ) 
 
     if @task.save # save returns true if the database insert succeeds
-      redirect_to tasks_path # go to the index so we can see the book in the list
+      redirect_to task_path(@task.id - 1)
       return
     else # save failed :(
       render :new # show the new book form view again
       return
     end
-    
+
   end
 
 end

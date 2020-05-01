@@ -1,6 +1,5 @@
-
-<%= form_with model: @task, class: 'task-form' do |f| %>
-<p>What task would you like to add?</p>
+<%= form_with model: @task, class: 'task-form' do |f| %> 
+<p>Please Update Your Task:</p>
 <section>
   <%= f.label :name %>
   <%= f.text_field :name %> 
@@ -11,5 +10,5 @@
 <%= f.text_area :description %>
 </section>
 
-<%= f.submit "Save Task", class: "task-button" %>
+<%= f.submit "Update Task", class: "task-button" %>
 <% end %>

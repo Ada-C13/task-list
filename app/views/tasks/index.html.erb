@@ -3,7 +3,14 @@
 <% if @tasks.length > 0%>
   <ul>
     <% @tasks.each do |task| %>
-      <li><input type='checkbox'><%= link_to task.title, task_path(task.id) %></li>
+      <li>
+      <h3><%= link_to task.name, task_path(task.id) %></h3>
+      </li>
+      <div>
+        <%= link_to "Mark Task Complete  | ", mark_complete_path(task), method: :patch %>
+        <%= link_to "Edit Task  | ", edit_task_path(task) %>
+        <%= link_to "Delete Task", task_path(task), method: :delete, data: {confirm: "Are you sure?"} %>
+      </div>
     <% end %>
   </ul>
 <% else %>

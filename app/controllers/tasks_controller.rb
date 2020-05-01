@@ -8,12 +8,13 @@ class TasksController < ApplicationController
 		task_id = params[:id]
 		@task = Task.find_by(id: task_id)
 
-		if @task.nil?
+		if @task.nil? # if task cannot be found
 			head :not_modified
 			return
 		end
 	end
  
+  # Create a new task.
 	def new
 		@task = Task.new
 	end
@@ -24,15 +25,16 @@ class TasksController < ApplicationController
 			description: params[:task][:description], 
 			completed_at: params[:task][:completed_at])
 		
-		if @task.save
+		if @task.save # if a new task if made and saved
 			redirect_to task_path(@task)
 		else
 			render :new, :bad_request
 		end
 	end
 
+  # Edit and update an existing task.
 	def edit
-		@task = Task.find_by(id: params[:id])
+		@task = Task.find_by(id: params[:id]) # Locate existing task by ID.
 	end
 
 	def update

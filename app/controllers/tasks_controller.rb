@@ -19,15 +19,25 @@ class TasksController < ApplicationController
   end
 
   def create
+    @task = Task.new( 
+      name: params[:task][:name],
+      description: params[:task][:description],
+      completed_at: params[:task][:completed_at]
+    )
+    if @task.save
+      redirect_to tasks_path
+    else
+      render :new, :bad_request
+    end
   end
 
-  def update
-  end
-  def edit
-  end
-  def destroy
-  end
+  # def update
+  # end
+  # def edit
+  # end
+  # def destroy
+  # end
   
-  def mark_done
-  end
+  # def mark_done
+  # end
 end

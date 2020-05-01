@@ -103,13 +103,21 @@ describe TasksController do
   
   # Uncomment and complete these tests for Wave 3
   describe "update" do
-    # Note:  If there was a way to fail to save the changes to a task, that would be a great
-    #        thing to test.
+    
     it "can update an existing task" do
       # Your code here
+ 
+    
+     
+
+    
+
     end
     
     it "will redirect to the root page if given an invalid id" do
+      get edit_task_path(-1)
+
+      must_redirect_to tasks_path
       # Your code here
     end
   end
@@ -125,17 +133,3 @@ describe TasksController do
     # Your tests go here
   end
 end
-
-# task_hash = {
-#   task: {
-#     name: "new task",
-#     description: "new task description",
-#     completed_at: nil,
-#   },
-# }
-
-# get edit_task_path
-
-# expect {
-#   post tasks_path, params: task_hash
-# }

@@ -1,11 +1,9 @@
 <% if @tasks.length > 0 %>
   <ol>
     <% @tasks.each do |task| %>
-      <li><%= task[:name] %></li>
-      <ul>
-        <li><%= task[:description] %></li>
-        <li><%= task[:completed_at] %></li>
-      </ul>
+      <li>
+        <a href="tasks/<%= task[:id]%>"><%= task[:name] %></a>
+      </li>
     <% end %>
   </ol>
 <% else %>

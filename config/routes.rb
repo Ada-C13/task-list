@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   #add routes taht have to do with collection of tasks
-  get '/tasks', to: 'tasks#index' #list all tasks
+  get '/tasks', to: 'tasks#index', as: 'tasks' #list all tasks
   get 'tasks/new', to: 'tasks#new', as: 'new_task'#gets a form for a new book
   post '/tasks', to: 'tasks#create'
   

@@ -1,3 +1,4 @@
 <h1>Task: <%= @task.name %></h1>
 <h2>Description: <%= @task.description %></h2>
 <h3>Completed: <%= @task.completed_at ? @task.completed_at : "Not Completed" %></h3>
+<%= link_to "Edit Task", edit_task_path %>

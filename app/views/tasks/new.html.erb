@@ -1,13 +1,2 @@
-<%= form_with model: @task do |f| %>
-  <p>please provide info for task</p>
-  <div>
-    <%= f.label :task %>
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-  </div>
-  <%= f.submit %>
-
-<% end %>
+<h1>New Form</h1>
+<%= render partial: "form", locals: {zone: @zone} %>

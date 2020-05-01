@@ -45,5 +45,11 @@ class TasksController < ApplicationController
 			completed_at: params[:task][:completed_at])
 		
 		redirect_to task_path(@task)
-	end
+  end
+  
+  # Delete a record.
+  def destroy
+    Task.destroy(params[:id])
+    redirect_to tasks_path
+  end
 end

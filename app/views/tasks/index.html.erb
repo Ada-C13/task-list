@@ -3,7 +3,7 @@
   <ul>
     <% @tasks.each do |task| %>
       <li>
-        <%= task.name %>
+        <%= link_to task.name, task_path(task.id) %>
         -
         <%= task.description %>
       </li>
@@ -12,3 +12,5 @@
 <% else %>
   <h3>No tasks in the system!</h3>
 <% end %>
+
+<%= link_to "Add Task", new_task_path %>

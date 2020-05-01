@@ -16,7 +16,9 @@
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="<%= tasks_path %>">Task List</a></li>
-          <li><a href="<%= new_task_path %>">Add a task</a></li>
+
+          <%# practice link_to %>
+          <li><%= link_to "Add a task", new_task_path %></li> 
         </ul>
       </nav>
     </header>

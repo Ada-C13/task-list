@@ -1,2 +1,3 @@
-<h3><%= @task[:name] %></h3>
+<h3>About <%= @task[:name] %></h3>
 <p><%= @task[:description] %></p>
+<%= link_to "Edit Task", edit_task_path(@task.id) %>

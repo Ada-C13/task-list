@@ -4,3 +4,24 @@
 
   padding: 10%;
 }
+
+.task-name {
+  color: black;
+
+}
+
+a {
+  color: black;
+  text-decoration: underline;
+}
+.index-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  
+}
+
+.index-links > *{
+  padding: 3%;
+
+
+}

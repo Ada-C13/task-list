@@ -1,5 +1,20 @@
 <h3>About <%= @task[:name] %></h3>
-<p><%= @task[:description] %></p>
+<p>
+  <strong>Description:</strong>
+  <%= @task[:description] %>
+</p>
+<% if @task[:completed_at] %>
+  <p>
+    <strong>Completed at:</strong>
+    <%= @task[:completed_at] %>
+  </p>
+<% else %>
+  <p>
+    <strong>Completed at:</strong>
+    Not completed
+  </p>
+<% end %>
+
 <div>
   <%= link_to "Edit Task ✏️", edit_task_path(@task.id) %>
 </div>

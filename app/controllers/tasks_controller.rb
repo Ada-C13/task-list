@@ -19,11 +19,30 @@ class TasksController < ApplicationController
     end 
   end 
   
-  def update 
+  def edit #form to edit 
+    @task = Task.find_by(id: params[:id])
+    
+    if @task.nil?
+      head :not_found
+      return
+    end
   end 
   
-  def edit 
+  def update #Send form data to the server to update an existing book
+    @task = Task.find_by(id: params[:id])
+    
+    if @task.nil? 
+      head :not_found
+      return 
+    elsif @task.update(name: params[:task][:name], description: params[:task][:description]) 
+      redirect_to tasks_path
+      return 
+    else 
+      render :edit
+      return   
+    end  
   end 
+  
   
   def destroy
   end 
@@ -33,16 +52,15 @@ class TasksController < ApplicationController
   end 
   
   def create 
-    get_task = params[:task]
-    task = Task.new(
-      
-      name: get_task[:name],
-      description: get_task[:description]
-      
+    @task = Task.new(
+      name: params[:task][:name],
+      description: params[:task][:description]
     )
-    if book.save
+    if @task.save
       redirect_to tasks_path #send them to the '/tasks' path
+    else 
+      render :new, :bad_request
     end 
-    
-  end
+  end 
   
+end

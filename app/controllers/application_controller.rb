@@ -10,10 +10,10 @@ class ApplicationController < ActionController::Base
   end
 
   def show
-    task_id = params[:id].to_i
-    @task = Task.all[task_id]
+    task_id = params[:id]
+    @task = Task.find_by(id: task_id)
     if @task.nil?
-      head :not_found
+      redirect_to tasks_path
       return
     end
   end
@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
     ) 
 
     if @task.save # save returns true if the database insert succeeds
-      redirect_to task_path(@task.id - 1)
+      redirect_to task_path(@task.id)
       return
     else # save failed :(
       render :new # show the new book form view again

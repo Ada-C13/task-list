@@ -31,4 +31,8 @@ class TasksController < ApplicationController
 		end
 	end
 
+	def edit
+
+	end
+	
 end

@@ -1,8 +1,10 @@
 <h1>Tasks</h1>
-<ul>
+<section class="tasks">
   <% @tasks.each do |task|  %>
-    <li>
-      <%= task[:description] %> assigned to: <%= task[:assignee] %>
-    </li>
+    <div class="task">
+    <h4><%= task.id %>. <%= task.name %></h3>
+    <p><%= task.description%></p>
+    <p><%= task.completed_at %></p>
+    </div>
   <% end %>
-</ul>
+</section>

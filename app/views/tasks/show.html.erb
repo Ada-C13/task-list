@@ -1,10 +1,14 @@
-<h2> Task : <%= @task.name.capitalize()%> </h2>
+<h2> Task: <%= @task.name.capitalize()%> </h2>
 
 
  <p> Description: <%= @task.description.capitalize()%><p>
 
 
 
- <%= link_to "Edit Task", edit_task_path(@task.id) %> 
+ <%= link_to "Edit Task", edit_task_path(@task) %>
+
+ 
+
+ 
 
   

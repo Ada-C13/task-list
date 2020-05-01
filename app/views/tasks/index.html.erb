@@ -1,14 +1,35 @@
 <h1>Task List</h1>
+
 <% if @tasks.length > 0 %>
   <ul>
     <% @tasks.each do |task| %>
       <li>
-        <%= link_to task.name, task_path(task.id) %>
-        -
-        <%= task.description %>
+        
+        <%= form_with model: @task, class: 'task-complete', url: complete_task_path(task.id), method: :patch do |f| %>
+          <%= f.check_box :completed_at, { onchange: 'this.form.submit()', checked: !task.completed_at.nil?  } %>
+        <% end %>
+
+        <% if task.completed_at.nil? %>
+          <span>
+            <%= link_to task.name, task_path(task.id) %>
+            -
+            <%= task.description %>
+          </span>
+        <% else %>
+          <span class="task-complete">
+            <%= link_to task.name, task_path(task.id) %>
+            -
+            <%= task.description %>
+          </span>
+        <% end %>
 
         <%= link_to " ✏️", edit_task_path(task.id) %>
         <%= link_to "  🚮 ", task_path(task.id), method: :delete, data: { confirm: '❗️ Would you like to delete the task?'} %>
+
+
+
+
+        
       </li>
     <% end %>
   </ul>

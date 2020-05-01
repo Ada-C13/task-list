@@ -1,4 +1,4 @@
-
+require 'date'
 
 class TasksController < ApplicationController
 
@@ -50,28 +50,30 @@ class TasksController < ApplicationController
 
     def update 
     
-      @task = Task.find_by(id: params[:id])
+      task = Task.find_by(id: params[:id])
 
-      if @task.nil?
+      if task.nil?
         flash[:error] = "Could not find task with id: #{task_id}"
         redirect_to tasks_path
         return
         
-      elsif @task.update(
+      elsif task.update(
         name: params[:task][:name], 
         description: params[:task][:description], 
-        completed_at: params[:task][:completed_at]
+        completed_at: false
       )
-        redirect_to task_path(@task)
+        redirect_to task_path(task)
         return
       else 
         render :edit 
         return
       end
-      
     end 
 
     def destroy 
+      #assign to instance variable instead of local variable 
+      #why do we use instance variables 
+
       @task = Task.find_by(id: params[:id])
 
       if @task.nil?
@@ -84,11 +86,27 @@ class TasksController < ApplicationController
         
       redirect_to tasks_path
       return 
-      
     end 
  
 
     def mark_complete
+      @task = Task.find_by(id: params[:id])
+
+      if @task.nil?
+        flash[:error] = "Could not find task with id: #{task_id}"
+        redirect_to tasks_path
+        return
+      end
+
+      
+      @task.update(
+        name: @task.name, 
+        description: @task.description, 
+        completed_at: Date.current.to_s
+      )
+      
+      redirect_to task_path(@task)
+      return 
 
     end 
 

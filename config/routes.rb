@@ -20,7 +20,8 @@ Rails.application.routes.draw do
 
   delete '/tasks/:id', to: 'tasks#destroy'
 
-  #patch '/tasks/:id/mark_complete', to: 'tasks#mark_complete', as: 'mark_complete'
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+ 
+  patch '/tasks/:id/mark_complete', to: 'tasks#mark_complete', as: 'mark_complete'
+
 end

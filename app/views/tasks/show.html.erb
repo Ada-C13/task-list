@@ -4,10 +4,9 @@
  <p> Description: <%= @task.description.capitalize()%><p>
 
 
+ <%= button_to "Edit Task", edit_task_path(@task), method: :get %>
 
- <%= button_to "Edit Task", edit_task_path(@task), :method => "get" %>
-
- <%= button_to "Delete", @task, :method => "delete", data: {confirm: "Are you sure?"} %>
+ <%= button_to "Delete", @task, method: :delete, data: {confirm: "Are you sure you want to delete this task?"} %>
 
  
 

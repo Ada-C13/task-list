@@ -1,0 +1,11 @@
+<h2>Please see all the tasks</h2>
+
+<%if @tasks.length > 0 %>
+  <ol> 
+    <% @tasks.each do |task| %>
+      <li> <%= task[:name]%>: <%= task[:description]%></li>
+    <% end %>
+  </ol>
+<% else %>
+  <h2>No tasks in the system!</h2>
+<% end %>

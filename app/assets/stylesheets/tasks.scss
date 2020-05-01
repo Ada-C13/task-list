@@ -2,6 +2,48 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.app-container {
+  border: 3px solid;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px, 10px, 0px, 10px;
+  width: 500px;
+  box-shadow: 3px 3px 5px 6px #ccc;
+  font-family: monospace;
+}
+
+.to-do-title {
+  text-align: center;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-link {
+  text-align: center;
+}
+
 .complete {
   text-decoration: line-through;
+}
+
+.all-tasks {
+  text-align: center;
+}
+
+.footer-text {
+  text-align: center;
+  font-size: 15px;
+  margin-bottom: 0;
+}
+
+.task-item {
+  list-style-type: square;
+
+}
+
+.task-edits {
+  margin-bottom: 10px;
 }

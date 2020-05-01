@@ -1,18 +1,23 @@
-<h2>All Your Tasks - Pulled from the DATABASE</h2>
+<h2 class='all-tasks'>Here are All Your Tasks</h2>
 
 <% if @tasks.length > 0%>
   <ul>
     <% @tasks.each do |task| %>
-      <li>
+      <li class = task-item>
       <% if task.completed_at %>
         <h3 class='complete'><%= link_to task.name, task_path(task.id) %></h3>
       <% else %>
         <h3 class='incomplete'><%= link_to task.name, task_path(task.id) %></h3>
       <% end%>
       </li>
-      <section>
-        <%= link_to "Mark Task Complete  | ", mark_complete_path(task), method: :patch %>
-        <%= link_to "Edit Task  | ", edit_task_path(task) %>
+
+      <section class='task-edits'>
+      <% if task.completed_at %>
+        <%= link_to "Mark Task Incomplete", mark_incomplete_path(task), method: :patch %> |
+      <% else %>
+        <%= link_to "Mark Task Complete", mark_complete_path(task), method: :patch %> |
+      <% end %>
+        <%= link_to "Edit Task", edit_task_path(task) %> |
         <%= link_to "Delete Task", task_path(task), method: :delete, data: {confirm: "Are you sure?"} %>
       </section>
     <% end %>

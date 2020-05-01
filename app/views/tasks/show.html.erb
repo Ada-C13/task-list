@@ -1,7 +1,7 @@
-<h1>LET ME SHOW YOU ONE SINGLE TASK</h1>
-
 <h2><%= @task.name %></h2>
 <h3><%= @task.description %></h3>
 
+<section class='taskEdits'>
 <%= link_to "Edit this task", edit_task_path(@task) %>
 <%= link_to "Delete this task", task_path(@task), method: :delete %>
+</section>

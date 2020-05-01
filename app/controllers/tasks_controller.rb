@@ -100,4 +100,19 @@ class TasksController < ApplicationController
 
   end
 
+  def mark_incomplete
+    id = params[:id]
+    @task = Task.find_by(id: id)
+
+    if @task.nil?
+      head :not_found
+      return
+    else @task.completed_at = nil
+      @task.save
+      redirect_to tasks_path
+      return
+    end
+
+  end
+
 end

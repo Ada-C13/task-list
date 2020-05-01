@@ -14,9 +14,12 @@
     <section class="titlemain"><h1>Task List</h1></section>
     <nav class="mainnav">
       <ul class="navtitles">
-        <li><a href="/">Home</a></li>
-        <li><a href="/tasks">Task List</a></li>
-        <li><a href="<%= new_task_path %>">Add Task</a></li>
+        <li>
+          <%= link_to 'Full Task List', tasks_path %>
+        </li>
+        <li>
+          <%= link_to 'Add a Task', new_task_path %>
+        </li>
       </ul>
     </nav>
   </header>

@@ -8,7 +8,7 @@
 class TasksController < ApplicationController
 
   def index
-    @tasks = Task.all
+    @tasks = Task.all.order("id")
   end 
 
   def show
@@ -89,6 +89,11 @@ class TasksController < ApplicationController
 
     task_id = params[:id].to_i
     @task = Task.find_by(id: task_id)
+
+    if @task.nil? 
+      head :not_found
+      return 
+    end 
 
     if @task.completed_at.nil?
       @task.completed_at = Time.now

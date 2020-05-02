@@ -1,10 +1,9 @@
 <h1>YOUR TASKS</h1>
 <ul>
-  <% @tasks.each_with_index do |task, index| %>
+  <% @tasks.each do |task| %>
     <li>
-    <%= index+1 %> : <%= task.name %>
-    <br>
-    Description => <%= task.description%>
+    <%= link_to task.name,  task_path(task.id)%>
+    
     </li>
   <% end %>
 </ul>

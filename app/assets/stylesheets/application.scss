@@ -16,3 +16,32 @@
 @import "bootstrap";
 
 @import "**/*";
+
+.application_layout{
+  list-style-type: none;
+  border-radius: 10px;
+  padding: 5px;
+  border:black solid 2px;
+  width: 100px;
+  text-align: center;
+  margin-bottom: 2rem;
+  
+}
+
+footer{
+  border-top: black solid 5px;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 5rem;;
+}
+
+body{
+  margin: 2em ;
+  border:black solid 5px; ;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 30% 80%;
+  grid-auto-rows: minmax(100px, auto);
+}

@@ -5,3 +5,23 @@
 .complete {
   text-decoration: line-through
 }
+.uncomplete{
+  color: blue($color: #000000);
+}
+
+.index {
+  background-color: lemonchiffon;
+  border: black solid 2px;
+  width: 70%;
+  border-radius: 10px;
+  text-align: left;
+  padding: 2rem;
+  
+}
+h1 {
+  margin: 1em;
+}
+
+h2 {
+  text-align: center;
+}

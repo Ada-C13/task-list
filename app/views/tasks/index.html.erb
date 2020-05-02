@@ -1,0 +1,8 @@
+<h1>Tasks List</h1>
+<ul>
+  <%@tasks.each do |task|%>
+    <li>
+      <%=task[:name]%> Description:  <%=task[:description]%>
+    </li>
+  <%end%>
+</ul>

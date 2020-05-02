@@ -1,0 +1,12 @@
+<h2>Welcome to my Tasks Page</h2>
+  <% if @tasks.length > 0 %>
+    <ul>
+      <%= @tasks.each do |task| %>
+        <li>
+          <%= task[:name] %> description: <%= task[:description] %>
+        </li>
+      <%end%>
+    </ul>
+  <%else%>
+    <h3>No Tasks Found</h3>
+  <%end%>

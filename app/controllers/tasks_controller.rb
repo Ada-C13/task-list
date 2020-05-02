@@ -105,7 +105,7 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: id)
 
     if @task.nil?
-      head :not_found
+      redirect_to tasks_path
       return
     else @task.completed_at = nil
       @task.save

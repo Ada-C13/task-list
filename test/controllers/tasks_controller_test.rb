@@ -104,7 +104,8 @@ describe TasksController do
   describe "update" do
     # Note:  If there was a way to fail to save the changes to a task, that would be a great thing to test.
     it "can update an existing task" do
-      # Arrange
+      task_one = Task.create name: 'task 1', description: 'the first one', completed_at: nil
+    
       task_hash = {
         task: {
           name: "updated task",
@@ -112,10 +113,13 @@ describe TasksController do
           completed_at: nil,
         },
       }
-
-      patch task_path(task.id), params: task_hash
-      updated_task = Task.find_by(id: task.id)
    
+      expect {
+        patch task_path(task_one.id), params: task_hash
+      }.wont_change "Task.count"
+
+      updated_task = Task.find_by(id: task_one.id)
+
       expect(updated_task.name).must_equal task_hash[:task][:name]
       expect(updated_task.description).must_equal task_hash[:task][:description]
       expect(updated_task.completed_at).must_equal task_hash[:task][:completed_at]
@@ -148,10 +152,19 @@ describe TasksController do
   
   # Complete for Wave 4
   describe "toggle_complete" do
-    
+    it 'marks tasks as complete' do
+      task_to_mark = Task.create(name: "let's get this one done", description: "a task to mark right away", completed_at: nil)
+      
+      patch mark_complete_path(task_to_mark.id)
+      
+
+      expect{ 
+        task_to_mark.completed_at
+      }.wont_be_nil
+    end
   end
 
   describe "toggle_incomplete" do
-  
+    
   end
 end

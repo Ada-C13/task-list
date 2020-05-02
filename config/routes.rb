@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   
   get '/tasks/:id' => 'tasks#show', as: "task"
-  get '/tasks/:id/edit' => 'tasks#edit', as: 'edit_book'
+  get '/tasks/:id/edit' => 'tasks#edit', as: 'edit_task'
   patch '/tasks/:id' => 'tasks#update'
 
 end

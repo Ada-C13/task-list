@@ -1,3 +1,9 @@
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
 <%= form_with model: @task, class: 'create-task-form' do |f| %>
   <p>Please enter the following information for your new task:</p>
 

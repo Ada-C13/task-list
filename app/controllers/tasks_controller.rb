@@ -6,11 +6,12 @@ class TasksController < ApplicationController
 
 
   def show
-    id = params[:id]
-    @task = Task.find_by(id:id)
+    task_id = params[:id]
+    @task = Task.find_by(id: task_id)
 
     if @task.nil?
-      head :not_found
+      redirect_to tasks_path
+      # head :not_found
       return
     end
   end
@@ -43,7 +44,7 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find_by(id: params[:id])
-    # name = params[:task][:name]   
+    #@task.name = params[:task][:name]   
     # @task.description = params[:task][:description]
     # @task.completed_at = params[:task][:completed_at]
 
@@ -60,6 +61,18 @@ class TasksController < ApplicationController
     else # save failed where did we save? did update do it?
       render :edit # show the edit task form view again
       return
+    end
+  end
+
+  def destroy
+    task_id = params[:id]
+    @task = Task.find_by(id: task_id)
+    if @task.nil?
+      head :not_found #return a 404
+      return
+    else 
+      @task.destroy
+      redirect_to tasks_path
     end
   end
 

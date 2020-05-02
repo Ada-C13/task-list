@@ -56,7 +56,7 @@ class TasksController < ApplicationController
     task_id = params[:id]
     @task = Task.find_by(id: task_id)
     if @task.nil?
-      head :not_found
+      redirect_to tasks_path
       return
     end
 
@@ -66,5 +66,16 @@ class TasksController < ApplicationController
   end
   
   # def mark_done
+  #   @task = Task.find_by(id: params[:id])
+  #   if @task.nil?
+  #     redirect_to tasks_path
+  #   elsif @task.update(
+  #     name: params[:task][:name], 
+  #     description: params[:task][:description], 
+  #     completed_at: params[:task][:completed_at])
+  #     redirect_to tasks_path 
+  #   else 
+  #     render :edit
+  #   end
   # end
 end

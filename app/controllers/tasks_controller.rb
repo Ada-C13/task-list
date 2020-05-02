@@ -4,12 +4,13 @@ class TasksController < ApplicationController
 		@tasks = Task.all
 	end
 
+  # Single book display.
 	def show
 		task_id = params[:id]
 		@task = Task.find_by(id: task_id)
 
 		if @task.nil? # if task cannot be found
-			head :not_found
+			head :not_modified
 			return
 		end
 	end
@@ -44,7 +45,7 @@ class TasksController < ApplicationController
     end
 	end
 
-	def update
+  def update
     @task = Task.find_by(id: params[:id])
     if @task.nil?
       head :not_found
@@ -74,5 +75,17 @@ class TasksController < ApplicationController
       redirect_to tasks_path
       return
     end
+  end
+
+  def completed?
+    @task = Task.find_by(id: params[:id])
+    puts "********* #{@task.completed_at == ""} *****"
+    if (@task.completed_at == "") == true
+      @task.update(completed_at: Time.now)
+    else
+      @task.update(completed_at: "")
+    end
+
+    redirect_to tasks_path
   end
 end

@@ -33,9 +33,6 @@ class TasksController < ApplicationController
     if @task.save # save returns true if the database insert succeeds
       redirect_to task_path(@task.id) # go to the index so we can see the task in the list
       return
-    # elsif @task == false
-    #   render :redirect
-    #   return
     else # save failed :(
       render :new # should this be :redirect or :new
       return
@@ -60,6 +57,15 @@ class TasksController < ApplicationController
       return
     else # save failed where did we save? did update do it?
       render :edit # show the edit task form view again
+      return
+    end
+  end
+
+  def edit
+    @task = Task.find_by(id: params[:id])
+  
+    if @task.nil?
+      head :not_found
       return
     end
   end

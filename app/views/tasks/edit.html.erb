@@ -1,4 +1,9 @@
-<%= form_with model: @task, class: 'edit_task' do |f| %>
+ <%#<%= form_with url: "http://localhost:3000/tasks/:id/edit", method: patch :get do |f| %>
+ <%#<%= form_with (url: "/task", method: :patch) do |f| %>
+<%#:method :patch%>
+<%#form_with model: @task, class: 'create-task' do |f|%>
+
+<%= form_with model: @task do |f| %>
 <p>Please provide edited task information for our database:</p>
  <div>
         <%= f.label :name %>    <%#How do I pre fill the form? is it with the model above? %>

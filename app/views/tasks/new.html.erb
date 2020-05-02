@@ -1,0 +1,11 @@
+<%= form_with model: @task, class: 'create-task-form' do |f| %>
+  <p>Please enter the following information for your new task:</p>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, :placeholder => "name" %>
+
+  <%= f.label :description %>
+  <%= f.text_field :description, :placeholder => "description" %>
+
+  <%= f.submit "Save Task", class: "save-task-button" %>
+<% end %>

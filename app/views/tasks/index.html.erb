@@ -3,7 +3,22 @@
 <%if @tasks.length > 0 %>
   <ol> 
     <% @tasks.each do |task| %>
-      <li> <%= task.name %>: <%= task.description %><%= link_to "Edit", edit_task_path(task) %></li>
+      <li> 
+        <% if task.completed_at.nil? %>
+          <div>
+            <%= task.name %>
+          </div>
+          <%= link_to  "Mark Complete" , task_complete_path(task), method: :patch %> |
+        <% else %>
+          <div class = "complete">
+            <%= task.name %>
+          </div>
+          <%= link_to  "Unmark Complete" , task_uncomplete_path(task), method: :patch %> 
+        <% end %>
+
+        <%= link_to "Edit", edit_task_path(task) %> |
+        <%= link_to "Delete", task_path(task), method: :delete, data: {confirm: "Are you sure you want to delete #{task.name}?"} %>
+      </li>
     <% end %>
   </ol>
 <% else %>

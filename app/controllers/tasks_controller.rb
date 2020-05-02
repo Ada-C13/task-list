@@ -65,4 +65,40 @@ class TasksController < ApplicationController
       return
     end
   end 
+
+  def delete
+    @task = Task.find_by(id: params[:id])
+    if @task.nil?
+      head :not_found
+      return
+    end
+    @task.destroy
+
+    redirect_to tasks_path
+    return
+  end
+
+  def mark_complete 
+    @task = Task.find_by(id: params[:id])
+    if @task.nil?
+      head :not_found
+      return
+    end
+    # Update the database with the task's completed_at date
+    @task.completed_at = Time.now.to_s
+    @task.save
+    return
+
+  end
+
+  def unmark_complete
+    @task = Task.find_by(id: params[:id])
+    if @task.nil?
+      head :not_found
+      return
+    end
+    @task.completed_at = nil
+    @task.save
+    return
+  end
 end

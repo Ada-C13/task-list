@@ -1,7 +1,7 @@
 <h2 class='all-tasks'>Here are All Your Tasks</h2>
 
 <% if @tasks.length > 0%>
-  <ul>
+  <ol>
     <% @tasks.each do |task| %>
       <li class = task-item>
       <% if task.completed_at %>
@@ -21,7 +21,7 @@
         <%= link_to "Delete Task", task_path(task), method: :delete, data: {confirm: "Are you sure?"} %>
       </section>
     <% end %>
-  </ul>
+  </ol>
 <% else %>
   <h3>No tasks yet!</h3>
 <% end %>

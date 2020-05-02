@@ -85,20 +85,14 @@ class TasksController < ApplicationController
       return
     end
     # Update the database with the task's completed_at date
-    @task.completed_at = Time.now.to_s
-    @task.save
-    return
-
-  end
-
-  def unmark_complete
-    @task = Task.find_by(id: params[:id])
-    if @task.nil?
-      head :not_found
+    if @task.completed_at == nil
+      @task.update(completed_at: Time.now.to_s)
+      redirect_to tasks_path
       return
-    end
-    @task.completed_at = nil
-    @task.save
-    return
+    else 
+      @task.update(completed_at: nil)
+      redirect_to tasks_path
+      return
+    end   
   end
 end

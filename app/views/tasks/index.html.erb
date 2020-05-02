@@ -1,5 +1,6 @@
-<h1>YOUR TASKS</h1>
-<ul>
+
+<ol class="your-list" >
+  <h3>YOUR TASKS</h3>
 
   <% @tasks.each do |task| %>
     <% if task.completed_at.nil? %>
@@ -7,15 +8,19 @@
       <li><%=link_to task.name, task_path(task) %>: <%= task.description %></li>
       <%= link_to "Mark Complete", mark_complete_path(task) ,method: :patch%> |
       <%= link_to "Edit", edit_task_path(task) %> | <%= link_to "Delete", task_path(task), method: :delete , data:{confirm: 'Are you sure?'}%>
+     
     
     <% else  %>
       
       <li><%=link_to task.name, task_path(task), class:"completed" %>: <%= task.description %></li>
       <%= link_to "Unmark Completed", mark_complete_path(task) ,method: :patch%> |
       <%= link_to "Edit", edit_task_path(task) %> | <%= link_to "Delete", task_path(task), method: :delete , data:{confirm: 'Are you sure?'}%>
-   
+     
     <% end %> 
   <% end %> 
   
-</ul>
+</ol>
+
+
+
 

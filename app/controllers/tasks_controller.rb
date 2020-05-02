@@ -9,7 +9,7 @@
 class TasksController < ApplicationController
   # Create an index method to show the list of all tasks
   def index 
-    @tasks = Task.all
+    @tasks = Task.all.order(:created_at)
   end
 
   # Create a show method to show only one particular task
@@ -38,4 +38,31 @@ class TasksController < ApplicationController
       render :new, :bad_request
     end
   end
+
+  def edit 
+    @task = Task.find_by(id: params[:id])
+    if @task.nil?
+      head :not_found
+      return
+    end
+  end
+
+  def update
+    @task = Task.find_by(id: params[:id])
+    if @task.nil?
+      head :not_found
+      return
+    elsif @task.update(
+      name: params[:task][:name],
+      description: params[:task][:description]
+    )
+      
+      redirect_to task_path # go to the list of task so we can see the index
+      
+      return
+    else # save failed
+      render :edit # show the new task from the view again
+      return
+    end
+  end 
 end

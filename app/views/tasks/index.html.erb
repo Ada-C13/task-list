@@ -1,9 +1,9 @@
-<h2>Please see all the tasks</h2>
+<h2>YOUR TASKS</h2>
 
 <%if @tasks.length > 0 %>
   <ol> 
     <% @tasks.each do |task| %>
-      <li> <%= task.name %>: <%= task.description %></li>
+      <li> <%= task.name %>: <%= task.description %><%= link_to "Edit", edit_task_path(task) %></li>
     <% end %>
   </ol>
 <% else %>

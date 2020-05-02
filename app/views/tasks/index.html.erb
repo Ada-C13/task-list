@@ -1,7 +1,7 @@
 <h1>Tasks</h1>
 <ul>
   <% @tasks.each do |task| %>
-  <li><%= task.name %> : <%= task.description %><%=
+  <li><%= task.name %> : <%= link_to task.description, task_path(task.id) %><%=
    completed_string(task) %></li>
   <% end %>
 </ul>

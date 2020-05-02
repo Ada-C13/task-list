@@ -1,9 +1,12 @@
-<h2>Charlotte's Tasks</h2>
+<h1>Tasks List</h1>
 
 <% if @tasks.length > 0 %>
   <ul>
     <% @tasks.each do |task|%>
-      <li> This task: <%= task.name %> is described as: <%= task.description %> and will be completed on: <%= task.completed_at %></li>
+      <li>
+      <%= link_to task.name, tasks_path(task)%>
+      Description: <%= task.description %>
+      </li>
     <% end %>
   </ul>
 <% else %>

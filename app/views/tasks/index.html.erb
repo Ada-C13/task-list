@@ -13,6 +13,20 @@
   <ol>
     <% @tasks.each do |task|%>
       <li>
+        <%=task.name %> 
+      </li>
+      <%= link_to "Mark Complete |", edit_task_path(task.id) %> 
+      <%= link_to "Edit |", edit_task_path(task.id) %> 
+      <%= link_to "Delete", edit_task_path(task.id) %> 
+    <% end %>
+  </ol>
+</div>
+
+<div> 
+   <h2>YOUR TASKS</h2>
+  <ol>
+    <% @tasks.each do |task|%>
+      <li>
         <%= task.name %> <%= task.description %> <%= task.completed_at %> <%= link_to "Edit", edit_task_path(task.id) %> 
       </li>
     <% end %>

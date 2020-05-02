@@ -1,9 +1,7 @@
-<%# in app/views/new.html.erb %>
-
-<%= form_with model: @task, class: 'create-task' do |f| %>
-<p>Please provide task information to save to our database:</p>
+<%= form_with model: @task, class: 'edit_task' do |f| %>
+<p>Please provide edited task information for our database:</p>
  <div>
-        <%= f.label :name %>
+        <%= f.label :name %>    <%#How do I pre fill the form? is it with the model above? %>
         <%= f.text_field :name %>
     </div>
       <div>
@@ -14,5 +12,5 @@
         <%= f.label :completed_at %>
         <%= f.text_field :completed_at %>
     </div>
-    <%= f.submit "Add a task!"%>
+    <%= f.submit "Edit a task!"%>
 <% end %>

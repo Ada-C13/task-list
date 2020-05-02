@@ -1,14 +1,16 @@
-<h1>Tasks</h1>
+<h3>Tasks</h3>
 <ul>
   <% @tasks.each do |task|  %>
     <li>
-      <%= task[:id] %> - 
-      <%= task[:name] %> : 
-      <%= task[:description] %>
-      <%= task[:completed_at].nil? ?
+      <%= task.id %> - 
+      <%= link_to task.name, task_path(task) %> : 
+      <%= task.description %>
+      <%= task.completed_at.nil? ?
         "(not completed)" :
-        "(completed at " + task[:completed_at].to_s + ")"
+        "(completed at " + task.completed_at.to_s + ")"
       %>
     </li>
   <% end %>
 </ul>
+
+<%= link_to "Add new task", "/tasks/new", class: "link" %>

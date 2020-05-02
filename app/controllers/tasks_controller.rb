@@ -29,9 +29,8 @@ class TasksController < ApplicationController
     else
       render :new, :bad_request
     end
-    
-    
   end
+  
   def edit
     @task = Task.find_by(id: params[:id])
     if @task.nil?
@@ -53,8 +52,18 @@ class TasksController < ApplicationController
     end
   end
    
-  # def destroy
-  # end
+  def destroy
+    task_id = params[:id]
+    @task = Task.find_by(id: task_id)
+    if @task.nil?
+      head :not_found
+      return
+    end
+
+    @task.destroy
+    redirect_to tasks_path
+    return 
+  end
   
   # def mark_done
   # end

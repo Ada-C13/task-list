@@ -67,10 +67,12 @@ class TasksController < ApplicationController
     end
   end
 
+
   def remove
     @task = Task.find_by(id: params[:id])
     return head :not_found if @task.nil?
   end
+
 
   def destroy
     @task = Task.find_by(id: params[:id])
@@ -83,6 +85,20 @@ class TasksController < ApplicationController
     end
   end
 
+  
+  def mark_complete
+    @task = Task.find_by(id: params[:id])
+    return head :not_found if @task.nil?
+
+    if @task.completed_at == ""
+      timestamp = Time.now
+      @task.update(completed_at: timestamp)
+    else
+      @task.update(completed_at: "")
+    end
+
+    redirect_to tasks_path
+  end
 end
 
 

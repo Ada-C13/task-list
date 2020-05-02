@@ -16,3 +16,47 @@
 @import "bootstrap";
 
 @import "**/*";
+
+.app-container {
+  background-color: rgb(197, 205, 211);
+  display: grid;
+  grid-template-rows: 1fr 5fr 1fr;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas: 
+  "header header"
+  "nav tasklist"
+  "footer footer";
+}
+
+.title {
+  grid-area: header;
+  text-align: center;
+  margin: 3rem;
+
+}
+
+.navbar {
+  grid-area: nav;
+  font-size: 2rem;
+}
+
+.navlist li {
+  list-style-type: none;
+  // list-style-type: circle;
+} 
+
+.navlist li a {
+  color: dimgray;
+}
+
+.app-main {
+  grid-area: tasklist;
+
+}
+
+.footer {
+  grid-area: footer;
+  text-align: center;
+  bottom: 0;
+  padding: 2rem;
+}

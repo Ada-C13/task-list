@@ -9,23 +9,21 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header>
-      <section class="title"><h1>TASKLIST</h1></section>
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/tasks">Your Tasks</a></li>
-          <li> <%= link_to "New Task", new_task_path%> </li>
-        </ul>
-      </nav>
-    </header>
+  <body class="app-container">
+    <header class="title"><h1>TASKLIST</h1></header>
+    <nav class="navbar">
+      <ul class="navlist">
+        <li><a href="/">Home</a></li>
+        <li><a href="/tasks">Your Tasks</a></li>
+        <li> <%= link_to "New Task", new_task_path%> </li>
+      </ul>
+    </nav>
 
-    <main>
+    <main class="app-main">
       <%= yield %>
     </main>
 
-    <footer>All Rights Reserved 2020</footer>
+    <footer class="footer">COJENCO © 2020</footer>
 
   </body>
 </html>

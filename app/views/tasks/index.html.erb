@@ -1,15 +1,24 @@
 <%# app/views/tasks/index.html.erb%>
-<h3>Your Tasks</h3>
+<h3>&#128204 &#128204  Your Tasks &#128204</h3>
 
 <% if @tasks.length > 0 %>
   <ul>
     <% @tasks.each do |task| %>
+      <% name_style = "normal" %>
+      <% name_style = "strikethrough" if task.completed_at != "" %>
+      
       <li> 
-        <%= link_to task.name, task_path(task.id) %>
+        <%= link_to task.name, task_path(task.id), class: "taskname #{name_style}" %>
         (<%= task.description %>)
-        <%= link_to "[DELETE]", remove_task_path(task.id) %>
-
-        <p>&#9989 Complete?  <%= task.completed_at %> </p>
+        <p>
+          <% if task.completed_at == "" %>
+            <%= link_to "[MARK COMPLETE]", complete_task_path(task.id), class: "links" %>
+          <% else %>
+            <%= link_to "[UNMARK COMPLETE]", complete_task_path(task.id), class: "links" %>
+          <% end %>
+          <%= link_to "[EDIT]", edit_task_path(task.id), class: "links" %>
+          <%= link_to "[DELETE]", remove_task_path(task.id), class: "links" %>
+        </p>
       </li>
     <% end %>
   </ul>

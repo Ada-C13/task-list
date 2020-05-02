@@ -40,4 +40,36 @@ class TasksController < ApplicationController
       render :new
     end
   end
+
+  def edit
+    # find the task using id
+    @task = Task.find_by(id: params[:id])
+
+    if @task.nil?
+      head :not_found
+      return
+    end
+  end
+
+  def update
+    @task = Task.find_by(id: params[:id])
+
+    if @task.nil?
+      head :not_found
+      return
+    elsif
+      @task.update(
+        name: params[:task][:name],
+        description: params[:task][:description],
+        # TODO: set a button on the index.html.erb to mark completed
+        completed_at: nil,
+      )
+      redirect_to task_path
+      return
+    else
+      render :edit
+      return
+    end
+  end
+
 end

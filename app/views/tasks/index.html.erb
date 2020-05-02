@@ -2,9 +2,7 @@
 <ul>
     <% @tasks.each do |task| %>
         <li>
-            <h2><%= task[:name]%></h2>
-            <p>Task: <%= task[:description]%></p>
-            <p>Done: <%= task[:completed_at]%></p>
+            <h2><%= link_to task.name, task_path(task) %></h2>
         </li>
     <% end %>
 </ul>

@@ -5,7 +5,10 @@
   <ul>
     <% @tasks.each do |task| %>
       <li> 
-        <p><%= task.name %> (<%=  task.description %>) </p> 
+        <%= link_to task.name, task_path(task.id) %>
+        (<%= task.description %>)
+        <%= link_to "[DELETE]", remove_task_path(task.id) %>
+
         <p>&#9989 Complete?  <%= task.completed_at %> </p>
       </li>
     <% end %>

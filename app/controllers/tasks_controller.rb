@@ -67,7 +67,20 @@ class TasksController < ApplicationController
     end
   end
 
+  def remove
+    @task = Task.find_by(id: params[:id])
+    return head :not_found if @task.nil?
+  end
+
   def destroy
+    @task = Task.find_by(id: params[:id])
+    return head :not_found if @task.nil?
+
+    if @task.destroy
+      redirect_to tasks_path             #if successfully deleted, redirect to all tasks page
+    else
+      render :remove, :bad_request       #if fails to delete, back to confirmation page
+    end
   end
 
 end

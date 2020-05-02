@@ -4,7 +4,8 @@
     <li>
       <%= task.name %> <%= task.description %> <%= task.completed_at%>
       <%= button_to "Edit Task", edit_task_path(task[:id]), method: :get %>
-      <%= button_to "Delete Task", task_path(task[:id]), method: :delete %>
+      <%= button_to "Delete Task", task_path(task[:id]), method: :delete, data: {confirm: "Are you sure you want to Delete?"} %>
+      <%= button_to "#{task.completed_at ? "Completed Task" : "Task Not Completed"}", completed_task_path(task[:id]), method: :patch %>
     </li>
   <% end %>
 </ul>

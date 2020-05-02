@@ -49,12 +49,8 @@ describe TasksController do
   
   describe "new" do
     it "can get the new task page" do
-      
-      
-      # Act
       get new_task_path
       
-      # Assert
       must_respond_with :success
     end
   end
@@ -81,14 +77,14 @@ describe TasksController do
       expect(new_task.completed_at).must_equal task_hash[:task][:completed_at]
       
       must_respond_with :redirect
-      must_redirect_to task_path(new_task.id)
+      must_redirect_to task_path(new_task)
     end
   end
   
   # Unskip and complete these tests for Wave 3
   describe "edit" do
     it "can get the edit page for an existing task" do
-      get edit_task_path(task.id)
+      get edit_task_path(task)
 
       must_respond_with :success
     end
@@ -102,7 +98,6 @@ describe TasksController do
   
   # Uncomment and complete these tests for Wave 3
   describe "update" do
-    # Note:  If there was a way to fail to save the changes to a task, that would be a great thing to test.
     it "can update an existing task" do
       task_one = Task.create name: 'task 1', description: 'the first one', completed_at: nil
     
@@ -115,7 +110,7 @@ describe TasksController do
       }
    
       expect {
-        patch task_path(task_one.id), params: task_hash
+        patch task_path(task_one), params: task_hash
       }.wont_change "Task.count"
 
       updated_task = Task.find_by(id: task_one.id)
@@ -139,7 +134,7 @@ describe TasksController do
       task_to_delete = Task.create(name: 'task to delete', description: 'this is meant to be deleted', completed_at: nil)
       
       expect {
-        delete task_path(task_to_delete.id)
+        delete task_path(task_to_delete)
       }.must_differ "Task.count", -1
     end 
 
@@ -153,18 +148,26 @@ describe TasksController do
   # Complete for Wave 4
   describe "toggle_complete" do
     it 'marks tasks as complete' do
-      task_to_mark = Task.create(name: "let's get this one done", description: "a task to mark right away", completed_at: nil)
+      task_to_mark = Task.create(name: "we already did this one", description: "a task to mark right away", completed_at: nil)
       
-      patch mark_complete_path(task_to_mark.id)
+      patch mark_complete_path(task_to_mark)
       
-
-      expect{ 
-        task_to_mark.completed_at
-      }.wont_be_nil
+      task_to_mark.reload
+      expect(task_to_mark.completed_at).wont_be_nil
+        
     end
   end
 
   describe "toggle_incomplete" do
-    
+    it 'marks tasks as incomplete' do
+      task_to_unmark = Task.create(name: "oops we didn't do this yet", description: "so let's unmark this task", completed_at: Time.now)
+      
+      patch mark_incomplete_path(task_to_unmark)
+      
+      task_to_unmark.reload
+      expect(
+        task_to_unmark.completed_at
+      ).must_be_nil
+    end
   end
 end

@@ -15,7 +15,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(name: params[:task][:name], description: params[:task][:description])
-    @task.save ? (redirect_to action: "show", id: @task[:id]) : (render :new)
+    @task.save ? (redirect_to task_path(@task)) : (render :new)
     return
   end
 end

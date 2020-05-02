@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   
   get '/tasks/:id' => 'tasks#show', as: "task"
   get '/tasks/:id/edit' => 'tasks#edit', as: 'edit_book'
+  patch '/tasks/:id' => 'tasks#update'
 
 end

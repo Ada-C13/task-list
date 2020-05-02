@@ -11,11 +11,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    # @task = Task.find_by(id: params[:id])
-    # @task = Task.find(params[:id])
     @task = Task.find_by(id: params[:id])
-    # task_id = params[:id]
-    # @task = Task.find_by(id: task_id)
     if @task.nil?
       redirect_to tasks_path
       return
@@ -27,7 +23,6 @@ class TasksController < ApplicationController
   end
 
   def create
-    # take in the user inputs
     @task = Task.new(
       name: params[:task][:name],
       description: params[:task][:description],
@@ -42,7 +37,6 @@ class TasksController < ApplicationController
   end
 
   def edit
-    # find the task using id
     @task = Task.find_by(id: params[:id])
 
     if @task.nil?
@@ -72,4 +66,15 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy
+    task = Task.find_by(id: params[:id])
+    puts "Book Details: #{task}"
+    if task.nil?
+      head :not_found
+      return
+    else
+      task.destroy
+      redirect_to tasks_path
+    end
+  end
 end

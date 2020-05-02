@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   patch '/tasks/:id', to: 'tasks#update' # update the task based on given id
   delete '/tasks/:id', to: 'tasks#delete' # delete an existing task
   patch '/tasks/:id/mark_complete', to: 'tasks#mark_complete', as: 'task_complete'
-  patch '/tasks/:id/unmark_complete', to: 'tasks#unmark_complete', as: 'task_uncomplete'
+
 end

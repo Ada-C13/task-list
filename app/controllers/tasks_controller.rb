@@ -21,4 +21,21 @@ class TasksController < ApplicationController
       return
     end
   end 
+
+  # Create a new method to display a form for adding a new task 
+  def new
+    @task = Task.new
+  end
+
+  def create
+    @task = Task.new(
+      name:params[:task][:name],
+      description: params[:task][:description]
+    )
+    if @task.save
+      redirect_to task_path(@task.id) # redirect the user to the list of tasks so they can see if the new task is added
+    else
+      render :new, :bad_request
+    end
+  end
 end

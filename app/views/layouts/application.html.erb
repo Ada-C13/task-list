@@ -7,18 +7,23 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-  <h3>TASKLIST</h3>
-  <nav>
-    <ul>
-      <li><%= link_to "Add Task", new_task_path %></li>
-      <li><%= link_to "All Tasks", tasks_path %></li> 
-      <%# <li><%= link_to "Edit Task", edit_task_path %></li> 
-    </ul>
-  </nav>
-
-  <body>
-    <%= yield %>
-  </body>
+  
+    </head>
+    <h1>TASKLIST</h1>
+    <div class = "container">
+      <div>
+        <nav>
+          <ul>
+            <li class = "application_layout" ><%= link_to "Add Task", new_task_path %></li>
+            <li class = "application_layout"><%= link_to "All Tasks", tasks_path %></li>  
+          </ul>
+        </nav>
+      </div>
+      <div>
+        <body>
+          <%= yield %>
+        </body>
+      </div>
+    </div>
   <footer>Copywrite 2020 Lak</footer>
 </html>

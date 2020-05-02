@@ -1,9 +1,21 @@
-<h1>Tasks</h1>
+<h1>TASKS LIST</h1>
 <ul>
-  <% @tasks.each do |task|%>
-    <li>
-      <%= task.name %> <%= task.description %> <%= task.completed_at %>
-    </li>
-  <% end %>
+  <li>
+  <%= link_to "Add Task", new_task_path %>
+  </li>
+  <li>
+  <%= link_to "All Task", tasks_path %>
+  </li>
 </ul>
-<%= link_to "Add Task", new_task_path %>
+
+<div> 
+   <h2>YOUR TASKS</h2>
+  <ol>
+    <% @tasks.each do |task|%>
+      <li>
+        <%= task.name %> <%= task.description %> <%= task.completed_at %> <%= link_to "Edit", edit_task_path(task.id) %> 
+      </li>
+    <% end %>
+  </ol>
+</div>
+

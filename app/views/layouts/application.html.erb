@@ -19,6 +19,7 @@
       <%= link_to '<button type="button">Add New Task</button>'.html_safe, new_task_path %></li>
       <ul>
     </nav>
+    <%= render "tasks/flash" %>
     <%= yield %>
   </body>
 </html>

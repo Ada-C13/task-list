@@ -1,14 +1,20 @@
 <%= form_with model: @task, class: 'create-task' do |f| %>
   <p>Please enter the data for the task:</p>
+  <table>
+  <tr>
+  <td><%= f.label :name %></td>
+  <td><%= f.text_field :name %></td>
+  </tr>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+  <tr>
+  <td><%= f.label :description %></td>
+  <td><%= f.text_field :description %></td>
+  </tr>
 
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-
-  <%= f.label :completed_at %>
-  <%= f.text_field :completed_at %>
-
+  <tr>
+  <td><%= f.label :completed_at %></td>
+  <td><%= f.text_field :completed_at %></td>
+  </tr>
+  </table>
   <%= f.submit "Save task", class: "task-button" %>
 <% end %>

@@ -130,12 +130,25 @@ describe TasksController do
   
   # Complete these tests for Wave 4
   describe "destroy" do
+    it 'destroys a task from the database' do
     
+      task_to_delete = Task.create(name: 'task to delete', description: 'this is meant to be deleted', completed_at: nil)
+      
+      expect {
+        delete task_path(task_to_delete.id)
+      }.must_differ "Task.count", -1
+    end 
+
+    it 'redirects to root if given invalid id' do
+      delete task_path(-10)
+
+      must_respond_with :redirect
+    end
   end
   
   # Complete for Wave 4
   describe "toggle_complete" do
-
+    
   end
 
   describe "toggle_incomplete" do

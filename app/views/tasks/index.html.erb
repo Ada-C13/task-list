@@ -17,7 +17,7 @@
       </li>
       <%= link_to "Mark Complete |", edit_task_path(task.id) %> 
       <%= link_to "Edit |", edit_task_path(task.id) %> 
-      <%= link_to "Delete", edit_task_path(task.id) %> 
+      <%= link_to "Delete", task_path(task), method: :delete, data: {confirm: "Are you sure?"} %> 
     <% end %>
   </ol>
 </div>

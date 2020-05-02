@@ -4,8 +4,10 @@
   <ol> 
     <% @tasks.each do |task| %>
       <li> 
-        <div  class = <%=task.completed_at ? 'complete' : 'uncomplete'%>>
-          <%= link_to task.name, task_path(task)%>
+        <div class = <%=task.completed_at ? 'complete' : 'uncomplete'%>>
+          <strong>
+            <%= link_to task.name, task_path(task)%>
+          </strong>
         </div> 
         <%= task.completed_at ? link_to("Unmark Complete", task_complete_path(task), method: :patch) : link_to("Mark Complete", task_complete_path(task), method: :patch)%> |
         <%= link_to "Edit", edit_task_path(task) %> |

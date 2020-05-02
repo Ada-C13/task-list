@@ -7,10 +7,14 @@ class TasksController < ApplicationController
   # shows individual task details
   def show
     @task = Task.find_by(id: params[:id])
+    if @task.nil?
+      redirect_to tasks_path
+      return
+    end
   end
 
   # creates a form
-  def new
+  def new 
     @task = Task.new
   end
   
@@ -23,7 +27,7 @@ class TasksController < ApplicationController
       completed_at: params[:task][:completed_at]
     )
     if @task.save
-      redirect_to tasks_path
+      redirect_to "#{tasks_path}/#{@task.id}"
       return
     else
       render :new

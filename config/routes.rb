@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   patch '/tasks/:id', to: 'tasks#update' # Once the form is filled, it lets you update an existing task
   delete '/tasks/:id', to: 'tasks#destroy' # Destroy a given task
 
-  # patch '/books/:id/completed_at', to: 'books#completed_at', as: 'completed_task'
+  patch '/tasks/:id/completed_at', to: 'tasks#completed_at', as: 'completed_task'
   
 end

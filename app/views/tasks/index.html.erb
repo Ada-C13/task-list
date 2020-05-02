@@ -4,7 +4,7 @@
   <ol>
     <% @tasks.each do |task| %>
       <li>
-        <a href="tasks/<%= task[:id]%>"><%= task[:name] %></a>
+        <%= link_to task[:name], task_path(task) %>
       </li>
     <% end %>
   </ol>

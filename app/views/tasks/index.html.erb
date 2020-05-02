@@ -1,7 +1,3 @@
-<h1>Nataliya's TODOs</h1>
-
-<button><%= link_to "Add Task", new_task_path %></button>
-
 <% if @tasks.length > 0 %>
   <ul>
     <% @tasks.each do |task|  %>
@@ -12,5 +8,5 @@
     <% end %>
   </ul>
 <% else %>
-  <h3>All tasks completed!</h3>
+  <h2>All tasks completed!</h2>
 <% end %>

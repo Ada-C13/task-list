@@ -3,6 +3,6 @@
 <p><%= @task[:name] %></p>
 <p><%= @task[:description] %></p>
 <p><%= @task[:completed_at] %></p>
-<p><%= link_to "Edit", edit_task_path(@task[:id]) %></p>
+<p><%= link_to "Edit", edit_task_path(@task.id) %></p>
 
 <p><%= link_to "Back to all tasks", tasks_path %></p> 

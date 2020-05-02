@@ -36,10 +36,6 @@ class TasksController < ApplicationController
   end
 
   def edit
-    # get the right id, 
-    # if valid id, show the form with prepopulated fields
-    # if invalid id, redirect or render :?
-
     @task = Task.find_by(id: params[:id])
 
     if @task.nil?
@@ -58,13 +54,24 @@ class TasksController < ApplicationController
     elsif @task.update(
       name: params[:task][:name], 
       description: params[:task][:description],
-      created_at: params[:task][:created_at]
+      completed_at: params[:task][:completed_at]
     )
-      redirect_to tasks_path # go to the index
+      redirect_to task_path(@task.id) # go to show page for id
       return
     else
       render :edit # show the new form view again
       return
+    end
+  end
+
+  def destroy
+    task = Task.find_by(id: params[:id])
+    if task.nil?
+      head :not_found
+      return
+    else
+      task.destroy
+      redirect_to tasks_path
     end
   end
 

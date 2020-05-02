@@ -7,6 +7,7 @@
       <p><%= task[:description] %></p>
       <p><%= task[:completed_at] %></p>
       <p><%= link_to "Edit task", edit_task_path(task.id) %></p>
+      <%= link_to "Delete", destroy_task_path(task.id), method: :delete %>
     </li>
   <% end %>
 </ul>

@@ -1,7 +1,7 @@
 
 class TasksController < ApplicationController
   def index
-    @tasks = Task.all
+    @tasks = Task.all.order(:id)
   end
 
 
@@ -11,7 +11,6 @@ class TasksController < ApplicationController
 
     if @task.nil?
       redirect_to tasks_path
-      # head :not_found
       return
     end
   end
@@ -30,20 +29,17 @@ class TasksController < ApplicationController
       return
     end
 
-    if @task.save # save returns true if the database insert succeeds
-      redirect_to task_path(@task.id) # go to the index so we can see the task in the list
+    if @task.save 
+      redirect_to task_path(@task.id) 
       return
-    else # save failed :(
-      render :new # should this be :redirect or :new
+    else 
+      render :new 
       return
     end
   end
 
   def update
     @task = Task.find_by(id: params[:id])
-    #@task.name = params[:task][:name]   
-    # @task.description = params[:task][:description]
-    # @task.completed_at = params[:task][:completed_at]
 
     if @task.nil?
       head :not_found
@@ -53,10 +49,10 @@ class TasksController < ApplicationController
       description: params[:task][:description], 
       completed_at: params[:task][:completed_at]
     )
-      redirect_to task_path # go to the task show page not in the list
+      redirect_to task_path 
       return
-    else # save failed where did we save? did update do it?
-      render :edit # show the edit task form view again
+    else 
+      render :edit 
       return
     end
   end
@@ -70,11 +66,31 @@ class TasksController < ApplicationController
     end
   end
 
+  def complete
+    @task = Task.find_by(id: params[:id])
+
+    if @task.nil?
+      head :not_found
+      return
+    elsif !@task.completed_at
+      @task.update( 
+      completed_at: Time.now
+    )
+      redirect_to tasks_path 
+      return
+    elsif @task.completed_at
+      @task.update( 
+        completed_at: nil
+      )
+      redirect_to tasks_path 
+    end
+  end
+
   def destroy
     task_id = params[:id]
     @task = Task.find_by(id: task_id)
     if @task.nil?
-      head :not_found #return a 404
+      head :not_found 
       return
     else 
       @task.destroy

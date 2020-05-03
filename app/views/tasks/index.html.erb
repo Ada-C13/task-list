@@ -15,16 +15,16 @@
             <tr class="table-secondary">
               <td><%= index + 1%>
               <td class='task_name striker'><%= link_to task.name, task_path(task.id) %> </td>
-              <td><%= link_to 'Edit Task', edit_task_path(task.id) , class: 'btn btn-outline-dark btn-sm'%> </td>
-              <td><%= link_to 'Oops..Unmark!', task_complete_path(task.id), class: 'btn btn-outline-secondary btn-sm', method: :patch %></td>
+              <td><%= link_to 'Edit Task ✍🏻', edit_task_path(task.id) , class: 'btn btn-outline-dark btn-sm'%> </td>
+              <td><%= link_to 'Oops..Unmark!😢', task_complete_path(task.id), class: 'btn btn-outline-secondary btn-sm', method: :patch %></td>
               <td><%= link_to 'Delete', task, class: 'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>          
           <%else%>
             <tr>
               <td><%= index + 1 %>
               <td class='task_name '><%= link_to task.name, task_path(task.id) %> </td>
-              <td><%= link_to 'Edit Task', edit_task_path(task.id) , class: 'btn btn-outline-dark btn-sm'%> </td>
-              <td><%= link_to 'Mark Complete!', task_complete_path(task.id), class: 'btn btn-outline-secondary btn-sm', method: :patch %></td>
+              <td><%= link_to 'Edit Task ✍🏻', edit_task_path(task.id) , class: 'btn btn-outline-dark btn-sm'%> </td>
+              <td><%= link_to 'Mark Complete!✅', task_complete_path(task.id), class: 'btn btn-outline-secondary btn-sm', method: :patch %></td>
               <td><%= link_to 'Delete', task, class: 'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
           <%end%>

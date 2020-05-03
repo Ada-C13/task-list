@@ -24,7 +24,7 @@ class TasksController < ApplicationController
     @task = Task.new(
       name: params[:task][:name],
       description: params[:task][:description],
-      completed_at: params[:task][:completed_at]
+      #completed_at: params[:task][:completed_at]
     )
     respond_to do |format|
       if @task.save
@@ -55,7 +55,7 @@ class TasksController < ApplicationController
         if @task.update(
           name: params[:task][:name],
           description: params[:task][:description],
-          completed_at: params[:task][:completed_at]
+          #completed_at: params[:task][:completed_at]
         )
           format.html { redirect_to task_path(id: @task.id), notice: 'Task was successfully updated.' }
           #format.json { render :update, status: :ok, location: @task }

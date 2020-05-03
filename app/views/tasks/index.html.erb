@@ -2,7 +2,8 @@
 <% @tasks.each do |task| %>
   <ul>
     <li>
-      <%= task[:name] %>
+      <%= task[:name]%> :
+      <%= task[:description] %>
     </li>
   </ul>
 <% end %>

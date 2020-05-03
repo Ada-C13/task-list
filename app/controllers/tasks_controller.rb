@@ -1,14 +1,7 @@
-
-# TASKS = [
-#   {name: "Review curriculum", description: "review textbook and videos"},
-#   {name: "Grocery Run", description: "grocery run and buy avocados"},
-#   {name: "Workout", description: "yoga or zumba"},
-#   {name: "Project", description:"due 05/05"},
-# ]
-
 class TasksController < ApplicationController
+
   def index
-    @tasks = Task.all
+    @tasks = Task.all.order(:id)
   end
 
 
@@ -31,11 +24,11 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(
       name: params[:task][:name],
-      description: params[:task][:description],
-      completed_at: params[:task][:completed_at])
+      description: params[:task][:description])
 
     if @task.save
       redirect_to task_path(@task.id)    #if form successfully saves, redirect to all tasks page
+      return
     else
       render :new, :bad_request          #if form fails to save, back to form page with form fields filled in
     end
@@ -58,20 +51,20 @@ class TasksController < ApplicationController
 
     if @task.update(                     #if form successfully updates/saves 
       name: params[:task][:name],
-      description: params[:task][:description],
-      completed_at: params[:task][:completed_at]
+      description: params[:task][:description]
     )
       redirect_to task_path(@task.id)    #redirect to all tasks page
+      return
     else
       render :edit, :bad_request         #if form fails to save, back to form page with form fields filled in
     end
   end
 
 
-  def remove
-    @task = Task.find_by(id: params[:id])
-    return head :not_found if @task.nil?
-  end
+  # def remove
+  #   @task = Task.find_by(id: params[:id])
+  #   return head :not_found if @task.nil?
+  # end
 
 
   def destroy
@@ -80,37 +73,23 @@ class TasksController < ApplicationController
 
     if @task.destroy
       redirect_to tasks_path             #if successfully deleted, redirect to all tasks page
+      return
     else
       render :remove, :bad_request       #if fails to delete, back to confirmation page
     end
   end
 
-  
+
   def mark_complete
     @task = Task.find_by(id: params[:id])
     return head :not_found if @task.nil?
 
-    if @task.completed_at == ""
-      timestamp = Time.now
-      @task.update(completed_at: timestamp)
+    if @task.completed_at == nil || @task.completed_at == ""
+      @task.update(completed_at: Time.now)
     else
-      @task.update(completed_at: "")
+      @task.update(completed_at: nil)
     end
 
     redirect_to tasks_path
   end
 end
-
-
-  # def update
-  #   @task = Task.find_by(id: params[:id])
-  #   @task.name = params[:task][:name]
-  #   @task.description = params[:task][:description]
-  #   @task.completed_at = params[:task][:completed_at]
-
-  #   if @task.save
-  #     redirect_to task_path(@task.id)    #if form successfully saves, redirect to all tasks page
-  #   else
-  #     render :edit, :bad_request          #if form fails to save, back to form page with form fields filled in
-  #   end
-  # end

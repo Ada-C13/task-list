@@ -4,20 +4,19 @@
 <% if @tasks.length > 0 %>
   <ul>
     <% @tasks.each do |task| %>
-      <% name_style = "normal" %>
-      <% name_style = "strikethrough" if task.completed_at != "" %>
-      
+      <% name_style = "strikethrough" %>
+      <% name_style = "normal" if task.completed_at == nil%>
+
       <li> 
         <%= link_to task.name, task_path(task.id), class: "taskname #{name_style}" %>
         (<%= task.description %>)
         <p>
-          <% if task.completed_at == "" %>
-            <%= link_to "[MARK COMPLETE]", complete_task_path(task.id), class: "links" %>
-          <% else %>
-            <%= link_to "[UNMARK COMPLETE]", complete_task_path(task.id), class: "links" %>
-          <% end %>
+          <%= task.completed_at ? 
+            (link_to "[UNMARK COMPLETE]", complete_task_path(task.id), class: "links", method: :patch)
+            : (link_to "[MARK COMPLETE]", complete_task_path(task.id), class: "links", method: :patch)
+          %>
           <%= link_to "[EDIT]", edit_task_path(task.id), class: "links" %>
-          <%= link_to "[DELETE]", remove_task_path(task.id), class: "links" %>
+          <%= link_to "[DELETE]", task_path(task.id), method: :delete, data: {confirm:"Are you sure?"}, class: "links" %>
         </p>
       </li>
     <% end %>
@@ -25,3 +24,4 @@
 <% else %>
   You currently have no tasks at hand. Yay!
 <% end %>
+

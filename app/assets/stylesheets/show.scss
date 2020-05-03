@@ -1,0 +1,22 @@
+.todo_card {
+  background-color:#EF6510;
+  border-radius: 25px;
+  text-align: center;
+  width: 60%;
+  position: relative;
+  left: 30%
+}
+
+.completed {
+  background-color:#CC4A1C;
+  border-radius: 25px;
+  text-align: center;
+  padding: 20px;
+}
+
+.button_section {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  justify-content: space-between;
+}

@@ -17,40 +17,35 @@
 
 @import "**/*";
 
-// * {
-//   margin-left: 50px;
-//   margin-right: 50px;
-// }
-
 .all {
-  width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 2fr;
-}
-
-header {
-  grid-column-start: 1;
-  grid-column-end: 1;
+  width: auto;
+  margin: auto;
 }
 
 .titlemain {
-  text-align: left;
-  border: red solid;
+  text-align: center;
+  height: fit-content;
+  position: fixed;
+  top: 25%;
+  bottom: 80%;
+  right: 75%;
+  background-color: #E49D4F;
+  border-radius: 20px;
 }
 
 .mainnav {
-  border: red solid;
   display: flex;
   flex-direction: column;
-  // justify-content: space-evenly;
+  width: auto;
 }
 
 .navtitles {
   padding: 0px;
   list-style: none;
-  border: red solid;
   display: flex;
   flex-direction: column;
+}
+
+a:hover {
+  color:#000000;
 }

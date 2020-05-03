@@ -10,26 +10,30 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: solid red;
 }
 
 .tasklist {
   text-decoration: none;
   list-style: none;
-  border: solid red;
+  width: auto;
+  background-color: #888589;
+  border-radius: 20px;
+}
+
+.task_indiv {
+  font-size: 20px;
+  text-align: center;
 }
 
 .title {
   text-align: center;
-  border: solid red;
   font-size: 48px;
 }
 
-.button {
-  border-radius: 5px;
-  height: 30px;
-  padding-top: 2px;
-  background-color: lightcoral;
+.task_buttons {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
 }
 
 

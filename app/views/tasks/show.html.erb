@@ -7,10 +7,13 @@
   "not completed" : @task.completed_at %></li>
 </ul>
 <h3>Select an action</h3>
-<%= button_to "Edit this task", edit_task_path(@task),
+<%= button_to "Edit", edit_task_path(@task),
     method: "get"
 %>
-<%= button_to "Delete this task", task_path(@task),
+<%= button_to "Complete", task_path(@task) + "/complete",
+    method: "patch"
+%>
+<%= button_to "Delete", task_path(@task),
     method: :delete,
     data: {confirm: "Are you sure?"}
 %>

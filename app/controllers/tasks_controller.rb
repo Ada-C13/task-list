@@ -76,4 +76,17 @@ class TasksController < ApplicationController
 
   end
 
+  def complete
+    @task = Task.find_by(id: params[:id])
+    
+    if @task.nil?
+      redirect_to tasks_path
+      return
+    elsif @task.update_column(:completed_at, DateTime.now())
+      redirect_to task_path(@task.id)
+    else
+      render :edit
+    end
+  end
+
 end

@@ -85,7 +85,7 @@ describe TasksController do
     end
   end
   
-  # Unskip and complete these tests for Wave 3
+
   describe "edit" do
     it "can get the edit page for an existing task" do
 
@@ -103,15 +103,18 @@ describe TasksController do
   
   # Uncomment and complete these tests for Wave 3
   describe "update" do
+
+    
     
     it "can update an existing task" do
-      # Your code here
- 
-    
-     
 
-    
 
+      # get edit_task_path(8)
+
+      patch edit_task_path(8), params: { task: { name: "updated" } }
+
+      @task.name.must_equal("updated")
+          
     end
     
     it "will redirect to the root page if given an invalid id" do

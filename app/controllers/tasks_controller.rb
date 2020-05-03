@@ -21,11 +21,13 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(
-      name: params[:task][:name],
-      description: params[:task][:description],
-      #completed_at: params[:task][:completed_at]
-    )
+    @task = Task.new(task_params)
+
+    # @task = Task.new(
+    #   name: params[:task][:name],
+    #   description: params[:task][:description],
+    #   #completed_at: params[:task][:completed_at]
+    # )
     respond_to do |format|
       if @task.save
         format.html { redirect_to task_path(id: @task.id), notice: 'Task was successfully created.' }
@@ -51,21 +53,29 @@ class TasksController < ApplicationController
     if @task.nil?
       redirect_to task_path
     elsif
-      respond_to do |format|
-        if @task.update(
-          name: params[:task][:name],
-          description: params[:task][:description],
-          #completed_at: params[:task][:completed_at]
-        )
-          format.html { redirect_to task_path(id: @task.id), notice: 'Task was successfully updated.' }
-          #format.json { render :update, status: :ok, location: @task }
-        else
-          render :edit, :bad_request
-          return
-          #format.html { render :update }
-          #format.json { render json: @task.errors, status: :unprocessable_entity }
-        end
+      if @task.update(task_params)
+        redirect_to task_path(id: @task.id), notice: 'Task was successfully updated.'
+      else
+        render :edit, :bad_request
       end
+      return
+      # respond_to do |format|
+      #   if @task.update(task_params)
+          
+      #   #   @task.update(
+      #   #   name: params[:task][:name],
+      #   #   description: params[:task][:description],
+      #   #   #completed_at: params[:task][:completed_at]
+      #   # )
+      #     format.html { redirect_to task_path(id: @task.id), notice: 'Task was successfully updated.' }
+      #     #format.json { render :update, status: :ok, location: @task }
+      #   else
+      #     render :edit, :bad_request
+      #     return
+      #     #format.html { render :update }
+      #     #format.json { render json: @task.errors, status: :unprocessable_entity }
+      #   end
+      # end
     end
   end
 
@@ -74,10 +84,12 @@ class TasksController < ApplicationController
     # @task = Task.find_by(id: id)
     @task.destroy
     # redirect_to root_path
-    respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Task was successfully removed.' }
-      format.json { head :no_content }
-    end
+    #respond_to do |format|
+    #  format.html {
+      redirect_to root_path, notice: 'Task was successfully removed.'
+    # }
+    #  format.json { head :no_content }
+    #end
   end
 
   def mark_complete
@@ -85,21 +97,32 @@ class TasksController < ApplicationController
       head :not_found
       return
     elsif
-      respond_to do |format|
-        if @task.completed_at != '' && @task.completed_at != nil 
-          @task.update(
-            completed_at: nil
-          )
-          format.html { redirect_to task_path(id: @task.id), notice: 'Need some more time, I guess?' }
-          #format.json { render :mark_complete status: :ok, location: @task }
-        else 
-          @task.update(
-            completed_at: @task.updated_at
-          )
-          format.html { redirect_to task_path(id: @task.id), notice: 'YAY! Task Completed!' }
-          #format.json { render :mark_complete, status: :ok, location: @task }
-        end
+      if @task.completed_at != '' && @task.completed_at != nil 
+        @task.update(
+          completed_at: nil
+        )
+        redirect_to task_path(id: @task.id), notice: 'Need some more time, I guess?'
+      else 
+        @task.update(
+          completed_at: @task.updated_at
+        )
+        redirect_to task_path(id: @task.id), notice: 'YAY! Task Completed!' 
       end
+      # respond_to do |format|
+      #   if @task.completed_at != '' && @task.completed_at != nil 
+      #     @task.update(
+      #       completed_at: nil
+      #     )
+      #     format.html { redirect_to task_path(id: @task.id), notice: 'Need some more time, I guess?' }
+      #     #format.json { render :mark_complete status: :ok, location: @task }
+      #   else 
+      #     @task.update(
+      #       completed_at: @task.updated_at
+      #     )
+      #     format.html { redirect_to task_path(id: @task.id), notice: 'YAY! Task Completed!' }
+      #     #format.json { render :mark_complete, status: :ok, location: @task }
+      #   end
+      # end
     end
     return
   end
@@ -110,6 +133,11 @@ class TasksController < ApplicationController
   def find_task
     id = params[:id].to_i
     @task = Task.find_by(id: id)
+  end
+
+  # to prevent people from submitting additional field whatever they want
+  def task_params
+    return params.require(:task).permit(:name, :description)
   end
 
 end

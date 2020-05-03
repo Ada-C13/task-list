@@ -1,14 +1,38 @@
-<h2> Task: <%= @task.name.capitalize()%> </h2>
+<div class="show"> 
 
-
- <p> Description: <%= @task.description.capitalize()%><p>
-
-
- <%= button_to "Edit Task", edit_task_path(@task), method: :get %>
-
- <%= button_to "Delete", @task, method: :delete, data: {confirm: "Are you sure you want to delete this task?"} %>
-
+  
+  <div class="show-head">
+  <h2 class='show-header'> Task: <%= @task.name.capitalize()%> </h2>
+  <span class="complete">Completed</span>
+ </div>
+  
  
+
+  <div class='description'>
+  <p> Description: <%= @task.description.capitalize()%><p>
+
+  <div class="show-buttons"> 
+    <% if @task.completed_at %>
+
+        <%= button_to "Edit Task", edit_task_path(@task), method: :get %>
+
+        <%= button_to "Delete", @task, method: :delete, data: {confirm: "Are you sure you want to delete this task?"} %>
+
+      <% else%>
+      
+        <%= link_to "mark complete", mark_complete_path(@task), method: :patch %>
+
+        <%= button_to "Edit Task", edit_task_path(@task), method: :get %>
+
+        <%= button_to "Delete", @task, method: :delete, data: {confirm: "Are you sure you want to delete this task?"} %>
+
+      <% end %>
+  </div> 
+ </div> 
+
+
+
+</div>
 
  
 

@@ -1,0 +1,38 @@
+
+.show {
+  display: grid;
+  grid-template-rows: 30% 70%;
+  border: solid black 2px;
+  padding: 10%;
+}
+.show-header {
+  display: flex;
+  align-items: flex-start;
+}
+.show-head {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  
+}
+
+.show-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 30%;
+}
+
+.description {
+  padding: 5% 5% 5% 0;
+ 
+}
+
+.complete {
+  margin: auto;
+  font-size: 12px;
+  border-radius: 20px;
+  width: 65%;
+  text-align: center;
+  background: lightgreen;
+  background-clip: border-box;
+}
+

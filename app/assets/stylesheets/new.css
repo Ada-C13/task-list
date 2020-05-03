@@ -1,0 +1,21 @@
+.new-form {
+  display: grid;
+  grid-template-rows: 25% 75%;
+  padding: 10%;
+  position: relative;
+}
+
+.form-form {
+  display: grid;
+  grid-template-rows: 30% 50% 20%; 
+}
+
+.description-box{
+  height:200px;
+ 
+}
+
+.form-header {
+  
+
+}

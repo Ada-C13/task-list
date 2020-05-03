@@ -20,13 +20,22 @@
     display: grid;
     grid-template-rows: 20% 80%;
     grid-template-columns: 30% 60%;
-    align-items: center;
-   
-    
+    align-items: center;  
+ }
+
+ header {
+  padding-left: 10%;
  }
 
  nav {
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
    align-self: start;
-   
+   padding-left: 10%;
+  }
+
+  ul > * {
+ 
+    padding: 10%;
   }
 

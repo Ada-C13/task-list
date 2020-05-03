@@ -60,59 +60,58 @@ class TasksController < ApplicationController
     elsif @task.update(
       name: params[:task][:name], 
       description: params[:task][:description],
-      completed_at: params[:task][:completed_at]
-      )
-      redirect_to tasks_path
-      return
-    else 
-      render :edit
-      return
-    end
-
-  end
-
-  def destroy # get rid of a task
-     
-    id = params[:id]
-    @task = Task.find_by(id: id)
-
-    if @task.nil?
-      redirect_to tasks_path
-      return
-    end
-
-    @task.destroy
+    )
     redirect_to tasks_path
+    return
+  else 
+    render :edit
+    return
   end
+  
+end
 
-  def mark_complete
-    id = params[:id]
-    @task = Task.find_by(id: id)
-
-    if @task.nil?
-      redirect_to tasks_path
-      return
-    else @task.completed_at = Time.now
-      @task.save
-      redirect_to tasks_path
-      return
-    end
-
+def destroy # get rid of a task
+  
+  id = params[:id]
+  @task = Task.find_by(id: id)
+  
+  if @task.nil?
+    redirect_to tasks_path
+    return
   end
+  
+  @task.destroy
+  redirect_to tasks_path
+end
 
-  def mark_incomplete
-    id = params[:id]
-    @task = Task.find_by(id: id)
-
-    if @task.nil?
-      redirect_to tasks_path
-      return
-    else @task.completed_at = nil
-      @task.save
-      redirect_to tasks_path
-      return
-    end
-
+def mark_complete
+  id = params[:id]
+  @task = Task.find_by(id: id)
+  
+  if @task.nil?
+    redirect_to tasks_path
+    return
+  else @task.completed_at = Time.now
+    @task.save
+    redirect_to request.referrer
+    return
   end
+  
+end
+
+def mark_incomplete
+  id = params[:id]
+  @task = Task.find_by(id: id)
+  
+  if @task.nil?
+    redirect_to tasks_path
+    return
+  else @task.completed_at = nil
+    @task.save
+    redirect_to request.referrer
+    return
+  end
+  
+end
 
 end

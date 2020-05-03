@@ -1,14 +1,16 @@
-<%= form_with model: @task, class: 'task-form' do |f| %> 
-<p>Please Update Your Task:</p>
-<section>
-  <%= f.label :name %>
-  <%= f.text_field :name %> 
-</section>
+<section class = 'form'>
+  <%= form_with model: @task, class: 'task-form' do |f| %> 
+  <p>Please Update Your Task:</p>
+  <section>
+    <%= f.label :name %>
+    <%= f.text_field :name %> 
+  </section>
 
-<section>
-<%= f.label :description %>
-<%= f.text_area :description %>
-</section>
+  <section>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  </section>
 
-<%= f.submit "Update Task", class: "task-button" %>
-<% end %>
+  <%= f.submit "Update Task", class: "task-button" %>
+  <% end %>
+</section>

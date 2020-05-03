@@ -10,10 +10,21 @@
   </head>
 
   <body>
+    <header>
+      <h1>Tasks</h1>
+    </header>
+    
+    <nav>
+      <ul>
+        <li><%= link_to "New Task", new_task_path %></li>
+      </ul>
+    </nav>
+    
     <%= yield %>
+
+    <footer>
+      Go get em tiger!
+    </footer>
   </body>
 
-  <footer>
-    Go get em tiger!
-  </footer>
 </html>

@@ -1,9 +1,10 @@
 <h2>Welcome to my Tasks Page</h2>
   <% if @tasks.length > 0 %>
     <ul>
-      <%= @tasks.each do |task| %>
+      <% @tasks.each do |task| %>
         <li>
-          <%= task[:id] %>. <%= task[:name] %> --  <%=task[:description]%>
+          <% id = task[:id]%>
+          <%= link_to task.name, task_path(id) %> --  <%=task[:description]%>
         </li>
       <%end%>
     </ul>

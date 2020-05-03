@@ -3,7 +3,7 @@
 
 <div class="index"> 
   <h4> Things you need to complete:  </h4>
-  <p><i> *click task to edit* </i><p> 
+  <p><i>    click task to edit </i><p> 
 
   <ol>
     <% @tasks.each do |task| %>
@@ -14,21 +14,22 @@
     <div class="index-links">
       <% if task.completed_at %>
 
-        
+      
         <span class="complete-index">Completed</span>
 
         <%= button_to "Edit Task", edit_task_path(task), method: :get %>
 
         <%= button_to "Delete", task, method: :delete, data: {confirm: "Are you sure you want to delete this task?"} %>
-
+      
       <% else%>
       
-        <%= link_to "mark complete", mark_complete_path(task), method: :patch %>
+    
+        <%= button_to "mark complete", mark_complete_path(task), method: :patch, class: "mark-complete"%>
 
         <%= button_to "Edit Task", edit_task_path(task), method: :get %>
 
         <%= button_to "Delete", task, method: :delete, data: {confirm: "Are you sure you want to delete this task?"} %>
-
+     
       <% end %>
     </div> 
 

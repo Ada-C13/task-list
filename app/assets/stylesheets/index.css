@@ -19,6 +19,8 @@
   font-size: 13px;
 }
 
+
+
 a {
   color: black;
   text-decoration: underline;
@@ -26,7 +28,8 @@ a {
 .index-links {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  width: 70%
+  width: 70%;
+  
 }
 
 .index-links > *{

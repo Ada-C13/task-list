@@ -55,8 +55,9 @@ class TasksController < ApplicationController
       @task.update(
         name: params[:task][:name],
         description: params[:task][:description],
-        # TODO: set a button on the index.html.erb to mark completed
-        completed_at: nil,
+        # Set a button on the index.html.erb to mark completed
+        # completed_at: @task.completed_at || params[:task][:completed_at],
+        completed_at: params[:task][:completed_at],
       )
       redirect_to task_path
       return
@@ -68,7 +69,7 @@ class TasksController < ApplicationController
 
   def destroy
     task = Task.find_by(id: params[:id])
-    puts "Book Details: #{task}"
+
     if task.nil?
       head :not_found
       return

@@ -7,5 +7,11 @@ Rails.application.routes.draw do
   # Adding the root to task#index, to redirect to index without using/index"
   get '/tasks/:id', to: 'tasks#show', as: 'task'
 
+
+  # *ROUTS TO DEAL WITH SPECIFIC BOOK.
+  # To post the to the DB.
+  post 'tasks', to: 'tasks#create'
+
+
   
 end

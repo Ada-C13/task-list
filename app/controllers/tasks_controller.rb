@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.all
+    @tasks = Task.all.order(:id)
   end
 
   def show
@@ -47,7 +47,6 @@ class TasksController < ApplicationController
     elsif @task.update(
       name: params[:task][:name],
       description: params[:task][:description],
-      completed_at: params[:task][:completed_at]
     )
       redirect_to tasks_path 
       return
@@ -65,6 +64,21 @@ class TasksController < ApplicationController
     end
 
     @task.destroy
+
+    redirect_to tasks_path
+    return
+  end
+
+  def mark_complete
+    @task = Task.find_by(id: params[:id])
+    if @task.nil?
+      redirect_to tasks_path
+      return
+    end
+
+    @task.update(
+      completed_at: Date.today.to_s
+    )
 
     redirect_to tasks_path
     return

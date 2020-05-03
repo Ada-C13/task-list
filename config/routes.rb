@@ -12,19 +12,6 @@ Rails.application.routes.draw do
   get "/tasks/:id/edit", to: "tasks#edit", as: "edit_task"
   patch "/tasks/:id", to: "tasks#update"
   delete "/tasks/:id", to: "tasks#destroy"
+  patch '/tasks/:id/mark_complete', to: 'tasks#mark_complete', as: 'task_complete'
 
 end
-
-
-  # # Routes that have to do with the collection of books
-  # get '/books', to: 'books#index', as: 'books'
-  # get '/books/new', to: 'books#new', as: 'new_book' # form
-  # post '/books', to: 'books#create'
-
-  # # Routes that deal with a specific book
-  # get '/books/:id', to: 'books#show', as: 'book'
-  # get '/books/:id/edit', to: 'books#edit', as: 'edit_book' # form
-  # patch '/books/:id', to: 'books#update'
-  # delete '/books/:id', to: 'books#destroy'
-
-  # # patch '/books/:id/mark_read', to: 'books#mark_read', as: 'book_read'

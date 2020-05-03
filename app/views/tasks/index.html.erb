@@ -1,15 +1,28 @@
 <h2>Tasks for Today<h2>
 
-<ul>
-  <% @tasks.each do |task| %>
-    <li class="task">
-      <%= task[:name] %>
-      <p><%= task[:description] %></p>
-      <p><%= task[:completed_at] %></p>
-      <p><%= link_to "Edit task", edit_task_path(task.id) %></p>
-      <%= link_to "Delete", destroy_task_path(task.id), method: :delete %>
-    </li>
-  <% end %>
-</ul>
-
 <%= link_to "Add a new task", new_task_path %>
+
+<% if @tasks.length > 0 %>
+  <ol>
+    <% @tasks.each do |task| %>
+      <li class="task">
+        <div class="task-info">
+          <p><%= task.name %></p>
+          <p><%= task.description %></p>
+          <p><%= task.completed_at %></p>
+        </div>
+        <%# Mark Complete %>
+          <button><%= link_to "Edit", edit_task_path(task.id) %></button>
+          <button><%= link_to "Delete", destroy_confirmation_path(task.id) %></button>
+          <button><%= link_to "Mark Complete", mark_complete_path(task.id), method: :post %></button>
+      </li>
+    <% end %>
+  </ol>
+  <% else %>
+    <h2>No Tasks Today!</h2>
+<% end %>
+
+  <%# <li class=<%class_name%>
+  <%# <% if task.completed_at != nil %>
+        <%# <% class_name = "completed" %>
+      <%# <%end%>

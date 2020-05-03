@@ -5,10 +5,15 @@ class TasksController < ApplicationController
   end
 
   def show
+    # why .to_i if works without?
     task_id = params[:id].to_i
-    @task = Task.find(task_id)
+    # do we get an exception raised with find invalid id?
+    # @task = Task.find(task_id)
+    # is id key a key in a hash that find_by needs for correct formatting?
+    @task = Task.find_by(id: task_id)
     if @task.nil?
-      head :not_found
+      # to pass tests, redirect instead of head :not_found 404
+      redirect_to tasks_path
       return
     end
   end
@@ -20,7 +25,6 @@ class TasksController < ApplicationController
   # No route matches {:action=>"show", :controller=>"tasks", :id=>nil}, possible unmatched constraints: [:id]
   def create
     @task = Task.new(
-      # id: params[:task][:id],
       name: params[:task][:name],
       description: params[:task][:description],
       completed_at: params[:task][:completed_at]
@@ -59,9 +63,13 @@ class TasksController < ApplicationController
       redirect_to task_path(@task.id) # go to show page for id
       return
     else
-      render :edit # show the new form view again
+      render :edit # show the edit form view again
       return
     end
+  end
+
+  def destroy_confirmation
+    @task = Task.find_by(id: params[:id])
   end
 
   def destroy
@@ -74,6 +82,23 @@ class TasksController < ApplicationController
       redirect_to tasks_path
     end
   end
+
+  def mark_complete
+    @task = Task.find_by(id: params[:id])
+
+    # is @task.save more correct?
+    if @task.nil?
+      redirect_to task_path(@task.id)
+      return
+    else
+      # update completed_at field in the task
+      @task.update(
+        completed_at: Time.now
+      )
+      redirect_to tasks_path
+    end
+  end
+
 
 
   # request checkbox checked (put)

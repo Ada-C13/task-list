@@ -24,8 +24,7 @@ class TasksController < ApplicationController
     # "task"=>{"name"=>"boo", "description"=>"bi", "completed_at"=>"boo"},
     @task = Task.new(
       name: params[:task][:name],
-      description: params[:task][:description],
-      completed_at: params[:task][:completed_at]
+      description: params[:task][:description]
     )
 
     if @task.save
@@ -58,6 +57,20 @@ class TasksController < ApplicationController
       return
     else # save failed :(
       render :edit
+      return
+    end
+  end
+
+  def destroy
+    @task = Task.find_by(id: params[:id])
+    if @task.nil?
+      head :not_found
+      return
+    elsif @task.destroy
+      redirect_to tasks_path
+      return
+    else 
+      render :show
       return
     end
   end

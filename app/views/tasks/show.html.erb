@@ -2,7 +2,7 @@
 <h3><%= @task.description %></h3>
 
 <% if @task.completed_at %>
-  <p>This task was completed at <%= @task.completed_at %></p>
+  <p>This task was completed on <%= @task.completed_at.strftime("%m/%d/%Y") %></p>
 <% else %>
   <p>You have yet to complete this task</p>
 <% end %>

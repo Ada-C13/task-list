@@ -60,7 +60,7 @@ describe TasksController do
   
   describe "create" do
     it "can create a new task" do
-      skip
+      #skip
       
       # Arrange
       task_hash = {

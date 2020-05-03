@@ -7,6 +7,8 @@
         Task: <%= link_to task.name, task_path(task.id) %> 
         Description: <%= task.description %> 
         Completed: <%= task.completed_at %>
+        <%= link_to "Edit", edit_task_path(task.id) %>
+        <%= link_to "Delete", destroy_confirm_path(task.id) %>
       </li>
     <% end %>
   </ul>

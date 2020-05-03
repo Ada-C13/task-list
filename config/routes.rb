@@ -9,5 +9,14 @@ Rails.application.routes.draw do
   post '/tasks', to: 'tasks#create'
 
   get '/tasks/:id', to: 'tasks#show', as: 'task'
+
+  get '/tasks/:id/edit', to: 'tasks#edit', as: 'edit_task'
+
+  patch '/tasks/:id', to: 'tasks#update'
+
+  get '/tasks/:id/confirm', to: 'tasks#confirm_delete', as: 'destroy_confirm'
+
+  # why it's not working if we add /delete after the '/tasks/:id' ?
+  delete '/tasks/:id', to: 'tasks#destroy', as: 'destroy_task'
   
 end

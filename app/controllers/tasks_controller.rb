@@ -1,8 +1,9 @@
 class TasksController < ApplicationController
-  before_action :find_task, only: [:show, :edit, :update, :destroy]
+  before_action :find_task, only: [:show, :edit, :update, :destroy, :mark_complete]
   
   def index
-    @tasks = Task.all
+    # so this won't change the order even after updating a task
+    @tasks = Task.order(:id).all
   end
 
   def show
@@ -28,11 +29,13 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.save
         format.html { redirect_to task_path(id: @task.id), notice: 'Task was successfully created.' }
-        format.json { render :show, status: :created, location: @task }
+        #format.json { render :create, status: :created, location: @task }
         #redirect_to task_path(id: @task.id)
       else
-        format.html { render :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        render :new, :bad_request
+        return
+        #format.html { render :new }
+        #format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,11 +57,13 @@ class TasksController < ApplicationController
           description: params[:task][:description],
           completed_at: params[:task][:completed_at]
         )
-        format.html { redirect_to root_path, notice: 'Task was successfully updated.' }
-        format.json { render :show, status: :ok, location: @task }
+          format.html { redirect_to task_path(id: @task.id), notice: 'Task was successfully updated.' }
+          #format.json { render :update, status: :ok, location: @task }
         else
-          format.html { render :edit }
-          format.json { render json: @task.errors, status: :unprocessable_entity }
+          render :edit, :bad_request
+          return
+          #format.html { render :update }
+          #format.json { render json: @task.errors, status: :unprocessable_entity }
         end
       end
     end
@@ -74,6 +79,31 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def mark_complete
+    if @task.nil?
+      head :not_found
+      return
+    elsif
+      respond_to do |format|
+        if @task.completed_at != ''
+          @task.update(
+            completed_at: ''
+          )
+          format.html { redirect_to task_path(id: @task.id), notice: 'Need some more time, I guess?' }
+          #format.json { render :mark_complete status: :ok, location: @task }
+        else 
+          @task.update(
+            completed_at: @task.updated_at
+          )
+          format.html { redirect_to task_path(id: @task.id), notice: 'YAY! Task Completed!' }
+          #format.json { render :mark_complete, status: :ok, location: @task }
+        end
+      end
+    end
+    return
+  end
+
 
   private
   # helper methods to help DRY up some codes

@@ -9,17 +9,24 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-  <header>
+  <body class="d-flex align-items-stretch">
+  <header class="d-flex flex-column">
     <section class='title'><h1>TaskList<h1></section>
-  </header>
     <nav>
-      <ul>
-      <%= link_to '<button type="button">Home</button>'.html_safe, tasks_path %></li>
-      <%= link_to '<button type="button">Add New Task</button>'.html_safe, new_task_path %></li>
+      <ul class="option-button d-flex flex-sm-column">
+      <%= link_to 'Home', tasks_path ,class: 'btn btn-outline-secondary btn-sm'%>
+      <%= link_to "Add New Task", new_task_path,class: 'btn btn-outline-secondary btn-sm' %>
       <ul>
     </nav>
+  </header>
+    <main  class="p-3" >
     <%= render "tasks/flash" %>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
+    </main>
   </body>
+    <%# <footer class="page-footer font-small blue pt-4">
+      <p>All rights Reserved</p>
+    </footer> %>
 </html>

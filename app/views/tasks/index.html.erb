@@ -1,6 +1,7 @@
 <table class="table table-hover table-bordered">
 <thead>
     <tr>
+      <th>#</th>
       <th>Task Name</th>
       <th>Completed?</th>
       <th>Delete</th>
@@ -8,13 +9,25 @@
   </thead>
   <tbody>
     <% if @tasks.length > 0 %>
-        <% @tasks.each do |task|%>
-        <tr>
-          <td class='task_name'><%= link_to task.name, task_path(task.id) %> </td>
-          <td><%= task.completed_at %></p>
-          <td><%= link_to 'Delete', task, class: 'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %> </td>
+        <% @tasks.each_with_index do |task, index|%>
+          <% if task.completed_at != '' && task.completed_at != nil %>
+            <tr class="table-secondary">
+              <td><%= index + 1%>
+              <td class='task_name striker'><%= link_to task.name, task_path(task.id) %> </td>
+              <td><%= link_to 'Oops..Unmark!', task_complete_path(task.id), class: 'btn btn-outline-secondary btn-sm', method: :patch %></td>
+              <td><%= link_to 'Delete', task, class: 'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>          
+          <%else%>
+            <tr>
+              <td><%= index + 1 %>
+              <td class='task_name '><%= link_to task.name, task_path(task.id) %> </td>
+              <td><%= link_to 'Mark Complete!', task_complete_path(task.id), class: 'btn btn-outline-secondary btn-sm', method: :patch %></td>
+              <td><%= link_to 'Delete', task, class: 'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <%end%>
         <%end%>
         </tr>
     <% else %>
       <h3>Yay! There is no Tasks in the system!</h3>
     <%end%>
+    </tbody>

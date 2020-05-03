@@ -1,1 +1,12 @@
-<h2>Edit Page</h2>
+<h2>Edit Task</h2>
+<%= form_with model: @task, class: 'task-form' do |f| %>
+  <div>
+    <%= f.label :edit_name%>
+    <%= f.text_field :name%>
+  </div>
+  <div>
+    <%= f.label :edit_description%>
+    <%= f.text_area :description%>
+  </div>
+  <%= f.submit "Edit Task", class: 'edit-task-button'%>
+<%end%>

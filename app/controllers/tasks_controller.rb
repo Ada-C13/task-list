@@ -34,12 +34,32 @@ class TasksController < ApplicationController
 
 
   def edit
-
+    id = params[:id].to_i
+    @task = Task.find_by(id: id)
+  
+    if @task.nil?
+      head :not_found
+      return
+    end
   end 
 
 
   def update 
-
+    id = params[:id].to_i
+    @task = Task.find_by(id: id)
+    if @task.nil?
+      head :not_found
+      return
+    elsif @task.update(
+      name: params[:task][:name], 
+      description: params[:task][:description],
+    )
+      redirect_to tasks_path 
+      return
+    else
+      render :edit 
+      return
+    end
   end 
 
 

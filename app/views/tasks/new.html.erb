@@ -1,26 +1,21 @@
 <%# app/views/tasks/new.html.erb%>
+<div class="view-body">
+  <h3>Create New Task</h3>
+  <p>&#128204 Please fill out this form to create a new task!</p>
 
-<h3>Create New Task</h3>
-<p>&#128204 Please fill out this form to create a new task!</p>
+  <%= form_with class: "new-form", model:@task do |f| %>
+    <div class="new-task">
+      <%= f.label :name %>
+      <%= f.text_field :name, placeholder: "task name..." %>
+    </div>
 
-<%= form_with model:@task do |f| %>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name, placeholder: "task name" %>
-  </div>
+    <div class="new-task">
+      <%= f.label :description %>
+      <%= f.text_area :description, placeholder: "task description..." %>
+    </div>
 
-  <div>
-    <%= f.label :description %>
-    <%= f.text_area :description, placeholder: "task description" %>
-  </div>
-
-  <div>
-    <%= f.label :completed_at %>
-    <%= f.text_field :completed_at %>
-  </div>
-
-  <%= f.submit %>
-<% end %>
-
+    <%= f.submit %>
+  <% end %>
+</div>
 <%# the symbols in each form label (:name) generates the key in the params[:task] hash %>
 <%# after testing, it does not have to correspond to any of the column names in the schema %>

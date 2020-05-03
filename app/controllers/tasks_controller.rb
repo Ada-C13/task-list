@@ -22,10 +22,7 @@ class TasksController < ApplicationController
     if @task.nil?
       head :not_found
       return
-    elsif @task.update(
-      name: params[:task][:name],
-      description: params[:task][:description]
-    )
+    elsif @task.update(task_params)
       redirect_to task_path 
       return
     else 
@@ -80,15 +77,19 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(
-      name: params[:task][:name], 
-      description: params[:task][:description])
+    @task = Task.new(task_params)
 
     if @task.save
       redirect_to @task
     else
       render :new, :bad_request
     end
+  end
+
+  private 
+
+  def task_params
+    return params.require(:task).permit(:name, :description, :completed_at, :status)
   end
 
 end

@@ -1,35 +1,21 @@
-<h1>TASKS LIST</h1>
-<ul>
-  <li>
-  <%= link_to "Add Task", new_task_path %>
-  </li>
-  <li>
-  <%= link_to "All Task", tasks_path %>
-  </li>
-</ul>
 
-<div> 
-   <h2>YOUR TASKS</h2>
+<div id = body-container> 
   <ol>
+  <h2>YOUR TASKS</h2>
     <% @tasks.each do |task|%>
-      <li>
-        <%=task.name %> 
-      </li>
-      <%= link_to "Mark Complete |", edit_task_path(task.id) %> 
-      <%= link_to "Edit |", edit_task_path(task.id) %> 
-      <%= link_to "Delete", task_path(task), method: :delete, data: {confirm: "Are you sure?"} %> 
+       <%complete = "mark_complete" if task.completed_at != nil %>
+       
+       <li class = <%=complete%>>
+        <%= link_to task.name, task_path(task.id)%>
+      </li>  
+      <%if task.completed_at == nil%>
+       <%= link_to "Mark Complete", mark_complete_path(task.id), method: :patch%> |
+      <%else%>
+       <%= link_to "Unmark Complete", mark_complete_path(task.id), method: :patch %> |
+       <s></s>
+      <%end%>
+      <%= link_to "Edit", edit_task_path(task.id) %>|
+      <%= link_to "Delete", task_path(task), method: :delete, data: {confirm: "Are you sure?"} %> |
     <% end %>
   </ol>
 </div>
-
-<div> 
-   <h2>YOUR TASKS</h2>
-  <ol>
-    <% @tasks.each do |task|%>
-      <li>
-        <%= task.name %> <%= task.description %> <%= task.completed_at %> <%= link_to "Edit", edit_task_path(task.id) %> 
-      </li>
-    <% end %>
-  </ol>
-</div>
-

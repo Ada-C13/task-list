@@ -8,8 +8,16 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body>
-    <%= yield %>
-  </body>
+  <div class = "main-content">
+    <ul id = nav-container>
+    <h1>Task List</h1>
+      <li class = "bar-item"><%= link_to "Add Task", new_task_path %></li>
+      <li class = "bar-item"><%= link_to "All Tasks", tasks_path %></li>
+    </ul> 
+  
+    <body>
+      <%= yield %>
+    </body>
+  </div>
+    <footer id = footer_id >© 2020 jbajrami</footer>
 </html>

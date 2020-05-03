@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.all
+    @tasks = Task.all.order(:created_at)
   end
 
   def show
@@ -18,9 +18,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(
       name: params[:task][:name],
-      description: params[:task][:description],
-      created_at: params[:task][:created_at]
-    )
+      description: params[:task][:description])
 
     if @task.save
       redirect_to task_path(@task.id)
@@ -48,8 +46,7 @@ class TasksController < ApplicationController
       return
     elsif @task.update(
       name: params[:task][:name],
-      description: params[:task][:description],
-      created_at: params[:task][:created_at])
+      description: params[:task][:description])
 
       redirect_to tasks_path
       return
@@ -74,5 +71,18 @@ class TasksController < ApplicationController
     return
   end
 
+  def complete
+    @task = Task.find_by(id: params[:id])
+
+    return  head :not_found if @task.nil?
+   
+    if @task.completed_at == nil
+      @task.update(completed_at: Time.new)
+    elsif @task.completed_at != nil
+      @task.update(completed_at: nil)
+    end
+
+    redirect_to tasks_path
+  end
 
 end

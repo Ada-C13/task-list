@@ -1,6 +1,7 @@
 # Reference: https://github.com/Ada-Developers-Academy/textbook-curriculum/blob/master/08-rails/routes-and-resources.md
 Rails.application.routes.draw do
   resources :tasks
+  root to: "tasks#index"  # root_path
   patch '/tasks/:id/complete', to: 'tasks#complete', as: 'complete_task'
 end
 

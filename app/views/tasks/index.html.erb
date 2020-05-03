@@ -1,22 +1,25 @@
 <h3>Tasks</h3>
 <ul>
   <% @tasks.each do |task|  %>
-    <li>
+    <li class="list">
       <%= task.id %> - 
-      <%= link_to task.name, task_path(task) %> : 
+      <%= task.name %> : 
       <%= task.description %>
       <%= task.completed_at.nil? ?
         "(not completed)" :
         "(completed at " + task.completed_at.to_s + ")"
       %>
+      <%= button_to "Show", task_path(task),
+        method: "get", class: "button"
+      %>
       <%= button_to "Edit", edit_task_path(task),
-        method: "get"
+        method: "get", class: "button"
       %>
       <%= button_to "Complete", complete_task_path(task),
-        method: "patch"
+        method: "patch", class: "button"
       %>
       <%= button_to "Delete", task_path(task),
-        method: :delete,
+        method: :delete, class: "button",
         data: {confirm: "Are you sure?"}
       %>
     </li>
@@ -24,4 +27,3 @@
 </ul>
 <h3>Select an action</h3>
 <%= button_to "Add new task", new_task_path, :method => "get" %>
-

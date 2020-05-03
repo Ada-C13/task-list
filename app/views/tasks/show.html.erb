@@ -1,6 +1,8 @@
 <%# app/views/tasks/show.html.erb%>
 
-<h3><%= @task.name%></h3>
-<p>&#128204 <%= @task.description%></p>
-<p>&#9989 Complete?  <%= @task.completed_at %> </p>
-<%= link_to "Edit Task", edit_task_path(@task.id) %>
+<div class="view-body">
+  <h3>&#128204 <%= @task.name%></h3>
+  <p>&#10145 <%= @task.description%></p>
+  <p>&#9989 Completed At...  <%= @task.completed_at %> </p>
+  <%= link_to "Edit Task", edit_task_path(@task.id), class: "show-edit" %>
+</div>

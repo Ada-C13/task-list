@@ -10,12 +10,11 @@
   </head>
 
   <body class="app-container">
-    <header class="title"><h1>TASKLIST</h1></header>
+    <header class="title"><a href="/"><h1>⋆T⋆A⋆S⋆K⋆L⋆I⋆S⋆T⋆</h1></a></header>
     <nav class="navbar">
       <ul class="navlist">
-        <li><a href="/">Home</a></li>
-        <li><a href="/tasks">Your Tasks</a></li>
-        <li> <%= link_to "New Task", new_task_path%> </li>
+        <li> <%= link_to "# All Tasks", tasks_path%> </li>
+        <li> <%= link_to "+ New Task", new_task_path%> </li>
       </ul>
     </nav>
 

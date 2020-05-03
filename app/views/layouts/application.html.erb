@@ -11,13 +11,15 @@
 
   <body>
   <header>
-      <section class="title"><h1>Tisk! Tisk! Task! </h1></section>
+      <h1 class="title"><h1>Welcome to Tisk Tisk Task!</h1>
+      <h3>This is the place to make your tasks come true!</h3>
       <nav>
       <ul>
       <li><%= link_to "Home", "/", class: "link" %></li>
       <li><%= link_to "Tasks List", "/tasks", class: "link" %></li>
       <li><%= link_to "New Task", "/tasks/new", class: "link" %></li>
-      <li><%= link_to "Delete Book", @book, method: :delete, class: "link" %></li>
+      <%# fix this route when doing delete %>
+      <li><%= link_to "Delete Task", "/tasks/:id", method: :delete, class: "link" %></li>
 
       </ul>
       </nav>

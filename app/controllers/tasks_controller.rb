@@ -1,20 +1,24 @@
 class TasksController < ApplicationController
   # Controller Actions are always methods
+  def home
+  end
+  
   # index is a method
   def index #index means to list all
     @tasks = Task.all
   end
 
-  def show
+  def show # get one task
     # special params hash
     # the id was passed into the route
-    task_id = params[:task_id].to_i
-    @task =  Task.find_by(id: task_id)
+    id = params[:id].to_i
+    @task =  Task.find_by(id:id)
 
     if @task.nil?
-      head :not_found
+      redirect_to tasks_path()
       return
     end
+
   end
 
   def new
@@ -31,7 +35,7 @@ class TasksController < ApplicationController
       completed_at: params[:task][:completed_at]
     ) 
     if @task.save #returns true if the db insert succeeds
-      redirect_to tasks_path #go to "/tasks" so User can see the task in the list
+      redirect_to tasks_path(@task.id) #go to "/tasks" so User can see the task in the list
       return
     else #the save has failed
       # render :new  - keeps all the values that were passed in

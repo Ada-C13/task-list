@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   # see https://guides.rubyonrails.org/routing.html
 
   # verb 'path' to: 'name of controller#action'
+  
+  get '/', to: 'tasks#home', as: 'root'
 
   # Routes that operate on the task collection:
   get '/tasks', to: 'tasks#index', as: 'tasks'
@@ -10,7 +12,8 @@ Rails.application.routes.draw do
   post '/tasks', to: 'tasks#create'
 
   # Routes that operate on individual tasks
-  get 'tasks/:task_id', to: 'tasks#show' #list one task by id
+  # look into this route tasks.1
+  get '/tasks/:id', to: 'tasks#show'
   get '/tasks/:id/edit', to: 'tasks#edit', as: 'edit_task'
   patch '/tasks/:id', to: 'tasks#update'
   delete '/tasks/:id', to: 'tasks#destroy'

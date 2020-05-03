@@ -87,7 +87,7 @@ describe TasksController do
       must_redirect_to tasks_path(new_task.id)
     end
   end
-  
+  # ##############################################################################
   # Unskip and complete these tests for Wave 3
   describe "edit" do
     it "can get the edit page for an existing task" do

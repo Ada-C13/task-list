@@ -4,5 +4,9 @@
   <br>
   Description: <%= @task.description %>
   <br>
+  Completed at: <%= Time.parse(@task.completed_at).strftime("%B %d, %Y at %I:%M %p") if @task.completed_at %> 
+  <br>
   <button><%= link_to "Edit Task", edit_task_path %></button>
+  <br>
+  <button><%= link_to "Delete Task", task_path(@task), method: :delete, data: {confirm: "Are you sure?"} %></button>
 </p>

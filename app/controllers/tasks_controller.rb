@@ -37,7 +37,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task = Task.find_by(id: params[:id])
+    @task = Task.find_by(id: params[:id].to_i)
     if @task.nil?
       redirect_to tasks_path
       return
@@ -49,6 +49,32 @@ class TasksController < ApplicationController
       return
     else 
       render :edit 
+      return
+    end
+  end
+
+  def destroy
+    @task = Task.find_by(id: params[:id].to_i)
+    if @task.nil?
+      redirect_to tasks_path
+      return
+    end
+
+    @task.destroy
+    redirect_to tasks_path 
+    return
+    
+  end
+
+  def mark_complete
+    @task = Task.find_by(id: params[:id].to_i)
+    if @task.completed_at
+      @task.update(completed_at: nil)
+      redirect_to tasks_path
+      return
+    else
+      @task.update(completed_at: Time.new)
+      redirect_to tasks_path
       return
     end
   end

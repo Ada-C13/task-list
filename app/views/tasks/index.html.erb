@@ -1,14 +1,15 @@
 <h2>Tasks for today</h2>
 
 <% if @tasks.length > 0 %>
-  <ul>
+  <ul class='wrapper'>
     <% @tasks.each do |task| %>
-      <li> 
-        Task: <%= link_to task.name, task_path(task.id) %> 
-        Description: <%= task.description %> 
-        Completed: <%= task.completed_at %>
+      <li class = 'task'> 
+        <%= link_to task.name, task_path(task.id) %> 
+        - <%= task.description %> 
+        - <%= task.completed_at %>
         <%= link_to "Edit", edit_task_path(task.id) %>
         <%= link_to "Delete", destroy_confirm_path(task.id) %>
+        <%= link_to "Mark as Complete", complete_task_path(task.id), method: :post %>
       </li>
     <% end %>
   </ul>

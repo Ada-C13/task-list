@@ -18,5 +18,7 @@ Rails.application.routes.draw do
 
   # why it's not working if we add /delete after the '/tasks/:id' ?
   delete '/tasks/:id', to: 'tasks#destroy', as: 'destroy_task'
+
+  post '/tasks/:id/complete', to: 'tasks#complete', as: 'complete_task'
   
 end

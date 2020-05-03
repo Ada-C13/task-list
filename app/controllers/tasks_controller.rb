@@ -91,8 +91,25 @@ class TasksController < ApplicationController
     end
 
     @task.destroy
-
     redirect_to tasks_path 
+  end
+
+  def complete 
+    # t = Time.now.strftime("%d/%m/%Y")
+    task_id = params[:id].to_i
+    @task = Task.find_by(id: task_id)
+
+    @task.update(
+      completed_at: Time.now
+    )
+
+    if @task.save
+      redirect_to tasks_path
+      return
+    else
+      render :new, :bad_request
+      return
+    end
   end
 
 end

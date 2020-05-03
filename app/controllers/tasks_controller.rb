@@ -86,9 +86,9 @@ class TasksController < ApplicationController
       return
     elsif
       respond_to do |format|
-        if @task.completed_at != ''
+        if @task.completed_at != '' && @task.completed_at != nil 
           @task.update(
-            completed_at: ''
+            completed_at: nil
           )
           format.html { redirect_to task_path(id: @task.id), notice: 'Need some more time, I guess?' }
           #format.json { render :mark_complete status: :ok, location: @task }

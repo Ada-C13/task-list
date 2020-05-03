@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get '/tasks/:id', to: 'tasks#show', as: 'task'
   ##PAIR -- get, patch -- to update existing
   get '/tasks/:id/edit', to: 'tasks#edit', as: 'edit_task'
-  patch '/tasks/:id', to: 'tasks#update' 
+  patch '/tasks/:id', to: 'tasks#update', as: 'update' 
   delete '/tasks/:id', to: 'tasks#destroy', as: 'delete'
 
   get '/tasks/:id/mark_complete', to: 'tasks#mark_complete', as: 'completed'

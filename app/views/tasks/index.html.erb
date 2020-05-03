@@ -6,14 +6,14 @@
       <% @tasks.each do |task|%>
         <li class="task_indiv">
           <%= task[:name] %> : <%= task[:description] %>
-          <% if task[:completed_at] == 'completed' %>
+          <% if task[:status] == 'completed' %>
             <h3 class="completed">Task Completed</h3>
           <% end %>
           <div class="task_buttons">
             <%= button_to "Show Details", task_path(task.id), :method => :get%> 
             <%= button_to "Edit Task", edit_task_path(task.id), :method => :get%>
-            <%= button_to "Delete Task", delete_path(task.id), :method => :delete%>
-            <% if task[:completed_at] != 'completed'%> 
+            <%= button_to "Delete Task", delete_path(task.id), :method => :delete, data: {confirm: "Are you sure you want to delete the task: #{task.name}?"}%>   
+            <% if task[:status] == nil %> 
               <%= button_to "Mark Task Complete", completed_path(task.id), :method => :get%>
             <% end %> 
           </div>

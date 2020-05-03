@@ -40,9 +40,10 @@ class TasksController < ApplicationController
       head :not_found
       return
     elsif @task.update(
-      completed_at: 'completed'
+      status: 'completed',
+      completed_at: Time.now
     )
-      redirect_to 'tasks'
+      redirect_to tasks_path
       return
     else 
       raise

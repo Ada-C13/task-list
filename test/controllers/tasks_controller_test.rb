@@ -109,11 +109,16 @@ describe TasksController do
     # Note:  If there was a way to fail to save the changes to a task, that would be a great
     #        thing to test.
     it "can update an existing task" do
-      # Your code here
+      get update_path(task.id)
+
+      must_respond_with :success
     end
     
     it "will redirect to the root page if given an invalid id" do
       # Your code here
+      get update_path(-1)
+
+      must_respond_with :redirect
     end
   end
   

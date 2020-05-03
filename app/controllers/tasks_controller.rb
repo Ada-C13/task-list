@@ -82,10 +82,9 @@ class TasksController < ApplicationController
     if @task.nil?
       redirect_to tasks_path
       return
-    elsif @task.update_column(:completed_at, DateTime.now())
-      redirect_to task_path(@task.id)
     else
-      render :edit
+      @task.update_column(:completed_at, DateTime.now())
+      redirect_to task_path(@task.id)
     end
   end
 

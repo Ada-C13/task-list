@@ -9,8 +9,19 @@
         "(not completed)" :
         "(completed at " + task.completed_at.to_s + ")"
       %>
+      <%= button_to "Edit", edit_task_path(task),
+        method: "get"
+      %>
+      <%= button_to "Complete", complete_task_path(task),
+        method: "patch"
+      %>
+      <%= button_to "Delete", task_path(task),
+        method: :delete,
+        data: {confirm: "Are you sure?"}
+      %>
     </li>
   <% end %>
 </ul>
 <h3>Select an action</h3>
 <%= button_to "Add new task", new_task_path, :method => "get" %>
+

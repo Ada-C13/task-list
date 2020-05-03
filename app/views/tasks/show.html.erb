@@ -10,7 +10,7 @@
 <%= button_to "Edit", edit_task_path(@task),
     method: "get"
 %>
-<%= button_to "Complete", task_path(@task) + "/complete",
+<%= button_to "Complete", complete_task_path(@task),
     method: "patch"
 %>
 <%= button_to "Delete", task_path(@task),

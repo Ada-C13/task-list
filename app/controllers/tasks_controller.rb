@@ -9,11 +9,7 @@ class TasksController < ApplicationController
 
   def create 
     # raise
-    @task = Task.new(
-      name: params[:task][:name],
-      description: params[:task][:description],
-      completed_at: params[:task][:completed_at]
-    )
+    @task = Task.new(task_params)
 
     if @task.save
       redirect_to task_path(@task.id)
@@ -36,6 +32,7 @@ class TasksController < ApplicationController
     end
   end 
 
+  
   def edit 
     task_id = params[:id]
     @task = Task.find_by(id: task_id)
@@ -94,5 +91,14 @@ class TasksController < ApplicationController
     end 
 
     redirect_to tasks_path 
+  end
+
+
+  # reference: https://github.com/Ada-Developers-Academy/textbook-curriculum/blob/master/08-rails/forms-strong-params.md
+
+  private 
+
+  def task_params 
+    return params.require(:task).permit(:name, :description, :completed_at)
   end
 end

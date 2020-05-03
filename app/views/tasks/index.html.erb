@@ -1,35 +1,37 @@
-<h1>Task List</h1>
+<h1 class="index__title">Task List</h1>
 
+<div class: "index__add-task-btn-container">
+  <%= link_to "➕ Add Task", new_task_path, class: "index__add-task-btn" %>
+</div>
+
+<%# form reference: https://m.patrikonrails.com/rails-5-1s-form-with-vs-old-form-helpers-3a5f72a8c78a%>
+
+<%# https://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html#method-i-check_box%>
 <% if @tasks.length > 0 %>
-  <ul>
+  <ul class='tasks-container'>
     <% @tasks.each do |task| %>
-      <li>
+      <li class='one-task-container'>
         
         <%= form_with model: @task, class: 'task-complete', url: complete_task_path(task.id), method: :patch do |f| %>
-          <%= f.check_box :completed_at, { onchange: 'this.form.submit()', checked: !task.completed_at.nil?  } %>
+          <%= f.check_box :completed_at, { class: "check-box", onchange: 'form.submit()', checked: !task.completed_at.nil? } %>
         <% end %>
 
         <% if task.completed_at.nil? %>
           <span>
-            <%= link_to task.name, task_path(task.id) %>
-            -
-            <%= task.description %>
+            <%= link_to task.name, task_path(task.id), class: "index__task-name" %>
+            <%# -
+            <%= task.description %> 
           </span>
         <% else %>
           <span class="task-complete">
-            <%= link_to task.name, task_path(task.id) %>
-            -
-            <%= task.description %>
+            <%= link_to task.name, task_path(task.id), class: "index__task-name" %>
+            <%# -
+            <%= task.description %> 
           </span>
         <% end %>
 
-        <%= link_to " ✏️", edit_task_path(task.id) %>
-        <%= link_to "  🚮 ", task_path(task.id), method: :delete, data: { confirm: '❗️ Would you like to delete the task?'} %>
-
-
-
-
-        
+        <%= link_to " ✏️", edit_task_path(task.id), class: "index__edit-btn" %>
+        <%= link_to "  🚮 ", task_path(task.id), method: :delete, data: { confirm: '❗️ Would you like to delete the task?'}, class: "index__delete-btn" %>        
       </li>
     <% end %>
   </ul>
@@ -37,8 +39,6 @@
 <% else %>
   <h3>No tasks in the system!</h3>
 <% end %>
-
-<%= link_to "➕ Add Task", new_task_path %>
 
 
 <%# reference: how to update confirm pop up page %>

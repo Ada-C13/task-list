@@ -14,10 +14,9 @@ class TasksController < ApplicationController
 
   # Create a show method to show only one particular task
   def show
-    task_id = params[:id].to_i
-    @task = Task.find(task_id)
+    @task = Task.find_by(id: params[:id].to_i)
     if @task.nil?
-      head :not_found
+      redirect_to tasks_path
       return
     end
   end 

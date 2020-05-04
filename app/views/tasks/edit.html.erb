@@ -1,16 +1,2 @@
-<section class = 'form'>
-  <%= form_with model: @task, class: 'task-form' do |f| %> 
-  <p>Please Update Your Task:</p>
-  <section>
-    <%= f.label :name %>
-    <%= f.text_field :name %> 
-  </section>
-
-  <section>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </section>
-
-  <%= f.submit "Update Task", class: "task-button" %>
-  <% end %>
-</section>
+<h2>Please Enter New Task Info:</h2>
+<%= render partial: "form", locals: { action_name: "Update Task" } %>

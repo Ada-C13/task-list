@@ -120,7 +120,7 @@ describe TasksController do
       expect(updated_task.completed_at).must_equal task_hash[:task][:completed_at]
     end
     
-    it "will redirect to the root page if given an invalid id" do
+    it "will redirect if given an invalid id" do
       patch task_path(-10)
 
       must_respond_with :redirect
@@ -138,7 +138,7 @@ describe TasksController do
       }.must_differ "Task.count", -1
     end 
 
-    it 'redirects to root if given invalid id' do
+    it 'redirects if given invalid id' do
       delete task_path(-10)
 
       must_respond_with :redirect

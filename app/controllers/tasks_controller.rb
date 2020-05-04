@@ -22,10 +22,7 @@ class TasksController < ApplicationController
   
   
   def create # send new task data to database
-    @task = Task.new(
-      name: params[:task][:name], 
-      description: params[:task][:description]
-    )
+    @task = Task.new(task_params)
     
     if @task.save
       redirect_to task_path(@task.id)
@@ -55,10 +52,7 @@ class TasksController < ApplicationController
     if @task.nil?
       redirect_to tasks_path
       return
-    elsif @task.update(
-      name: params[:task][:name], 
-      description: params[:task][:description],
-    )
+    elsif @task.update(task_params)
       redirect_to tasks_path
       return
     else 
@@ -66,7 +60,8 @@ class TasksController < ApplicationController
       return
     end
   end
-
+  
+  
   def destroy # get rid of a task
     
     id = params[:id]
@@ -80,7 +75,8 @@ class TasksController < ApplicationController
     @task.destroy
     redirect_to tasks_path
   end
-
+  
+  
   def mark_complete
     id = params[:id]
     @task = Task.find_by(id: id)
@@ -94,7 +90,8 @@ class TasksController < ApplicationController
       return
     end
   end
-
+  
+  
   def mark_incomplete
     id = params[:id]
     @task = Task.find_by(id: id)
@@ -108,5 +105,11 @@ class TasksController < ApplicationController
       return
     end
   end
-
+  
+  private
+  
+  def task_params
+    return params.require(:task).permit(:id, :name, :description, :completed_at)
+  end
+  
 end

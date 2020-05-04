@@ -1,0 +1,15 @@
+<section class = 'form'>
+  <%= form_with model: @task, class: 'task-form' do |f| %> 
+  <section>
+    <%= f.label :name %>
+    <%= f.text_field :name %> 
+  </section>
+
+  <section>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </section>
+
+  <%= f.submit action_name, class: "task-button" %>
+  <% end %>
+</section>

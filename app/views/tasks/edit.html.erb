@@ -1,0 +1,20 @@
+<%= form_with model: @task, class: 'edit-task' do |f| %>
+  <p>Please update the data for the task:</p>
+  <table>
+  <tr>
+  <td><%= f.label :name %></td>
+  <td><%= f.text_field :name %></td>
+  </tr>
+
+  <tr>
+  <td><%= f.label :description %></td>
+  <td><%= f.text_field :description %></td>
+  </tr>
+
+  <tr>
+  <td><%= f.label :completed_at %></td>
+  <td><%= f.text_field :completed_at %></td>
+  </tr>
+  </table>
+  <%= f.submit "Save task", class: "button" %>
+<% end %>

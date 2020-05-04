@@ -19,10 +19,10 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(
-      name: params[:task][:name],
-      description: params[:task][:description]
-    )
+    @task = Task.new(task_params)
+    #   name: params[:task][:name],
+    #   description: params[:task][:description]
+    # )
 
     if @task.save
       redirect_to task_path(@task.id)
@@ -45,10 +45,10 @@ class TasksController < ApplicationController
     if @task.nil?
       head :not_found
       return
-    elsif @task.update(
-      name: params[:task][:name],
-      description: params[:task][:description]
-    )
+    elsif @task.update(task_params)
+    #   name: params[:task][:name],
+    #   description: params[:task][:description]
+    # )
       redirect_to task_path(@task.id) 
       return
     else # save failed :(
@@ -92,6 +92,12 @@ class TasksController < ApplicationController
       render :index
       return
     end
+  end
+
+  private
+
+  def task_params
+    params.require(:task).permit(:name, :description, :completed_at)
   end
 
 end

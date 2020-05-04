@@ -59,7 +59,7 @@ class TasksController < ApplicationController
     redirect_to tasks_path
   end
 
-  # marks a task complete
+  # marks a task completed
   def complete
     @task = Task.find_by(id: params[:id])
     if @task.nil?
@@ -69,5 +69,17 @@ class TasksController < ApplicationController
       redirect_to task_path(@task.id)
     end
   end
+
+    # marks a task as not completed
+    def uncomplete
+      @task = Task.find_by(id: params[:id])
+      if @task.nil?
+        redirect_to tasks_path
+      else
+        @task.update_column(:completed_at, nil)
+        redirect_to task_path(@task.id)
+      end
+    end
+  
 
 end

@@ -1,5 +1,12 @@
 class TasksController < ApplicationController
   def index
-    @to_do = ["Ada Lessons and Homework", "Order food for dinner", "piano practice", "Animal Crossing daily stuff"]
+    @task = Task.all
+  end
+
+  def show
+    task_id = params[:id]
+    @task = Task.find_by(id: task_id)
+
+    redirect_to tasks_path if @task.nil?
   end
 end

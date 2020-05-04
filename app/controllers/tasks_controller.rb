@@ -75,12 +75,6 @@ class TasksController < ApplicationController
     end
   end
 
-  def confirm_delete
-    task_id = params[:id].to_i
-    @task = Task.find_by(id: task_id)
-
-  end
-
   def destroy
     task_id = params[:id].to_i
     @task = Task.find_by(id: task_id)
@@ -95,9 +89,13 @@ class TasksController < ApplicationController
   end
 
   def complete 
-    # t = Time.now.strftime("%d/%m/%Y")
     task_id = params[:id].to_i
     @task = Task.find_by(id: task_id)
+
+    if @task.nil?
+      head :not_found
+      return
+    end
 
     @task.update(
       completed_at: Time.now
@@ -111,5 +109,4 @@ class TasksController < ApplicationController
       return
     end
   end
-
 end

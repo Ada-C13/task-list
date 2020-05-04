@@ -8,7 +8,8 @@
         - <%= task.description %> 
         - <%= task.completed_at %>
         <%= link_to "Edit", edit_task_path(task.id) %>
-        <%= link_to "Delete", destroy_confirm_path(task.id) %>
+        <%= link_to "Delete", destroy_task_path(task.id), method: :delete, 
+        data: { confirm: "Are you sure you want to delete this task?" } %>
         <%= link_to "Mark as Complete", complete_task_path(task.id), method: :post %>
       </li>
     <% end %>

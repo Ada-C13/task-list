@@ -14,9 +14,6 @@ Rails.application.routes.draw do
 
   patch '/tasks/:id', to: 'tasks#update'
 
-  get '/tasks/:id/confirm', to: 'tasks#confirm_delete', as: 'destroy_confirm'
-
-  # why it's not working if we add /delete after the '/tasks/:id' ?
   delete '/tasks/:id', to: 'tasks#destroy', as: 'destroy_task'
 
   post '/tasks/:id/complete', to: 'tasks#complete', as: 'complete_task'

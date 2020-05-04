@@ -6,17 +6,17 @@
     <% @tasks.each do |task|%>
       <li>
       <%= link_to task.name, task_path(task.id)%>
-          <%= link_to "Mark Complete", mark_complete_task_path(task.id), method: :put %> 
-            <%= link_to "Edit Task", edit_task_path(task.id) %>
-              <%= link_to "Delete Task!", delete_task_path(task.id), method: :delete, data: {confirm: "Are you sure?"} %>
+          <%= button_to('Mark Complete', mark_complete_task_path(task.id), {class: 'button', method: :put, alt: 'complete task button'}) %> 
+            <%= button_to('Edit Task', edit_task_path(task.id), {class: 'button', method: :get, alt: 'edit task button' }) %>
+              <%= button_to('Delete Task!', delete_task_path(task.id), {class: 'button', method: :delete, data: {confirm: 'Are you sure?'}, alt: 'delete task button'}) %>
       </li>
     <% end %>
   </ul>
 
   <h2>Would you like to add a task?</h2>
   <h3>See the links below:</h3>
-      <li><%= link_to "Add Task", new_task_path, class: "link" %></li>
-          <li><%= link_to "Home", root_path, class: "link" %></li>
+      <li><%= button_to('Add Task', new_task_path, {class: 'button', method: :get, alt: 'new task button'}) %></li>
+          <li><%= button_to('Home', root_path, {class: 'link', method: :get, alt: 'home button'}) %></li>
 
 
 

@@ -1,7 +1,33 @@
 <h1>Tasks</h1>
 <ul>
   <% @tasks.each do |task| %>
-  <li><%= task.name %> : <%= link_to task.description, task_path(task.id) %><%=
-   completed_string(task) %><%= link_to "Delete Task", task_path(task), method: :delete, data: {confirm: "Are you sure?"}%></li>
+    <li>
+      <div class=<%= completed_display(task) %>><%= task.name %> :
+      <%= link_to task.description, task_path(task.id) %></div>
+      <%# completed_string(task) %>  
+      <%= 
+        link_to "Delete Task",
+        task_path(task),
+        method: :delete,
+        data: {confirm: "Are you sure?"}
+      %> |
+      <% if task.completed_at.nil? %>
+        <%=
+          link_to "Mark Complete",
+          complete_task_path(task),
+          method: :patch,
+          data: {confirm: "Did you really finish this?"}
+        %>
+      <% else%>
+        <%=
+          link_to "Mark Inomplete",
+          complete_task_path(task),
+          method: :patch
+        %>
+
+      <% end %>
+      <br><br>
+
+    </li>
   <% end %>
 </ul>

@@ -50,8 +50,7 @@ class TasksController < ApplicationController
       return
     elsif @task.update(
       name: params[:task][:name],
-      description: params[:task][:description],
-      completed_at: params[:task][:completed_at]
+      description: params[:task][:description]
     )
       redirect_to task_path(@task.id) 
       return
@@ -71,6 +70,29 @@ class TasksController < ApplicationController
       return
     else 
       render :show
+      return
+    end
+  end
+
+  def complete
+    @task = Task.find_by(id: params[:id])
+    if @task.nil?
+      head :not_found
+      return
+    elsif @task[:completed_at].nil?
+      @task.update(
+      completed_at: Time.now
+    )
+      redirect_to tasks_path 
+      return
+    elsif !@task[:completed_at].nil?
+      @task.update(
+      completed_at: nil
+    )
+      redirect_to tasks_path 
+      return
+    else 
+      render :index
       return
     end
   end

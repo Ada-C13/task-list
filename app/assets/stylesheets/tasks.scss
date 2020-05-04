@@ -113,7 +113,7 @@ footer {
   margin-right: 10px;
 }
 
-.index__edit-btn, .index__delete-btn, .show__edit-btn, .show__delete-btn {
+.index__edit-btn, .index__delete-btn {
   margin-left: 10px;
 }
 
@@ -192,10 +192,9 @@ footer {
   font-size: 18px;
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 300px;
 }
 
-.show__edit-btn,  .show__delete-btn, ._form__task-btn {
+.show__edit-btn,  .show__delete-btn, .show__mark-complete-btn, ._form__task-btn {
   padding: 5px 20px;
   margin-top: 15px;
   margin-bottom: 10px;

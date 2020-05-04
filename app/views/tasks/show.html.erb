@@ -18,8 +18,9 @@
 </div>
 
 <div class="show__btn">
-  <%= link_to "Edit Task ✏️", edit_task_path(@task.id), class: 'show__edit-btn' %>
+  <%= link_to "E D I T ✏️  ", edit_task_path(@task.id), class: 'show__edit-btn' %>
 </div>
+
 <div class="show__btn">
-  <%= link_to "Delete 🚮", task_path(@task.id), method: :delete, class: 'show__delete-btn' %>
+  <%= link_to " Delete 🚮 ", task_path(@task.id), method: :delete, data: { confirm: '❗️ Would you like to delete the task?'}, class: 'show__delete-btn' %>
 </div>

@@ -13,7 +13,7 @@
       <li class='one-task-container'>
         
         <%= form_with model: @task, class: 'task-complete', url: complete_task_path(task.id), method: :patch do |f| %>
-          <%= f.check_box :completed_at, { class: "check-box", onchange: 'form.submit()', checked: !task.completed_at.nil? } %>
+          <%= f.check_box :completed_at, { class: "check-box", onChange: 'form.submit()', checked: !task.completed_at.nil? } %>
         <% end %>
 
         <% if task.completed_at.nil? %>
@@ -41,5 +41,5 @@
 <% end %>
 
 
-<%# reference: how to update confirm pop up page %>
+<%# reference: how to update confirmation pop up page %>
 <%# https://stackoverflow.com/questions/15771582/rails-how-to-put-a-confirmation-popup-on-a-f-submit %>

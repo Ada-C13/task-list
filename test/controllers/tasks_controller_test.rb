@@ -13,7 +13,7 @@ describe TasksController do
   }
   
   # Tests for Wave 1
-  describe "index" do
+  describe "index action" do
     it "can get the index path" do
       # Act
       get tasks_path
@@ -32,7 +32,7 @@ describe TasksController do
   end
   
   # Unskip these tests for Wave 2
-  describe "show" do
+  describe "show action" do
     it "can get a valid task" do
       # Act
       get task_path(task.id)
@@ -63,7 +63,7 @@ describe TasksController do
   end
   
 
-  describe "create" do
+  describe "create action" do
     it "can create a new task" do
       # Arrange
       task_hash = {
@@ -90,7 +90,7 @@ describe TasksController do
   
 
   # Unskip and complete these tests for Wave 3
-  describe "edit" do
+  describe "edit action" do
     it "can get the edit page for an existing task" do
 
       # Your code here
@@ -114,7 +114,7 @@ describe TasksController do
   
 
   # Uncomment and complete these tests for Wave 3
-  describe "update" do
+  describe "update action" do
     # Note:  If there was a way to fail to save the changes to a task, that would be a great
     # thing to test.
 
@@ -180,7 +180,7 @@ describe TasksController do
 
   # reference: https://github.com/Ada-Developers-Academy/textbook-curriculum/blob/master/08-rails/destroy-action.md
   # Complete these tests for Wave 4
-  describe "destroy" do
+  describe "destroy action" do
     # Your tests go here
     it "can destroy a model" do 
 
@@ -218,7 +218,7 @@ describe TasksController do
   
 
   # Complete for Wave 4
-  describe "complete" do
+  describe "complete action" do
     # Your tests go here
 
     before do
@@ -268,7 +268,7 @@ describe TasksController do
       @last_task.update(completed_at: Time.now) # mark as complete
 
       expect {
-        patch complete_task_path(@last_task.id), params: new_task_hash  # mark as not complete
+        patch complete_task_path(@last_task.id), params: new_task_hash  # mark as incomplete
       }.wont_change "Task.count"
 
 

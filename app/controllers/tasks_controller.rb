@@ -27,7 +27,7 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: task_id)
 
     if @task.nil? 
-      redirect_to tasks_path
+      redirect_to root_path
       return
     end
   end 
@@ -51,13 +51,9 @@ class TasksController < ApplicationController
     if @task.nil?
       redirect_to root_path
       return 
-    elsif @task.update(
-      name: params[:task][:name],
-      description: params[:task][:description],
-      completed_at: params[:task][:completed_at]
-      )
 
-      redirect_to task_path
+    elsif @task.update(task_params)
+      redirect_to task_path(@task.id)
       return 
 
     else  
@@ -71,11 +67,13 @@ class TasksController < ApplicationController
     task_id = params[:id]
     @task = Task.find_by(id: task_id)
 
-    if @task 
+    if @task.nil?
+      redirect_to root_path
+      return 
+    else
       @task.destroy 
       redirect_to tasks_path 
-    else 
-      render :notfound, :bad_request # TODO
+      return
     end
   end
 
@@ -84,7 +82,10 @@ class TasksController < ApplicationController
     task_id = params[:id]
     @task = Task.find_by(id: task_id)
 
-    if @task.completed_at == nil 
+    if @task.nil? 
+      redirect_to root_path
+      return 
+    elsif !@task.completed_at
       @task.update(completed_at: Time.now) # update database
     else 
       @task.update(completed_at: nil)

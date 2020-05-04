@@ -15,9 +15,9 @@
       <h3>This is the place to make your tasks come true!</h3>
       <nav>
       <ul>
-      <li><%= link_to "Home", "/", class: "link" %></li>
-      <li><%= link_to "Tasks List", "/tasks", class: "link" %></li>
-      <li><%= link_to "New Task", "/tasks/new", class: "link" %></li>
+      <li><%= link_to "Home", root_path, class: "link" %></li>
+      <li><%= link_to "All Tasks", tasks_path, class: "link" %></li>
+      <li><%= link_to "New Task", new_task_path, class: "link" %></li>
       <%# fix this route when doing delete %>
       <li><%= link_to "Delete Task", "/tasks/:id", method: :delete, class: "link" %></li>
 

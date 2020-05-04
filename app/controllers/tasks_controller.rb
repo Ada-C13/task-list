@@ -21,6 +21,18 @@ class TasksController < ApplicationController
 
   end
 
+  def update
+  end
+
+  def edit
+  end
+
+  def destroy
+    @task = Task.destroy
+  end
+
+
+
   def new
     # rendering the form
     @task = Task.new
@@ -44,11 +56,5 @@ class TasksController < ApplicationController
       return 
     end
   end
-
-  def destroy
-    @task = Task.destroy
-  end
-
-  
 end
 

@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "duedate"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "completed_at"
+    t.datetime "completed_at"
   end
-  
+
 end

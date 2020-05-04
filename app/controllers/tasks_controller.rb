@@ -13,7 +13,6 @@ class TasksController < ApplicationController
     end
   end
 
-  # Video 15 Rails Forms
   def new
     @task = Task.new
   end
@@ -25,7 +24,7 @@ class TasksController < ApplicationController
       completed_at: params[:task][:completed_at]
     )
     if @task.save
-      redirect_to task_path(@task.id) # or show all task by using redirect_to tasks_path
+      redirect_to tasks_path # or show all task by using redirect_to tasks_path
     else
       render :new, :bad_request
     end
@@ -41,14 +40,17 @@ class TasksController < ApplicationController
   def update
     @task = Task.find_by(id: params[:id])
     if @task.nil?
-      redirect_to edit_task_path
+      redirect_to task_path
+      return
     elsif @task.update(
       name: params[:task][:name], 
       description: params[:task][:description], 
       completed_at: params[:task][:completed_at])
       redirect_to task_path 
+      return
     else 
       render :edit
+      return
     end
   end
    
@@ -65,17 +67,20 @@ class TasksController < ApplicationController
     return 
   end
   
-  # def mark_done
-  #   @task = Task.find_by(id: params[:id])
-  #   if @task.nil?
-  #     redirect_to tasks_path
-  #   elsif @task.update(
-  #     name: params[:task][:name], 
-  #     description: params[:task][:description], 
-  #     completed_at: params[:task][:completed_at])
-  #     redirect_to tasks_path 
-  #   else 
-  #     render :edit
-  #   end
-  # end
+  def mark_done
+    @task = Task.find_by(id: params[:id])
+    if @task.nil?
+      redirect_to tasks_path
+      return
+    elsif !@task.completed_at
+      # Resource: https://thoughtbot.com/blog/its-about-time-zones
+      @task.update( completed_at: Date.today )
+      redirect_to tasks_path 
+      return
+    elsif @task.completed_at
+      @task.update( completed_at: nil)
+      redirect_to tasks_path 
+      return
+    end
+  end
 end

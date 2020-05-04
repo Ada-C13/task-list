@@ -1,11 +1,18 @@
 <h3>Pending Tasks</h3>
 
 <% if @tasks.length > 0 %>
-  <ul>
+  <ul class="tasklist">
     <% @tasks.each do |task|  %>
       <li>
-        <%= link_to task.name, task_path(task.id)%> -due date: <%= task.completed_at %>
+
+        <h3><%= link_to task.name, task_path(task.id)%></h3>
+        
+        <%= link_to "Show details", task_path(task.id)%> |
+        <%= link_to "Mark/Unmark completed", task_done_path(task), method: :patch%> |
         <%= link_to "Delete", task_path(task), method: :delete, data: {confirm: 'Are you sure you want to delete?'}%>
+        
+        <p>Task completed on: <%= task.completed_at%></p>        
+    
       </li>
     <% end %>
   </ul>

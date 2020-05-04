@@ -1,14 +1,11 @@
 <%= form_with model: @task, class: 'update-task' do |f| %>
 <p>Please provide the following information to update this task:</p>
 
-  <%= f.label :name, 'Task name' %> 
+  <%= f.label :name, 'Task name:' %> 
   <%= f.text_field :name %> 
 
-  <%= f.label :description, 'Description' %>
+  <%= f.label :description, 'Description:' %>
   <%= f.text_field :description %>
-
-  <%= f.label :completed_at, 'Due date' %>
-  <%= f.text_field :completed_at %>
 
   <%= f.submit "Update task", class: "task-button" %>
 

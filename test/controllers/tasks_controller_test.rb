@@ -25,7 +25,6 @@ describe TasksController do
     end
   end
   
-  # Unskip these tests for Wave 2
   describe "show" do
     it "can get a valid task" do
       # Act
@@ -83,14 +82,20 @@ describe TasksController do
   
   # Unskip and complete these tests for Wave 3
   describe "edit" do
+    before do
+      Task.create(name: "Angela", description: "Feed cat", completed_at: "05/04/2020")
+    end
+
     it "can get the edit page for an existing task" do
-      skip
-      # Your code here
+      task = Task.first
+      get edit_task_path(task.id)
+      must_respond_with :success
     end
     
     it "will respond with redirect when attempting to edit a nonexistant task" do
-      skip
-      # Your code here
+      invalid_id = -1
+      get edit_task_path(invalid_id)
+      must_redirect_to root_path
     end
   end
   

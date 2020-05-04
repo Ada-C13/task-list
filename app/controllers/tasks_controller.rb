@@ -45,13 +45,17 @@ class TasksController < ApplicationController
   def edit
     # id = params[:id].to_i
     # @task = Task.find_by(id: id)
+    if @task.nil?
+      redirect_to root_path, notice: 'Task not found'
+      return
+    end
   end
 
   def update
     # id = params[:id].to_i
     # @task = Task.find_by(id: id)
     if @task.nil?
-      redirect_to task_path
+      redirect_to root_path, notice: 'Task not found'
     elsif
       if @task.update(task_params)
         redirect_to task_path(id: @task.id), notice: 'Task was successfully updated.'

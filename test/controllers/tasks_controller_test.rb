@@ -88,28 +88,34 @@ describe TasksController do
   # Unskip and complete these tests for Wave 3
   describe "edit" do
     before do
-      Task.create(name: "Walk the dogs", description: "Remember to bring the water for the dogs!", completed_at: nil)
+      @task = Task.create(name: 'Spring cleaning', description: 'Time to clean up!')
     end
 
-    let (:new_task_hash) {
-      {task: {
-          name: "Walk the dogs and take the trash out",
-          description: "Remember to bring trash out on the way!",
-        # completed_at: nil,
-      }
-    }}
-    
     it "can get the edit page for an existing task" do
       #skip
       # Your code here
       # Arrange 
-    
+      valid_task_id = @task.id
 
+      # Act 
+      get edit_task_path(valid_task_id)
+
+      # Assert
+      must_respond_with :success
     end
     
     it "will respond with redirect when attempting to edit a nonexistant task" do
-      skip
+      #skip
       # Your code here
+      # Arrange
+      invalid_task_id = -1
+
+      # Act 
+      get edit_task_path(invalid_task_id)
+
+      # Assert
+      # redirecting to root page with notice of task not found
+      must_redirect_to root_path
     end
   end
   
@@ -117,6 +123,17 @@ describe TasksController do
   describe "update" do
     # Note:  If there was a way to fail to save the changes to a task, that would be a great
     #        thing to test.
+    before do
+      Task.create(name: "Walk the dogs", description: "Remember to bring the water for the dogs!", completed_at: nil)
+    end
+
+    let (:new_task_hash) {
+      {task: {
+          name: "Walk the dogs and take the trash out",
+          description: "Remember to bring trash out on the way!",
+      }
+    }}
+    
     it "can update an existing task" do
       # Your code here
       task = Task.first
@@ -135,17 +152,70 @@ describe TasksController do
     
     it "will redirect to the root page if given an invalid id" do
       # Your code here
+      invalid_id = 10000000
+
+      expect{patch task_path(invalid_id), params: new_task_hash}.wont_change 'Task.count'
+    
+      must_redirect_to root_path
     end
   end
   
   # Complete these tests for Wave 4
   describe "destroy" do
     # Your tests go here
+    before do
+      Task.create(name: "Walk the dogs", description: "Remember to bring the water for the dogs!", completed_at: nil)
+    end
+
+    let (:new_task_hash) {
+      {task: {
+          name: "Walk the dogs and take the trash out",
+          description: "Remember to bring trash out on the way!",
+      }
+    }}
     
+    it 'will remove the task from the database and redirect back to root page' do
+    task = Task.first
+    expect{delete task_path(task.id), params: new_task_hash}.must_differ 'Task.count', -1
+
+    must_redirect_to root_path
+    end
   end
   
   # Complete for Wave 4
   describe "toggle_complete" do
     # Your tests go here
+    before do
+      Task.create(name: "Walk the dogs", description: "Remember to bring the water for the dogs!", completed_at: nil)
+    end
+
+    it 'will change the value of completed_at when the mark complete button is clicked' do
+      # Arrange
+      task = Task.first
+
+      # Act
+      patch task_complete_path(task.id)
+      task.reload
+      
+      # Assert 
+      # clicking the mark complete will update the completed at time from nil to time
+      must_redirect_to task_path(task.id)
+      assert_not_empty(task.completed_at)
+    end
+
+    it 'will change the value of completed_at back from Time to nil again if mark no completed button is click' do
+      # Arrange 
+      task = Task.first
+
+      # Act
+      # click the button twice to toggle the value of completed_at
+      patch task_complete_path(task.id)
+      patch task_complete_path(task.id)
+      task.reload
+
+      # Assert
+      assert_nil(task.completed_at)
+      #expect(task.completed_at).must_equal nil
+    end
   end
 end

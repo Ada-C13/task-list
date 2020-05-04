@@ -60,17 +60,17 @@ class TasksController < ApplicationController
       return
     end
 
-    @task.update(
+    result = @task.update(
       name: params[:task][:name],
       description: params[:task][:description],
       completed_at: params[:task][:completed_at]
     )
 
-    if @task.save
+    if result
       redirect_to task_path(@task.id)
       return
     else
-      render :new, :bad_request
+      render :edit
       return
     end
   end

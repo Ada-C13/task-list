@@ -1,10 +1,3 @@
-# TASKS = [
-#   {task_name: "Grocery shopping"},
-#   {task_name: "cooking"},
-#   {task_name: "water flowers"},
-# ]
-
-
 class TasksController < ApplicationController
   def index
     @tasks = Task.all
@@ -24,9 +17,10 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(
-      name: params[:task][:name],
-      description: params[:task][:description],
-      completed_at: nil,
+      task_params
+      # name: params[:task][:name],
+      # description: params[:task][:description],
+      # completed_at: nil,
     )
 
     if @task.save
@@ -53,11 +47,11 @@ class TasksController < ApplicationController
       return
     elsif
       @task.update(
-        name: params[:task][:name],
-        description: params[:task][:description],
-        # Set a button on the index.html.erb to mark completed
+        task_params
+        # name: params[:task][:name],
+        # description: params[:task][:description],
         # completed_at: @task.completed_at || params[:task][:completed_at],
-        completed_at: params[:task][:completed_at],
+        # completed_at: params[:task][:completed_at],
       )
       redirect_to task_path
       return
@@ -77,5 +71,11 @@ class TasksController < ApplicationController
       task.destroy
       redirect_to tasks_path
     end
+  end
+
+  private 
+
+  def task_params
+    return params.require(:task).permit(:name, :description, :completed_at)
   end
 end

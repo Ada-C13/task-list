@@ -4,7 +4,7 @@ class TasksController < ApplicationController
 		@tasks = Task.all
 	end
 
-  # Single book display.
+  # Single task display.
 	def show
 		task_id = params[:id]
 		@task = Task.find_by(id: task_id)
@@ -21,9 +21,9 @@ class TasksController < ApplicationController
 	end
 
 	def create
-		@task = Task.new(task_params)
+    @task = Task.new(task_params.merge(completed_at: ""))
 		
-		if @task.save # if a new task if made and saved
+		if @task.save # if a new task is made and saved
       redirect_to task_path(@task)
       return
 		else
@@ -44,6 +44,7 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find_by(id: params[:id])
+
     if @task.nil?
       head :not_found
       return
@@ -69,21 +70,21 @@ class TasksController < ApplicationController
       return
     else
       @task.destroy
-      redirect_to tasks_path
+      redirect_to root_path
       return
     end
   end
 
   def completed?
     @task = Task.find_by(id: params[:id])
-    puts "********* #{@task.completed_at == ""} *****"
+
     if (@task.completed_at == "") == true
       @task.update(completed_at: Time.now)
     else
       @task.update(completed_at: "")
     end
 
-    redirect_to tasks_path
+    redirect_to root_path
   end
 
   private

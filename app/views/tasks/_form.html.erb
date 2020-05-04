@@ -1,14 +1,14 @@
 <%= form_with model: @task, class: 'task-form' do |f| %>
   <form class="form-group row">
-  <div class="col-sm-2 " >
+  <div class="col-2 " >
   <%= f.label :name %>
   <%= f.text_field :name %>
   </div>
-  <div class="col-sm-2 ">
+  <div class="col-2 ">
   <%= f.label :description %>
   <%= f.text_area :description%>
   </div>
-  <div class="col-sm-10">
+  <div class="col-2">
   <%= f.submit action_name, class: 'btn btn-outline-secondary btn-sm' %>
   </div>
   </form>

@@ -1,0 +1,63 @@
+// Place all the styles related to the Tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.app-container {
+  border: 3px solid;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px, 10px, 0px, 10px;
+  width: 500px;
+  box-shadow: 3px 3px 5px 6px #ccc;
+  font-family: monospace;
+  background-image: linear-gradient(to bottom right, rgb(161, 231, 231), rgb(106, 220, 161));
+  
+}
+
+.to-do-title {
+  text-align: center;
+  margin: 0;
+}
+
+.nav-links {
+  margin: 10 0;
+  padding: 0;
+  display: grid;  
+}
+
+.nav-link {
+  text-align: center;
+  font-size: 13px;
+  width: 100px;
+  background-image: linear-gradient(to top right, rgb(111, 233, 233), rgb(166, 226, 195));
+  box-shadow: 1px 1px 2px 2px black;
+  padding: .5em 1em;
+  text-decoration: none;
+}
+
+.all {
+  grid-column: 2 / 3;
+}
+
+.new {
+  grid-column: 3 / 4;
+}
+
+.complete {
+  text-decoration: line-through;
+}
+
+.all-tasks {
+  text-align: center;
+}
+
+.footer-text {
+  text-align: center;
+  font-size: 15px;
+  margin-bottom: 0;
+}
+
+.task-edits {
+  margin-bottom: 10px;
+}
+

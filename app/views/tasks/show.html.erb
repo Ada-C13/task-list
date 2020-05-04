@@ -1,0 +1,19 @@
+<h2><%= @task.name %></h2>
+<h3><%= @task.description %></h3>
+
+<% if @task.completed_at %>
+  <p>This task was completed on <%= @task.completed_at.strftime("%m/%d/%Y") %></p>
+<% else %>
+  <p>You have yet to complete this task</p>
+<% end %>
+
+<section class='taskEdits'>
+  <% if @task.completed_at %>
+    <%= link_to "Mark Incomplete", mark_incomplete_path(@task), method: :patch %> |
+  <% else %>
+    <%= link_to "Mark Complete", mark_complete_path(@task), method: :patch %> |
+  <%end%>
+
+  <%= link_to "Edit this task", edit_task_path(@task) %> |
+  <%= link_to "Delete this task", task_path(@task), method: :delete, data: {confirm: "Are you sure?"} %>
+</section>

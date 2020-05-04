@@ -8,6 +8,7 @@
         <header><strong><%= link_to(task.name, task_path(task.id) ) %></strong></header>
         <%= task.description %>
         <%= task.completed_at %>
+        <p><%= link_to "Delete Task", task_path(task), method:  :delete, data: {confirm: "Are you sure you  want to delete this task?"} %></p>
       </li>
     <% end %>
   </ol>

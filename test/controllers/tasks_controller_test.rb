@@ -48,12 +48,9 @@ describe TasksController do
   
   describe "new" do
     it "can get the new task page" do
-      
-      
-      # Act
+  
       get new_task_path
       
-      # Assert
       must_respond_with :success
     end
   end
@@ -69,7 +66,6 @@ describe TasksController do
         },
       }
       
-      # Act-Assert
       expect {
         post tasks_path, params: task_hash
       }.must_change "Task.count", 1
@@ -141,14 +137,37 @@ describe TasksController do
     end
   end
   
-  # Complete these tests for Wave 4
+ 
   describe "destroy" do
-    # Your tests go here
+    it "will destroy task" do
+      Task.create(name: "task to delete", description: "DELETE ME")
+
+      task = Task.first
+  
+
+      expect{delete task_path(Task.first.id)}.must_differ "Task.count", -1
+    end
     
   end
-  
-  # Complete for Wave 4
+
   describe "toggle_complete" do
-    # Your tests go here
+    it "will toggle complete" do
+      Task.create(name: "task to complete", description: "COMPLETE ME")
+
+      task_hash = {
+        task: {
+          name: "updated task test",
+          description: "update task description test"
+        }
+      }
+      
+      patch mark_complete_path(Task.first.id)
+      
+      expect(task.completed_at).must_be_instance_of String 
+    end
   end
+
+
 end
+
+

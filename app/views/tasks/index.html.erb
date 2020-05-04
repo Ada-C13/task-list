@@ -1,0 +1,9 @@
+<h1>Task List</h1>
+<ul>
+  <% @tasks.each do |task|  %>
+    <li>
+      <%= task[:title] %> : <%= task[:description] %> : Completed at: <% task[:completed_at] %>
+    </li>
+  <% end %>
+</ul>
+

@@ -3,7 +3,16 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 body {
+  background-color: lightgray;
   margin-left: 2rem;
+}
+
+.tasks {
+  margin-top: 2rem;
+}
+
+h1, h2 {
+  color: darksalmon;
 }
 
 .nav-links {

@@ -113,7 +113,7 @@ describe TasksController do
     end
     
     let(:task_hash){
-{      task: {
+      {task: {
         name: "update task",
         description: "update task description"
         }
@@ -152,32 +152,29 @@ describe TasksController do
   # Complete these tests for Wave 4
   describe "destroy" do
     # Your tests go here
-    it "can delete an existing task" do
-        
-      # Arrange
+    before do 
       Task.create(name: 'Take over the world', description: 'The same thing we do everyday, Pinky.')
-      
-      task_hash = {
-        task: {
-          name: "update task",
-          description: "update task description"
-        },
+    end
+    
+    let(:task_hash){
+      {task: {
+        name: "update task",
+        description: "update task description"
+        }
       }
-      
+    }
+    it "can delete an existing task" do
+      # Arrange      
       task = Task.first
 
       # Act-Assert
       expect {
-        patch task_path(task.id), params: task_hash
-      }.must_differ "Task.count", 0
-      
-
-      expect(Task.last.description).must_equal task_hash[:task][:description]
-      expect(Task.last.name).must_equal task_hash[:task][:name]
+        delete task_path(task.id), params: task_hash
+      }.must_change "Task.count", 1
       
       must_respond_with :redirect
-      must_redirect_to task_path(Task.last.id)
-  end
+      must_redirect_to tasks_path
+    end
   end
   
   # Complete for Wave 4

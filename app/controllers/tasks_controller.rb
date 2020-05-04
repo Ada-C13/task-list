@@ -6,6 +6,7 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find_by(id: params[:id])
+
     if @task.nil?
       redirect_to tasks_path
       return
@@ -18,6 +19,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(name: params[:task][:name], description: params[:task][:description]) 
+
     if @task.save
       redirect_to task_path(@task.id)
       return
@@ -29,6 +31,7 @@ class TasksController < ApplicationController
 
   def edit
     @task = Task.find_by(id: params[:id])
+
     if @task.nil?
       redirect_to tasks_path
       return
@@ -37,6 +40,7 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find_by(id: params[:id])
+
     if @task.nil?
       head :not_found
       return
@@ -54,6 +58,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task = Task.find_by(id: params[:id])
+
     if @task.nil?
       redirect_to tasks_path
       return
@@ -62,9 +67,23 @@ class TasksController < ApplicationController
     end 
 
     redirect_to tasks_path
+
     return
-    
   end
+
+  def mark_complete 
+    @task = Task.find_by(id: params[:id])
+
+    if @task.nil?
+      head :not_found
+      return
+    else
+      @task.update(completed_at: Time.now())
+    end
+
+    redirect_to tasks_path
+    return
+  end 
 
 
 

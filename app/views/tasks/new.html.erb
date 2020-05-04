@@ -1,8 +1,7 @@
-<h2>Add a new task</h2>
+<h2>Add a New Task</h2>
 
 <%= form_with model: @task do |f| %>
-	<p>Submit a new task!</p>
-	<div>
+	<div class="edit--form">
 		<section>
 			<%= f.label :name %><br>
 			<%= f.text_field :name %>
@@ -12,9 +11,7 @@
 			<%= f.text_field :description %>
 		</section>
 		<section>
-			<%= f.label :completed_at %><br>
-			<%= f.text_field :completed_at %>
+			<%= f.submit 'Add task' %>
 		</section>
-		<%= f.submit 'Add task' %>
 	</div>
 <% end %>

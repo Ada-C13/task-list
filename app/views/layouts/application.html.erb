@@ -10,7 +10,23 @@
   </head>
 
   <body>
-    <h1>TASKLIST APPLICATION</h1>
-    <%= yield %>
+    <div id="container">
+      <header>
+        <h1>Tasklist Application</h1>
+      </header>
+      <nav>
+        <ul>
+          <li>
+            <%= link_to "All Tasks", tasks_path %>
+          </li>
+          <li>
+            <%= link_to "New Task", new_task_path %>
+          </li>
+        <ul>
+      </nav>
+      <main>
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>

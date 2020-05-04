@@ -1,3 +1,63 @@
 // Place all the styles related to the Tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.task-container { 
+	background-color: #CAE8D5;
+	margin: 1.5em;
+	width: 20em;
+	box-shadow: 10px 10px #204051;
+}
+
+.task-container--task {
+	font-size: 1.5em;
+	padding: 0.7em 1.3em;
+}
+
+.task-container--task a {
+	color: #204051;
+}
+
+.task-container--task a:hover {
+	color: #3B6978;
+}
+
+.options {
+	background-color: #84A9AC;
+	display: flex;
+	justify-content: space-between;
+}
+
+.options a {
+	color: #fff;
+	display: inline-block;
+	padding: 0.4em 0.7em;
+}
+
+.options a:hover {
+	color: #FCE181;
+}
+
+.single-task--show {
+	font-size: 1em;
+}
+
+.edit--form {
+	background-color: #CAE8D5;
+	margin-top: 2em;
+	padding: 0.5em 1em;
+	width: 20em;
+}
+
+.edit--form section {
+	margin: 1em;
+}
+
+.edit--form label {
+	font-size: 1.2em;
+	font-weight: 700;
+}
+
+#task_name, #task_description {
+	width: 15em;
+}

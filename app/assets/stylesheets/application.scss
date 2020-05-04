@@ -14,10 +14,59 @@
 
 /* Custom bootstrap variables must be set or imported *before* bootstrap. */
 @import "bootstrap";
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&family=Roboto:wght@400;700&display=swap');
 @import "**/*";
 
 body {
-	font-family: Arial, Helvetica, sans-serif;
+	background-color: #FFFDF9;
+	font-family: 'Roboto', sans-serif;
 	text-align: center;
+}
+
+h1, h2 {
+	font-family: 'Roboto Slab', serif;
+}
+
+h1 {
+	color: #026670;
+}
+
+h2 {
+	color: #013338;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+nav {
+	margin-bottom: 3em;
+}
+
+nav ul li {
+	font-weight: 700;
+	display: inline;
+	margin: 0 1em;
+}
+
+nav ul li a {
+	color: #855571;
+}
+
+nav ul li a:hover {
+	color: #FBE791;
+}
+
+#container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 5em auto;
+	width: 60vw;
 }

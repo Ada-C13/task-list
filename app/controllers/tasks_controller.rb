@@ -24,7 +24,7 @@ class TasksController < ApplicationController
 		@task = Task.new(
 			name: params[:task][:name], 
 			description: params[:task][:description], 
-			completed_at: params[:task][:completed_at])
+			completed_at: "")
 		
 		if @task.save # if a new task if made and saved
       redirect_to task_path(@task)

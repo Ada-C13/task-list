@@ -1,9 +1,3 @@
-# TASKS = [
-#   {name: 'clean the house', description: 'kitchen, bedroom, bathroom and wash dishes', complete_at: 'time'}, 
-#   {name: 'homework', description: 'cs-fun, finish project and Exercism: Roman Numeral Converter', complete_at: 'time'},
-#   {name: 'yoga', description: '10 min of yoga before class', complete_at: 'time'}
-# ]
-
 class TasksController < ApplicationController
   def index 
     @tasks = Task.all
@@ -35,7 +29,7 @@ class TasksController < ApplicationController
       head :not_found
       return 
     elsif @task.update(name: params[:task][:name], description: params[:task][:description]) 
-      redirect_to tasks_path
+      redirect_to task_path
       return 
     else 
       render :edit
@@ -51,7 +45,8 @@ class TasksController < ApplicationController
   def create 
     @task = Task.new(
       name: params[:task][:name],
-      description: params[:task][:description]
+      description: params[:task][:description],
+      completed_at: nil 
     )
     if @task.save
       redirect_to tasks_path #send them to the '/tasks' path
@@ -59,6 +54,8 @@ class TasksController < ApplicationController
       render :new, :bad_request
     end 
   end 
+  
+  
   
   def destroy
     @task = Task.find_by(id: params[:id])
@@ -71,4 +68,5 @@ class TasksController < ApplicationController
     redirect_to tasks_path
     return  
   end
+  #when user clicks 'mark as complete', it should change the data base with the date it completed 
 end 

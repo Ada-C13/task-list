@@ -6,6 +6,7 @@ class CreateTasks < ActiveRecord::Migration[6.0]
       t.string :complete_at
       
       t.timestamps
+      
     end
-  end
+  end 
 end

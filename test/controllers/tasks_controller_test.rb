@@ -159,8 +159,7 @@ describe TasksController do
   describe "destroy" do
 
     it "delete one task and redirect to tasks_path" do 
-      skip 
-      # the blow does not work
+
       Task.create(name: "water the air plants", description: "or they will die")
 
       task = Task.first 
@@ -169,12 +168,25 @@ describe TasksController do
         delete task_path(task.id) 
       }.must_differ "Task.count" , -1
 
+      must_redirect_to tasks_path
     end 
     
   end
   
 
   describe "toggle_complete" do
-    # Your tests go here
+    it "will populate completed at" do 
+
+      Task.create(name: "water the air plants", description: "or they will die")
+
+      task = Task.first 
+
+      expect {
+        patch mark_complete_path(task.id) 
+      }.must_differ "Task.count" , 0
+
+      expect(Task.first.completed_at).wont_equal nil 
+
+    end 
   end
 end

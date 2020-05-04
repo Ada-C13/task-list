@@ -8,7 +8,7 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: params[:id])
 
     if @task.nil?
-      redirect_to tasks_path
+      redirect_to root_path
       return
     end
   end
@@ -18,9 +18,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(
-      name: params[:task][:name], 
-      description: params[:task][:description]) #instantiate a new task
+    @task = Task.new(task_params) #instantiate a new task
 
     if @task.save # save returns true if the database insert succeeds
       redirect_to task_path(@task.id) # go to the show so we can see the new task
@@ -45,9 +43,7 @@ class TasksController < ApplicationController
   if @task.nil?
     head :not_found
     return
-  elsif @task.update(
-    name: params[:task][:name], 
-    description: params[:task][:description])
+  elsif @task.update(task_params)
     redirect_to task_path(@task.id) # go to the index so we can see the task in the list
     return
   else # save failed :(
@@ -64,7 +60,27 @@ class TasksController < ApplicationController
       return
     else
       @task.destroy
-      redirect_to tasks_path
+      redirect_to root_path
     end
+  end
+
+  def mark_complete
+    @task = Task.find_by(id: params[:id])
+
+    if @task.completed_at.nil?
+      @task.completed_at = Date.today
+    else
+      @task.completed_at = nil
+    end
+
+    @task.save
+      
+    redirect_to root_path
+  end
+
+  private
+
+  def task_params
+    return params.require(:task).permit(:name, :description, :completed_at)
   end
 end

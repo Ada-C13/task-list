@@ -7,8 +7,13 @@
       <li>
         <header><strong><%= link_to(task.name, task_path(task.id) ) %></strong></header>
         <%= task.description %>
-        <%= task.completed_at %>
+       
         <p><%= link_to "Delete Task", task_path(task), method:  :delete, data: {confirm: "Are you sure you  want to delete this task?"} %></p>
+        <% if task.completed_at.nil?%>
+          <button><%= link_to "Mark complete", mark_complete_path(task.id), method: :patch %></button>
+        <% else %>
+          <p> Completed on <%= task.completed_at %></p>
+        <% end %>
       </li>
     <% end %>
   </ol>

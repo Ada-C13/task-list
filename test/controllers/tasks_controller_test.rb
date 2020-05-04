@@ -159,7 +159,7 @@ describe TasksController do
   end
   
   # Complete for Wave 4
-  describe "toggle_complete using the existing update action in the controller" do
+  describe "Mark Complete using the existing update action in the controller" do
     before do
       @task = Task.create(name: "sample task", description: "this is an example for a test", completed_at: nil)
     end
@@ -170,7 +170,7 @@ describe TasksController do
         task: {
           name: task.name, 
           description: task.description, 
-          completed_at: Time.now,
+          completed_at: Time.now.utc.to_datetime,
         }
       }
 
@@ -184,7 +184,7 @@ describe TasksController do
       task.reload
       expect(task.name).must_equal mark_complete_params[:task][:name]
       expect(task.description).must_equal mark_complete_params[:task][:description]
-      expect(task.completed_at).must_equal mark_complete_params[:task][:completed_at]
+      expect(task.completed_at).wont_be_nil
     end
     
     it "will redirect to the root page if given an invalid id" do

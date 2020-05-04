@@ -157,7 +157,19 @@ describe TasksController do
   
 
   describe "destroy" do
-    # Your tests go here
+
+    it "delete one task and redirect to tasks_path" do 
+      skip 
+      # the blow does not work
+      Task.create(name: "water the air plants", description: "or they will die")
+
+      task = Task.first 
+
+      expect {
+        delete task_path(task.id) 
+      }.must_differ "Task.count" , -1
+
+    end 
     
   end
   

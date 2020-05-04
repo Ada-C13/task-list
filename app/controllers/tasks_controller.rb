@@ -10,7 +10,7 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: task_id)
 
     if @task.nil?
-      redirect_to tasks_path
+      redirect_to root_path
       return
     end
   end
@@ -31,6 +31,7 @@ class TasksController < ApplicationController
       return
     else
       render :new, :bad_request          #if form fails to save, back to form page with form fields filled in
+      return
     end
   end
 
@@ -72,10 +73,11 @@ class TasksController < ApplicationController
     return head :not_found if @task.nil?
 
     if @task.destroy
-      redirect_to tasks_path             #if successfully deleted, redirect to all tasks page
+      redirect_to root_path             #if successfully deleted, redirect to all tasks page
       return
     else
-      render :remove, :bad_request       #if fails to delete, back to confirmation page
+      redirect_to root_path
+      return
     end
   end
 
@@ -90,6 +92,6 @@ class TasksController < ApplicationController
       @task.update(completed_at: nil)
     end
 
-    redirect_to tasks_path
+    redirect_to root_path
   end
 end

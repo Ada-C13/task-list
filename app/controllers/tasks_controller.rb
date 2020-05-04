@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   def show
     @task = Task.find_by(id: params[:id].to_i)
     if @task.nil?
-      head :not_found
+      redirect_to tasks_path
       return
     end
   end
@@ -22,7 +22,7 @@ class TasksController < ApplicationController
     )
 
     if task.save
-      redirect_to tasks_path
+      redirect_to task_path(task.id)
     else
       render :new, :bad_request
     end

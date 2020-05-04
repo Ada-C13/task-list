@@ -172,8 +172,13 @@ describe TasksController do
   # Complete for Wave 4
   describe "mark_complete" do
     # Your tests go here
-    it "shows a date of completion if marked complete" do
-
+    it "changes the complete_at value if marked complete" do
+      new_task = Task.create(name: "Task 100", description: "new test task description")
+      expect(Task.last.completed_at).must_be_nil
+      
+      patch mark_complete_path(new_task.id)
+      expect(Task.last.completed_at).wont_be_nil
+      must_redirect_to root_path
     end
   end
 end

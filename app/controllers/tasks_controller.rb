@@ -69,8 +69,6 @@ class TasksController < ApplicationController
 
     if @task.completed_at.nil?
       @task.completed_at = Date.today
-    else
-      @task.completed_at = nil
     end
 
     @task.save

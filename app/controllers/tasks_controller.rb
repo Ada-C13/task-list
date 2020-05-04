@@ -8,60 +8,6 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
-  def show # get one task
-    # special params hash
-    # the id was passed into the route
-    id = params[:id].to_i
-    @task =  Task.find_by(id:id)
-
-    if @task.nil?
-      redirect_to '/tasks'
-      return
-    end
-  end
-  
-  def edit
-    @task = Task.find_by(id: params[:id])
-      
-    if @task.nil?
-      head :not_found
-      return 
-    end
-end
-
-  def update
-    @task = Task.find_by(id: params[:id])
-    if @task.nil?
-      head :not_found
-      return 
-    elsif @task.update(
-      name: params[:task][:name],
-      description: params[:task][:description],
-      completed_at: params[:task][:completed_at]
-    )
-      redirect_to task_path # return to index to view list of tasks
-      return
-    else #if the save fails
-      render :edit # show the form view again
-      return
-    end
-  end
-
-  def destroy
-    @task = Task.destroy
-  end
-
-  # def destroy
-  #   Task.find_by(id: params[:id]).destroy
-  #   redirect_to root_path
-  # end
-
-
-
-  def new
-    # rendering the form
-    @task = Task.new
-  end
 
   def create
     # backend work and save
@@ -81,5 +27,61 @@ end
       return 
     end
   end
+
+    # def destroy
+  #   @task = Task.destroy
+  # end
+
+  def destroy
+    Task.find_by(id: params[:id]).destroy
+    redirect_to root_path
+    return
+  end
+  
+  def edit
+    @task = Task.find_by(id: params[:id])
+      
+    if @task.nil?
+      head :not_found
+      return 
+    end
+  end
+
+  def new
+    # rendering the form
+    @task = Task.new
+  end
+
+
+  def show # get one task
+    # special params hash
+    # the id was passed into the route
+    id = params[:id].to_i
+    @task =  Task.find_by(id:id)
+
+    if @task.nil?
+      redirect_to '/tasks'
+      return
+    end
+  end
+  
+  def update
+    @task = Task.find_by(id: params[:id])
+    if @task.nil?
+      head :not_found
+      return 
+    elsif @task.update(
+      name: params[:task][:name],
+      description: params[:task][:description],
+      completed_at: params[:task][:completed_at]
+    )
+      redirect_to task_path # return to index to view list of tasks
+      return
+    else #if the save fails
+      render :edit # show the form view again
+      return
+    end
+  end
 end
+
 

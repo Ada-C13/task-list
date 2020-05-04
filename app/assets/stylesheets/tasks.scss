@@ -81,8 +81,8 @@ footer {
 }
 
 .index__title {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   font-weight: bold;
   font-family: 'Caveat', cursive;
 }
@@ -94,6 +94,7 @@ footer {
 
 .index__task-name {
   text-decoration-color: black;
+  font-size: 22px;
 }
 
 .tasks-container {
@@ -105,7 +106,7 @@ footer {
 
 .one-task-container {
   display: flex;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .check-box {
@@ -127,7 +128,6 @@ footer {
   border-radius: 10px;
   z-index: 1;
   margin-bottom: 10px;
-  border-radius: 10px;
   border: white solid 3px;
 }
 
@@ -241,5 +241,10 @@ footer {
 
   .index__task-name {
     font-size: 20px;
+  }
+
+  nav > ul {
+    display: flex;
+    flex-direction: column;
   }
 }

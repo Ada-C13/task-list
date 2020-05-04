@@ -1,4 +1,4 @@
-<h2>Today</h2>
+<h2>All Tasks</h2>
 <ol>
   <% @tasks.each do |task|  %>
     <li>
@@ -6,3 +6,5 @@
     </li>
   <% end %>
 </ol>
+
+<%= link_to "Add Task", new_task_path %>

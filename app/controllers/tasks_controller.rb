@@ -46,19 +46,19 @@ class TasksController < ApplicationController
     # Find the task by ID to show it in the form to edit it.
     @task = Task.find_by(id: params[:id])
     if @task.nil?
-      head :not_found
+      redirect_to tasks_path
       return
     end
   end
 
   def update
-    # Find the task based on the ID. 
+    # Find the task based on the ID.
     @task = Task.find_by(id: params[:id])
-    # Return 404 if the ID does not exist. 
+    # Return 404 if the ID does not exist.
     if @task.nil?
       head :not_found
       return
-    # If the task exist edit (patch) the field.
+      # If the task exist edit (patch) the field.
     elsif @task.update(
       name: params[:task][:name],
       description: params[:task][:description],

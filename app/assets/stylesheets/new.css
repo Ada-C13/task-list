@@ -3,6 +3,9 @@
   grid-template-rows: 25% 75%;
   padding: 10%;
   position: relative;
+  width: 80%;
+  border: solid black 2px;
+
 }
 
 .form-form {
@@ -10,12 +13,12 @@
   grid-template-rows: 30% 50% 20%; 
 }
 
+
 .description-box{
-  height:200px;
- 
+  width: 50%;
 }
 
 .form-header {
-  
 
+  margin-bottom: 20%;
 }

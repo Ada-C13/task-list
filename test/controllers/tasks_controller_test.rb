@@ -30,7 +30,7 @@ describe TasksController do
   # Unskip these tests for Wave 2
   describe "show" do
     it "can get a valid task" do
-      skip
+      # skip
       # Act
       get task_path(task.id)
       
@@ -57,7 +57,7 @@ describe TasksController do
     #   end
     
     it "will redirect for an invalid task" do
-      skip
+      # skip
       # Act
       get task_path(-1)
       
@@ -68,7 +68,7 @@ describe TasksController do
   
   describe "new" do
     it "can get the new task page" do
-      skip
+      # skip
       
       # Act
       get new_task_path
@@ -80,7 +80,7 @@ describe TasksController do
   
   describe "create" do
     it "can create a new task" do
-      skip
+      # skip
       
       # Arrange
       task_hash = {

@@ -1,0 +1,16 @@
+<h2>Add a Task</h2>
+
+<%= form_with model: @task, class: 'create-form' do |f| %>
+<p>What task would you like to add?</p>
+<div>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+<div>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+</div>
+<div>
+  <%= f.submit "Save task", class: "task-button"%>
+</div>
+<% end %>

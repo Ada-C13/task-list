@@ -8,8 +8,14 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
- <header>
+  <header>
     <h1>Welcome to Nora's Task List</h1>
+    <nav>
+    <ul>
+      <li><%= link_to "Add a task", new_task_path %></li>
+      <li><%= link_to "View all tasks", tasks_path %></li>
+    </ul>
+    </nav>
   </header>
   <body>
     <%= yield %>

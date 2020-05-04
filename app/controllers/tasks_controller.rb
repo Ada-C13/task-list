@@ -10,6 +10,9 @@ class TasksController < ApplicationController
       redirect_to tasks_path
       return
     end
+    if @task.status == "complete"
+      task.completed_at
+    end
   end
 
   def update
@@ -19,7 +22,7 @@ class TasksController < ApplicationController
       return
     elsif @task.update(
       name: params[:task][:name],
-      description: params[:task][description],
+      description: params[:task][:description],
     )
       redirect_to task_path
       return
@@ -58,9 +61,10 @@ class TasksController < ApplicationController
     task = Task.new(
       name: params[:task][:name],
       description: params[:task][:description],
+      status: "not complete",
     )
     if task.save
-      redirect_to tasks_path
+      redirect_to task_path(task.id)
       return
     else
       render :new, :bad_request
@@ -68,6 +72,30 @@ class TasksController < ApplicationController
     end
   end
 
-  def read
+  def mark_complete
+    @task = Task.find_by(id: params[:id])
+    if @task.nil?
+      head :not_found
+      return
+    else @task.update(
+      status: "completed",
+      completed_at: Time.now,
+    )
+      redirect_to task_path
+      return     end
+  end
+
+  def unmark_complete
+    @task = Task.find_by(id: params[:id])
+    if @task.nil?
+      head :not_found
+      return
+    else @task.update(
+      status: "not complete",
+      completed_at: nil,
+
+    )
+      redirect_to task_path
+      return     end
   end
 end

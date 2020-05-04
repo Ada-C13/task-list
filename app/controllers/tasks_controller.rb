@@ -66,7 +66,7 @@ class TasksController < ApplicationController
   def destroy
     id = params[:id].to_i
     @task = Task.find_by(id: id)
-    
+
     if @task.nil?
       head :not_found
       return
@@ -77,6 +77,23 @@ class TasksController < ApplicationController
     return
   end 
 
+  def mark_complete
+    id = params[:id].to_i
+    @task = Task.find_by(id: id)
+
+    if @task.nil?
+      head :not_found
+      return
+    elsif @task.update(
+      completed_at: Time.now
+    )
+      redirect_to tasks_path 
+      return
+    else 
+      render :index
+    end
+    
+  end
 
 
 end

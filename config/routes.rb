@@ -11,9 +11,10 @@ Rails.application.routes.draw do
   get '/tasks/:id/edit', to: 'tasks#edit', as: 'edit_task' #brings up form to edit a task
   patch '/tasks/:id', to: 'tasks#update' #send the update form
   delete '/tasks/:id', to: 'tasks#destroy' #deleted task
+  patch '/tasks/:id/mark_complete', to: 'tasks#mark_complete', as: 'mark_complete' # will mark task complete
 
   #custom routes - making a book as read 
-#patch '/books/:id/mark_read', to: 'books#mark_read', as: 'book_read' #making up new extension is ok 
+  #patch '/books/:id/mark_read', to: 'books#mark_read', as: 'book_read' #making up new extension is ok 
   ## would nn to make view with touch app/views/books/mark_read.html.erb
   ## then add path to application 
 

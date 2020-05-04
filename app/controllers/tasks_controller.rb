@@ -58,7 +58,7 @@ class TasksController < ApplicationController
     end 
   end 
 
-  def destory
+  def destroy
     task_id = params[:id].to_i
     @task = Task.find_by(id: task_id )
 

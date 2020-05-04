@@ -1,11 +1,34 @@
 <h1>Tasks</h1>
 <ul>
   <% @tasks.each do |task|  %>
+    
     <li>
-      <strong><%= link_to task.name, task_path(task) %></strong> <br /> 
+      <% if !task.completed_at.nil? %>
+        <strong><%= link_to task.name, task_path(task), class: 'task-done' %></strong> <br /> 
+        <% else %>
+        <strong><%= link_to task.name, task_path(task) %></strong> <br /> 
+      <% end %>
       <%= task.description %>
       <br />
-      <%= link_to "Edit Task", edit_task_path(task) %>
+       <% if task.completed_at.nil? %>
+        
+        <%=
+          link_to "Mark done",
+          mark_done_path(task),
+          method: :patch
+        %>
+      <% else %>
+        
+        <%=
+          link_to "Mark not done",
+          mark_done_path(task),
+          method: :patch
+        %>
+      <% end %>
+  | <%= link_to "Edit Task", edit_task_path(task) %>
     </li>
   <% end %>
 </ul>
+  
+
+  

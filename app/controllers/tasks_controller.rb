@@ -23,7 +23,16 @@ class TasksController < ApplicationController
   
 
   def mark_done
-
+    @task = Task.find_by(id: params[:id])
+    if @task.completed_at
+      @task.update(completed_at: nil)
+      redirect_to tasks_path
+      return
+    else
+      @task.update(completed_at: Time.now)
+      redirect_to tasks_path
+      return
+    end
   end
 
   def destroy

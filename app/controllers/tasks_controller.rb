@@ -76,9 +76,15 @@ class TasksController < ApplicationController
       return
     end
 
-    @task.update(
-      completed_at: Date.today.to_s
-    )
+    if @task.completed_at == nil
+      @task.update(
+        completed_at: Date.today.to_s
+      )
+    else
+      @task.update(
+        completed_at: nil
+      )
+    end
 
     redirect_to tasks_path
     return

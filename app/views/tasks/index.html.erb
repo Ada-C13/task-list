@@ -2,9 +2,15 @@
   <ul>
     <% @tasks.each do |task|  %>
       <li style="margin-bottom: 25px">
-        <h4><%= link_to task.name, task_path(task.id) %></h4>
+        <h4 
+          <% if task.completed_at != nil %>
+            style="text-decoration: line-through"
+          <% end %>    
+        >
+          <%= link_to task.name, task_path(task.id) %>
+        </h4>
         <p style="margin-bottom: 0"><%= task.description %></p>
-        <button><%= link_to "Mark Complete", task_complete_path(task), method: :patch %></button>
+        <button><%= link_to "Toggle Complete", task_complete_path(task), method: :patch %></button>
         <button><%= link_to "Delete", task_path(task), method: :delete, data: {confirm: "Are you sure?"} %></button>
       </li>
     <% end %>

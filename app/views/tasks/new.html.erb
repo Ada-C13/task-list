@@ -1,20 +1,6 @@
-<div class="new-form">
-  <h2 class='form-header'> New Task Form </h2>
 
-  <div class='form-form'>
-  <%= form_with model: @task, class: 'task-form' do |f| %> 
-      <div>
-        <%= f.label :name %>
-        <%= f.text_field :name %> 
-      
-      </div>
-      <div>
-        <%= f.label :description %>
-        <%= f.text_field :description, class: "description-box" %>
-      </div>
+<div class="form-form">
+<h2 class='form-header'> Add Task </h2>
 
-    <%= f.submit "Add Task" %>
-    
-  <% end %>
-  </div>
+<%= render partial: "form", locals: { action_name: "Add Task" }  %>
 </div>

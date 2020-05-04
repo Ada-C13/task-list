@@ -22,6 +22,16 @@
 	color: #3B6978;
 }
 
+
+.task-container--completed {
+	background-color: #eee;
+	text-decoration: line-through;
+}
+
+.task-container--completed a {
+	color: #fff;
+}
+
 .options {
 	background-color: #84A9AC;
 	display: flex;
@@ -36,6 +46,10 @@
 
 .options a:hover {
 	color: #FCE181;
+}
+
+.options--completed {
+	background-color: #d3ddde;
 }
 
 .single-task--show {

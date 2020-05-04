@@ -103,10 +103,8 @@ describe TasksController do
   describe "update" do
 
     it "can update an existing task" do
-
       #always create for test database
       Task.create(name: "updated task", description: "update description")
-
 
       task_hash = {
         task: {
@@ -140,7 +138,6 @@ describe TasksController do
       }.must_differ 'Task.count', 0
 
       must_redirect_to tasks_path
-     
     end
   end
   

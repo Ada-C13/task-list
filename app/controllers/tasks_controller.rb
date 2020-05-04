@@ -44,7 +44,7 @@ class TasksController < ApplicationController
       name: params[:task][:name], 
       description: params[:task][:description]
     )
-      redirect_to tasks_path
+      redirect_to task_path(@task.id)
       return
     else 
       render :edit 
@@ -52,9 +52,18 @@ class TasksController < ApplicationController
     end
   end
 
-
-
   def destroy
+    @task = Task.find_by(id: params[:id])
+    if @task.nil?
+      redirect_to tasks_path
+      return
+    else
+      @task.destroy
+    end 
+
+    redirect_to tasks_path
+    return
+    
   end
 
 

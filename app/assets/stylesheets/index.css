@@ -1,0 +1,38 @@
+.index {
+  padding: 10%;
+  border: black solid 2px;
+}
+
+.task-name {
+  color: black;
+}
+.complete-index {
+  margin-top: 3px;
+  margin: auto;
+  border-radius: 30px;
+  width: 80%;
+  height:60%;
+  text-align: center;
+  background: lightgreen;
+  background-clip: border-box;
+  line-height: 1;
+  font-size: 13px;
+}
+
+
+
+a {
+  color: black;
+  text-decoration: underline;
+}
+.index-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 70%;
+  
+}
+
+.index-links > *{
+  padding: 3%;
+  width: 65%;
+}

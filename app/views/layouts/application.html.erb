@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TaskList</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="app-container">
+    <header class="title"><a href="/"><h1>⋆T⋆A⋆S⋆K⋆L⋆I⋆S⋆T⋆</h1></a></header>
+    <nav class="navbar">
+      <ul class="navlist">
+        <li> <%= link_to "# All Tasks", tasks_path%> </li>
+        <li> <%= link_to "+ New Task", new_task_path%> </li>
+      </ul>
+    </nav>
+
+    <main class="app-main">
+      <%= yield %>
+    </main>
+
+    <footer class="footer">COJENCO © 2020</footer>
+
+  </body>
+</html>

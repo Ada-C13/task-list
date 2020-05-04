@@ -1,0 +1,52 @@
+// Place all the styles related to the Tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+a:hover {
+  color: darkslateblue;
+}
+
+.taskname {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: darkslateblue;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+  color: dimgray;
+}
+
+.links {
+  color: rgb(163, 51, 23);
+}
+
+.links:hover {
+  color: indigo;
+}
+
+.new-task > label {
+  width: 8rem;
+  height: 2rem;
+}
+
+.new-task {
+  margin: 2rem;
+}
+
+.show-edit {
+  border: dimgray solid 0.1rem;
+  background-color: dimgray;
+  color: whitesmoke;
+  margin: 3rem;
+  padding: 0.5rem 1rem;
+}
+
+.show-edit:hover {
+  color: gold;
+}
+
+.view-body {
+  padding: 0 2rem;
+  margin: 0rem 3rem;
+}

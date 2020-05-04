@@ -1,0 +1,13 @@
+<%# app/views/tasks/remove.html.erb%>
+
+<h3>Are you sure you want to delete this task?</h3>
+
+<ul>
+  <li><%= link_to "[ YES ] Delete", task_path(@task.id), method: :delete, data: {confirm:"Are you sure?"} %></li>
+  <li><%= link_to "[  NO ] Return to Task", task_path(@task.id) %></li>
+</ul>
+
+<section>
+  <h5><%= @task.name%></h5>
+  <p>Description: <%= @task.description%></p>
+</section>

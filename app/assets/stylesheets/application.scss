@@ -1,0 +1,77 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+/* Custom bootstrap variables must be set or imported *before* bootstrap. */
+@import "bootstrap";
+
+@import "**/*";
+
+.app-container {
+  background-color: rgb(250, 194, 171);
+  // background-color: rgb(255, 187, 0);
+  margin: 1rem;
+  border: dimgray double 0.3rem;
+  display: grid;
+  grid-template-rows: 1.5fr 2fr 3fr 1fr;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas: 
+  "header header"
+  "nav tasklist"
+  ". tasklist"
+  "footer footer";
+}
+
+.title {
+  grid-area: header;
+  text-align: center;
+  margin: 3rem;
+}
+
+h1 {
+  color: dimgray;
+  font-weight: bolder;
+}
+
+.title a:hover {
+  color: dimgray;
+}
+
+.navbar {
+  grid-area: nav;
+}
+
+.navlist li {
+  list-style-type: none;
+  border: whitesmoke solid 0.1rem;
+  border-radius: 3rem;
+  background-color: dimgray;
+  font-size: 1.5rem;
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+} 
+
+.navlist li a {
+  color: whitesmoke;
+}
+
+.app-main {
+  grid-area: tasklist;
+}
+
+.footer {
+  grid-area: footer;
+  text-align: center;
+  bottom: 0;
+  padding: 2rem;
+}

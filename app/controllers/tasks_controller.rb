@@ -7,7 +7,6 @@ class TasksController < ApplicationController
 
   def show
     id = params[:id].to_i
-    # @task = Task.find(id) #this returns a Record not fount instead of a nil for an invalid id
     @task = Task.find_by(id: id)
     if @task.nil?
       redirect_to tasks_path
@@ -20,8 +19,6 @@ class TasksController < ApplicationController
   end
 
   def create
-    # raise
-    # "task"=>{"name"=>"boo", "description"=>"bi", "completed_at"=>"boo"},
     @task = Task.new(
       name: params[:task][:name],
       description: params[:task][:description]
@@ -30,7 +27,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to task_path(@task.id)
     else
-      render :new, :bad_request # show the new task form view again
+      render :new, :bad_request #show the new task form view again
     end
   end
 

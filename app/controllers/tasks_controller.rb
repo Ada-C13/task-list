@@ -28,10 +28,6 @@ class TasksController < ApplicationController
     end
   end
 
-    # def destroy
-  #   @task = Task.destroy
-  # end
-
   def destroy
     Task.find_by(id: params[:id]).destroy
     redirect_to root_path
@@ -45,6 +41,15 @@ class TasksController < ApplicationController
       head :not_found
       return 
     end
+  end
+
+  def mark_complete
+    @today = Date.today
+    @task = Task.find_by(id:params[:id])
+    @task.completed_at = @today
+    @task.save
+    redirect_to task_path
+    return
   end
 
   def new

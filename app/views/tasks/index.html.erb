@@ -6,14 +6,14 @@
     <% @tasks.each do |task|%>
       <li>
       <%= link_to task.name, task_path(task.id)%>
-      <%= link_to "Edit Task", edit_task_path(task.id) %>
-            <%= link_to "Delete Task!!!!!!!", delete_task_path(task.id), method: :delete, data: {confirm: "Are you sure?"} %>
-
-
+          <%= link_to "Mark Complete", mark_complete_task_path(task.id), method: :put %> 
+            <%= link_to "Edit Task", edit_task_path(task.id) %>
+              <%= link_to "Delete Task!", delete_task_path(task.id), method: :delete, data: {confirm: "Are you sure?"} %>
       </li>
     <% end %>
   </ul>
-  <h2>Would you like to add or delete a task?</h2>
+
+  <h2>Would you like to add a task?</h2>
   <h3>See the links below:</h3>
       <li><%= link_to "Add Task", new_task_path, class: "link" %></li>
           <li><%= link_to "Home", root_path, class: "link" %></li>

@@ -14,11 +14,15 @@
     <nav>
       <button><%= link_to "Add Task", new_task_path %></button>
       <br>
-      <button><%= link_to "Show All Task", tasks_path %></button>
+      <button><%= link_to "Show All Tasks", tasks_path %></button>
    </nav>
   </header>
   
   <body>
     <%= yield %>
   </body>
+
+  <footer>
+    Copyright Yieni Brima 2020 ©
+  </footer>
 </html>

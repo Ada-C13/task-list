@@ -2,7 +2,24 @@
 <ul>
   <% @tasks.each do |task| %>
     <li>
+    <div>
       <%= link_to task.name, task_path(task.id) %>
+      <%= button_to "Mark Complete", 
+        task_path(task.id), 
+        method: :patch,
+        disabled: task.completed_at, 
+        params: [
+          task: {
+            name: task.name, 
+            description: task.description, 
+            completed_at: Date.today.to_formatted_s(:long)
+          }
+        ]
+      %>
+    </div>
+    <div>
+      <%= button_to 'Delete', task_path(task.id), method: :delete, data: {confirm: "Are you sure?"} %>
+    </div>
     </li>
     <% end %>
 </ul>

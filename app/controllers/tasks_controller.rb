@@ -37,7 +37,17 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
-    @task.update(name: params[:task][:name], description: params[:task][:description])
+    @task.update(name: params[:task][:name], description: params[:task][:description], completed_at: params[:task][:completed_at])
     redirect_to task_path(@task.id)
+  end
+
+  def destroy
+    @task = Task.find_by(id: params[:id])
+    if @task.nil?
+      redirect_to tasks_path
+    else
+      @task.destroy
+      redirect_to tasks_path
+    end
   end
 end

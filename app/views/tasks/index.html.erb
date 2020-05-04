@@ -4,6 +4,8 @@
     <li>
       <strong><%= link_to task.name, task_path(task) %></strong> <br /> 
       <%= task.description %>
+      <br />
+      <%= link_to "Edit Task", edit_task_path(task) %>
     </li>
   <% end %>
 </ul>

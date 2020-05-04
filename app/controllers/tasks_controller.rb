@@ -20,22 +20,6 @@ class TasksController < ApplicationController
     end
   end
   
-  def update
-    @task = Task.find_by(id: params[:id])
-    if @task.nil?
-      head :not_found
-      return
-    elsif @task.update(
-      name: params[:task][:name],
-      description: params[:task][:description]
-    )
-      redirect_to tasks_path
-      return
-    else
-      render :edit
-      return
-    end
-  end
 
   def mark_done
 
@@ -50,12 +34,11 @@ class TasksController < ApplicationController
       name: params[:task][:name],
       description: params[:task][:description]
     )
-
     if @task.save
       redirect_to tasks_path # Send them to the list of all tasks
       return
     else
-      render :new, :bad_request # show the new book form again
+      render :new, :bad_request # show the new task form again
       return
     end
   end
@@ -73,4 +56,21 @@ class TasksController < ApplicationController
     end
   end
 
+  def update
+    @task = Task.find_by(id: params[:id])
+    if @task.nil?
+      head :not_found
+      return
+    elsif @task.update(
+      name: params[:task][:name],
+      description: params[:task][:description]
+    )
+      redirect_to tasks_path
+      return
+    else
+      render :edit
+      return
+    end
+  end
+  
 end

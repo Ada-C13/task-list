@@ -1,5 +1,5 @@
 <h1>All Tasks</h1>
-<h3>Click on a task link to view all information</h3>
+<h3>Click on a Task name to view the details:</h3>
 
 <% if @tasks.length > 0 %>
   <ul>
@@ -13,17 +13,12 @@
     <% end %>
   </ul>
 
-  <h2>Would you like to add a task?</h2>
+  <h2>Would you like to add a task? or return Home?</h2>
     <ul>
       <li><%= button_to('Add Task', new_task_path, {class: 'button', method: :get, alt: 'new task button'}) %></li>
           <li><%= button_to('Home', root_path, {class: 'link', method: :get, alt: 'home button'}) %></li>
-      
     </ul>
 
-
-
-
-
-  <% else %>
+<% else %>
   <h3>No tasks in the system!</h3>
 <% end %>

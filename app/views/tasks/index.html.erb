@@ -1,0 +1,23 @@
+<h1>YOUR TASKS</h1>
+<ul>
+  <% @tasks.each do |task| %>
+    <li>
+    <%# task.name is now nil b/c we didn't pass in the name params, by default it will use the path instead for display%>
+    
+    <%# task.completed_at %>
+    <% if task.completed_at.nil? %>
+      <%= link_to task.name, task_path(task.id)%>
+      <br>
+      <%= link_to "Mark Complete", task_path(task.id, task: { name: task.name, description: task.description , completed_at: Time.now}), method: :patch, data: {confirm: "You sure you want to mark completed?"}  %> |
+    <% else %>
+      <s><%= link_to task.name, task_path(task.id)%></s>
+      <br>
+      <%= link_to "Unmark Complete", task_path(task.id, task: { name: task.name, description: task.description , completed_at: nil }), method: :patch, data: {confirm: "You sure you want to unmark completed?"}  %> |
+    <% end %>
+
+
+    <%= link_to "Edit", edit_task_path(task.id) %> |
+    <%= link_to "Delete", task_path(task.id), method: :delete, data: {confirm: "You sure you want to delete?"} %>
+    </li>
+  <% end %>
+</ul>

@@ -15,7 +15,7 @@ class TasksController < ApplicationController
     @task =  Task.find_by(id:id)
 
     if @task.nil?
-      redirect_to tasks_path()
+      redirect_to '/tasks'
       return
     end
 

@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   patch 'tasks/:id', to: 'tasks#update' # update an existing task
   delete 'tasks/:id', to: 'tasks#destroy' # delete a task
 
-  patch '/tasks/:id/mark_complete', to: 'tasks#mark_complete', as: 'task_complete'
+  # patch '/tasks/:id/mark_complete', to: 'tasks#mark_complete', as: 'task_complete'
 end

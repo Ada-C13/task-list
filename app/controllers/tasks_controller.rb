@@ -48,7 +48,7 @@ class TasksController < ApplicationController
   elsif @task.update(
     name: params[:task][:name], 
     description: params[:task][:description])
-    redirect_to tasks_path # go to the index so we can see the task in the list
+    redirect_to task_path(@task.id) # go to the index so we can see the task in the list
     return
   else # save failed :(
     render :edit # show the new task form view again

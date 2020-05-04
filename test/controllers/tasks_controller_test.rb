@@ -165,9 +165,7 @@ describe TasksController do
       patch mark_incomplete_path(task_to_unmark)
       
       task_to_unmark.reload
-      expect(
-        task_to_unmark.completed_at
-      ).must_be_nil
+      expect(task_to_unmark.completed_at).must_be_nil
     end
   end
 end

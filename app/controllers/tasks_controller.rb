@@ -86,7 +86,7 @@ class TasksController < ApplicationController
       return
     else @task.completed_at = Time.now
       @task.save
-      redirect_to request.referrer
+      redirect_to request.referrer || tasks_path
       return
     end
   end
@@ -101,7 +101,7 @@ class TasksController < ApplicationController
       return
     else @task.completed_at = nil
       @task.save
-      redirect_to request.referrer
+      redirect_to request.referrer || tasks_path
       return
     end
   end

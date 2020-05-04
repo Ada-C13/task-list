@@ -18,7 +18,7 @@ describe TasksController do
     
     it "can get the root path" do
       # Act
-      get root_path
+      get tasks_path
       
       # Assert
       must_respond_with :success
@@ -28,7 +28,6 @@ describe TasksController do
   # Unskip these tests for Wave 2
   describe "show" do
     it "can get a valid task" do
-      skip
       # Act
       get task_path(task.id)
       
@@ -37,7 +36,6 @@ describe TasksController do
     end
     
     it "will redirect for an invalid task" do
-      skip
       # Act
       get task_path(-1)
       
@@ -48,7 +46,6 @@ describe TasksController do
   
   describe "new" do
     it "can get the new task page" do
-      skip
       
       # Act
       get new_task_path
@@ -60,7 +57,6 @@ describe TasksController do
   
   describe "create" do
     it "can create a new task" do
-      skip
       
       # Arrange
       task_hash = {
@@ -83,18 +79,37 @@ describe TasksController do
       must_respond_with :redirect
       must_redirect_to task_path(new_task.id)
     end
+
+    it "will add a new task to a database" do
+      task_hash = {
+        task: {
+          name: "new task",
+          description: "new task description",
+          completed_at: nil,
+        },
+      }
+      
+      expect{ post tasks_path, params: task_hash }.must_differ "Task.count", 1
+    end
   end
   
   # Unskip and complete these tests for Wave 3
   describe "edit" do
     it "can get the edit page for an existing task" do
-      skip
       # Your code here
+      Task.create(name: "Task 100", description: "new test task description")
+
+      task = Task.first
+      get edit_task_path(task.id)
+      
+      must_respond_with :success
     end
     
     it "will respond with redirect when attempting to edit a nonexistant task" do
-      skip
       # Your code here
+      get edit_task_path(-1)
+      
+      must_respond_with :redirect
     end
   end
   
@@ -104,21 +119,66 @@ describe TasksController do
     #        thing to test.
     it "can update an existing task" do
       # Your code here
+      new_task = Task.create(name: "Task 100", description: "new test task description")
+      task_hash = {
+        task: {
+          name: "new task",
+          description: "test description"
+        },
+      }
+      
+      expect {
+      patch task_path(new_task.id), params: task_hash
+      }.must_differ 'Task.count', 0
+      
+      must_redirect_to task_path
+      expect(Task.last.name).must_equal task_hash[:task][:name]
+      expect(Task.last.description).must_equal task_hash[:task][:description]
     end
     
     it "will redirect to the root page if given an invalid id" do
       # Your code here
+      task_hash = {
+        task: {
+          name: "new task",
+          description: "test description"
+        },
+      }
+
+      patch task_path(-1), params: task_hash
+      must_redirect_to root_path
     end
   end
   
   # Complete these tests for Wave 4
   describe "destroy" do
     # Your tests go here
-    
+    it "can delete an existing task" do
+    new_task = Task.create(name: "Task 100", description: "new test task description")
+  
+    expect {
+      delete task_path(new_task.id)
+      }.must_differ 'Task.count', -1
+    absent = Task.find_by(id: new_task.id)
+    expect(absent).must_be_nil
+    end
+
+    it "will redirect to the root page if given an invalid id" do
+      delete task_path(-1)
+      must_redirect_to root_path
+    end    
   end
   
   # Complete for Wave 4
-  describe "toggle_complete" do
+  describe "mark_complete" do
     # Your tests go here
+    it "changes the complete_at value if marked complete" do
+      new_task = Task.create(name: "Task 100", description: "new test task description")
+      expect(Task.last.completed_at).must_be_nil
+      
+      patch mark_complete_path(new_task.id)
+      expect(Task.last.completed_at).wont_be_nil
+      must_redirect_to root_path
+    end
   end
 end

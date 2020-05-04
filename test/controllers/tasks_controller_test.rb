@@ -6,7 +6,7 @@ describe TasksController do
     completed_at: Time.now + 5.days
   }
   
-  # Tests for Wave 1
+
   describe "index" do
     it "can get the index path" do
       # Act
@@ -17,6 +17,7 @@ describe TasksController do
     end
     
     it "can get the root path" do
+
       # Act
       get root_path
       
@@ -25,11 +26,11 @@ describe TasksController do
     end
   end
   
-  # Unskip these tests for Wave 2
+
   describe "show" do
     it "can get a valid task" do
-      skip
       # Act
+
       get task_path(task.id)
       
       # Assert
@@ -37,9 +38,8 @@ describe TasksController do
     end
     
     it "will redirect for an invalid task" do
-      skip
       # Act
-      get task_path(-1)
+      get task_path(9999)
       
       # Assert
       must_respond_with :redirect
@@ -48,7 +48,6 @@ describe TasksController do
   
   describe "new" do
     it "can get the new task page" do
-      skip
       
       # Act
       get new_task_path
@@ -60,7 +59,6 @@ describe TasksController do
   
   describe "create" do
     it "can create a new task" do
-      skip
       
       # Arrange
       task_hash = {
@@ -78,47 +76,118 @@ describe TasksController do
       
       new_task = Task.find_by(name: task_hash[:task][:name])
       expect(new_task.description).must_equal task_hash[:task][:description]
-      expect(new_task.completed_at).must_equal task_hash[:task][:completed_at]
+      # expect(new_task.completed_at).must_equal nil
+      assert_nil new_task.completed_at
       
       must_respond_with :redirect
       must_redirect_to task_path(new_task.id)
     end
   end
   
-  # Unskip and complete these tests for Wave 3
+
   describe "edit" do
     it "can get the edit page for an existing task" do
-      skip
-      # Your code here
+
+      get edit_task_path(task.id)
+
+      must_respond_with :success
     end
     
     it "will respond with redirect when attempting to edit a nonexistant task" do
-      skip
-      # Your code here
+      get edit_task_path(9999)
+
+      must_respond_with :redirect
     end
   end
   
-  # Uncomment and complete these tests for Wave 3
+
   describe "update" do
-    # Note:  If there was a way to fail to save the changes to a task, that would be a great
-    #        thing to test.
-    it "can update an existing task" do
-      # Your code here
+
+    it "can update an existing task and redirect to task show page" do
+
+      Task.create(name: "water the air plants", description: "or they will die")
+
+      # Arrange
+      task_hash = {
+        task: {
+          name: "new task",
+          description: "new task description",
+          completed_at: nil,
+        },
+      }
+      
+      # Act-Assert
+
+      task = Task.first 
+
+      expect {
+        patch task_path(task.id), params: task_hash
+      }.must_differ "Task.count", 0
+      
+
+      expect(Task.last.name).must_equal task_hash[:task][:name]
+      expect(Task.last.description).must_equal task_hash[:task][:description]
+      must_redirect_to task_path(task.id)
+
     end
     
     it "will redirect to the root page if given an invalid id" do
-      # Your code here
+      Task.create(name: "water the air plants", description: "or they will die")
+
+      # Arrange
+      task_hash = {
+        task: {
+          name: "new task",
+          description: "new task description",
+          completed_at: nil,
+        },
+      }
+      
+      # Act-Assert
+
+      task = Task.first 
+
+      expect {
+        patch task_path(-1), params: task_hash
+      }.must_differ "Task.count", 0
+      
+      must_respond_with :not_found
+
     end
   end
   
-  # Complete these tests for Wave 4
+
   describe "destroy" do
-    # Your tests go here
+
+    it "delete one task and redirect to tasks_path" do 
+
+      Task.create(name: "water the air plants", description: "or they will die")
+
+      task = Task.first 
+
+      expect {
+        delete task_path(task.id) 
+      }.must_differ "Task.count" , -1
+
+      must_redirect_to tasks_path
+    end 
     
   end
   
-  # Complete for Wave 4
+
   describe "toggle_complete" do
-    # Your tests go here
+    it "will populate completed at" do 
+
+      Task.create(name: "water the air plants", description: "or they will die")
+
+      task = Task.first 
+
+      expect {
+        patch mark_complete_path(task.id) 
+      }.must_differ "Task.count" , 0
+
+      expect(Task.first.completed_at).wont_equal nil 
+
+    end 
   end
 end

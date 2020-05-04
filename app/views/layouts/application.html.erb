@@ -9,26 +9,26 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="d-flex align-items-stretch">
-  <header class="d-flex flex-column">
-    <section class='title'><h1>TaskList<h1></section>
-    <nav>
-      <ul class="option-button d-flex flex-sm-column">
-      <%= link_to 'Home', tasks_path ,class: 'btn btn-outline-secondary btn-sm'%>
-      <%= link_to "Add New Task", new_task_path,class: 'btn btn-outline-secondary btn-sm' %>
-      <ul>
-    </nav>
-  </header>
-    <main  class="p-3" >
-    <%= render "tasks/flash" %>
-    <div class="container">
-      <%= yield %>
+  <body class="container">
+    <div class="row row-1">
+      <header class="col-md-3">
+        <section class='title'><h1>TaskList<h1></section>
+        <nav>
+          <ul class="option-button d-flex flex-sm-column">
+          <%= link_to 'Home', tasks_path ,class: 'btn btn-outline-secondary btn-sm'%>
+          <%= link_to "Add New Task", new_task_path,class: 'btn btn-outline-secondary btn-sm' %>
+          <ul>
+        </nav>
+      </header>
+      <main  class="col-md-9" >
+        <%= render "tasks/flash" %>
+        <div class="container">
+          <%= yield %>
+        </div>
+      </main>
     </div>
-    </main>
-  </body>
-  <div class="footer-margin">
-    <footer class="page-footer font-small blue pt-4">
-      <p> ©Sharon Cheung 2020 All rights Reserved</p>
+    <footer class="row footer">
+      <p> ©Sharon Cheung 2021 All rights Reserved</p>
     </footer>
-  </div>
+  </body>
 </html>

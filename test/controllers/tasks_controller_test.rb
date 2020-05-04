@@ -87,10 +87,24 @@ describe TasksController do
   
   # Unskip and complete these tests for Wave 3
   describe "edit" do
+    before do
+      Task.create(name: "Walk the dogs", description: "Remember to bring the water for the dogs!", completed_at: nil)
+    end
+
+    let (:new_task_hash) {
+      {task: {
+          name: "Walk the dogs and take the trash out",
+          description: "Remember to bring trash out on the way!",
+        # completed_at: nil,
+      }
+    }}
+    
     it "can get the edit page for an existing task" do
-      skip
+      #skip
       # Your code here
       # Arrange 
+    
+
     end
     
     it "will respond with redirect when attempting to edit a nonexistant task" do
@@ -105,6 +119,18 @@ describe TasksController do
     #        thing to test.
     it "can update an existing task" do
       # Your code here
+      task = Task.first
+
+      expect{patch task_path(task.id), params: new_task_hash}.wont_change 'Task.count'
+      
+      #the site should take the user back to the task's show page after the task is updated
+      must_redirect_to task_path(task.id)
+
+      task.reload
+
+      expect(task.name).must_equal new_task_hash[:task][:name]
+      expect(task.description).must_equal new_task_hash[:task][:description]
+      expect(task.completed_at).must_equal new_task_hash[:task][:completed_at]
     end
     
     it "will redirect to the root page if given an invalid id" do

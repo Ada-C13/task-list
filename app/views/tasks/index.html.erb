@@ -5,6 +5,8 @@
         <li>
           <% id = task[:id]%>
           <%= link_to task.name, task_path(id) %> --  <%=task[:description]%>
+          <%= link_to "Edit Task", edit_task_path(id)%> --
+          <%= link_to "Delete Task", task_path(id), method: :delete, data: {confirm: "Are you sure you want to delete this task?"}%>
         </li>
       <%end%>
     </ul>

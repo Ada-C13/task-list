@@ -77,12 +77,11 @@ class TasksController < ApplicationController
     return  head :not_found if @task.nil?
    
     if @task.completed_at == nil
-      @task.update(completed_at: Time.new)
+      @task.update(completed_at: Time.now)
     elsif @task.completed_at != nil
       @task.update(completed_at: nil)
     end
 
     redirect_to tasks_path
   end
-
 end

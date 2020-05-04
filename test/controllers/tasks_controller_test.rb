@@ -108,24 +108,26 @@ describe TasksController do
   describe "update" do
     # Note:  If there was a way to fail to save the changes to a task, that would be a great
     #        thing to test.
+    before do 
+      Task.create(name: 'Take over the world', description: 'The same thing we do everyday, Pinky.')
+    end
+    
+    let(:task_hash){
+{      task: {
+        name: "update task",
+        description: "update task description"
+        }
+      }
+    }
     it "can update an existing task" do
         
         # Arrange
-        Task.create(name: 'Take over the world', description: 'The same thing we do everyday, Pinky.')
-        
-        task_hash = {
-          task: {
-            name: "update task",
-            description: "update task description"
-          },
-        }
-        
         task = Task.first
 
         # Act-Assert
         expect {
           patch task_path(task.id), params: task_hash
-        }.must_differ "Task.count", 0
+        }.wont_change "Task.count"
         
 
         expect(Task.last.description).must_equal task_hash[:task][:description]
@@ -137,16 +139,45 @@ describe TasksController do
     
     it "will redirect to the root page if given an invalid id" do
       # Your code here
-      get update_path(-1)
+      id = -1
 
-      must_respond_with :redirect
+      expect {
+        patch task_path(id), params: task_hash
+      }.wont_change "Task.count"
+
+      must_respond_with :not_found
     end
   end
   
   # Complete these tests for Wave 4
   describe "destroy" do
     # Your tests go here
-    
+    it "can delete an existing task" do
+        
+      # Arrange
+      Task.create(name: 'Take over the world', description: 'The same thing we do everyday, Pinky.')
+      
+      task_hash = {
+        task: {
+          name: "update task",
+          description: "update task description"
+        },
+      }
+      
+      task = Task.first
+
+      # Act-Assert
+      expect {
+        patch task_path(task.id), params: task_hash
+      }.must_differ "Task.count", 0
+      
+
+      expect(Task.last.description).must_equal task_hash[:task][:description]
+      expect(Task.last.name).must_equal task_hash[:task][:name]
+      
+      must_respond_with :redirect
+      must_redirect_to task_path(Task.last.id)
+  end
   end
   
   # Complete for Wave 4

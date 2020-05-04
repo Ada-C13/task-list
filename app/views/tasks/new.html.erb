@@ -1,17 +1,3 @@
 <h2>Add a New Task</h2>
 
-<%= form_with model: @task do |f| %>
-	<div class="edit--form">
-		<section>
-			<%= f.label :name %><br>
-			<%= f.text_field :name %>
-		</section>
-		<section>
-			<%= f.label :description %><br>
-			<%= f.text_field :description %>
-		</section>
-		<section>
-			<%= f.submit 'Add task' %>
-		</section>
-	</div>
-<% end %>
+<%= render partial: "form", locals: { action_name: "Add Task" } %>

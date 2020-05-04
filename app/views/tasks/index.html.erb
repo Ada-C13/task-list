@@ -14,9 +14,11 @@
   </ul>
 
   <h2>Would you like to add a task?</h2>
-  <h3>See the links below:</h3>
-      <li><%= button_to('Add Task', new_task_path, {class: 'button', method: :get, alt: 'new task button'}) %></li>
-          <li><%= button_to('Home', root_path, {class: 'link', method: :get, alt: 'home button'}) %></li>
+    <ul>
+      <li><%= button_to('Add Task', new_task_path, {class: 'button', method: :get, alt: 'new task button'}) %>
+          <%= button_to('Home', root_path, {class: 'link', method: :get, alt: 'home button'}) %>
+      </li>
+    </ul>
 
 
 

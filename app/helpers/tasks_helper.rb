@@ -4,6 +4,6 @@ module TasksHelper
   end
 
   def completed_display(task) 
-    task.completed_at ? "completed" : "incomlete";
+    task.completed_at ? "completed" : "incomlete"
   end
 end

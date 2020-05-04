@@ -2,4 +2,4 @@
 <h1><%= @task.name %></h1>
 <h2><%= @task.description %></h2>
 <%= link_to "Edit #{@task.name}", edit_task_path(@task.id) %><br />
-<%= link_to "Delete", task_path(@task.id) %>
+<%= button_to "Delete this task", task_path(@task.id), method: :delete, data: {confirm: "Are you sure?"} %>

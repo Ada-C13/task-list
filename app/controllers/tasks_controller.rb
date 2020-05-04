@@ -27,7 +27,19 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    task_id = params[:id]
+    @task = Task.find_by(id: task_id) # searches by param you specify
+    # @task = Task.find(task_id) # always searches by ID
+  
+    if @task.nil?
+      head :not_found  
+      return
+    end
 
+    @task.destroy
+
+    redirect_to tasks_path
+    return
   end
 
   def create

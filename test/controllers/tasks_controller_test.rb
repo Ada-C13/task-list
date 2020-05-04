@@ -60,8 +60,6 @@ describe TasksController do
   
   describe "create" do
     it "can create a new task" do
-     
-      
       # Arrange
       task_hash = {
         task: {
@@ -101,27 +99,48 @@ describe TasksController do
     end
   end
   
-  # Uncomment and complete these tests for Wave 3
+  
   describe "update" do
 
-    
-    
     it "can update an existing task" do
 
+      #always create for test database
+      Task.create(name: "updated task", description: "update description")
 
-      # get edit_task_path(8)
 
-      patch edit_task_path(8), params: { task: { name: "updated" } }
+      task_hash = {
+        task: {
+          name: "updated task test",
+          description: "update task description test"
+        }
+      }
+      
+      task = Task.first
 
-      @task.name.must_equal("updated")
+      expect{
+        patch task_path(task.id), params: task_hash
+      }.must_differ 'Task.count', 0
+      
+      
+      #why do i need to use Task.first
+      expect(Task.first.name).must_equal task_hash[:task][:name]
           
     end
     
     it "will redirect to the root page if given an invalid id" do
-      get edit_task_path(-1)
+      task_hash = {
+        task: {
+          name: "updated task test",
+          description: "update task description test"
+        }
+      }
+
+      expect{
+        patch task_path(-1), params: task_hash
+      }.must_differ 'Task.count', 0
 
       must_redirect_to tasks_path
-      # Your code here
+     
     end
   end
   

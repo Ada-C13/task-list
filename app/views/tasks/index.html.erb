@@ -1,13 +1,27 @@
 <h1>All Tasks</h1>
+<h3>Click on a task link to view all information</h3>
 
 <% if @tasks.length > 0 %>
   <ul>
     <% @tasks.each do |task|%>
       <li>
       <%= link_to task.name, task_path(task.id)%>
+      <%= link_to "Edit Task", edit_task_path(task.id) %>
+            <%= link_to "Delete Task!", task_path(task.id), method: :destroy %>
+
+
       </li>
     <% end %>
   </ul>
-<% else %>
+  <h2>Would you like to add or delete a task?</h2>
+  <h3>See the links below:</h3>
+      <li><%= link_to "Add Task", new_task_path, class: "link" %></li>
+          <li><%= link_to "Home", root_path, class: "link" %></li>
+
+
+
+
+
+  <% else %>
   <h3>No tasks in the system!</h3>
 <% end %>

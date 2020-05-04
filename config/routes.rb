@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # see https://guides.rubyonrails.org/routing.html
 
   # verb 'path' to: 'name of controller#action'
-  
+  # root to: 'tasks#index', as: 'root'
   get '/', to: 'tasks#home', as: 'root'
 
   # Routes that operate on the task collection:

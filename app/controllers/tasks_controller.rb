@@ -104,7 +104,7 @@ class TasksController < ApplicationController
         redirect_to task_path(id: @task.id), notice: 'Need some more time, I guess?'
       else 
         @task.update(
-          completed_at: @task.updated_at
+          completed_at: Time.now.in_time_zone("Pacific Time (US & Canada)")
         )
         redirect_to task_path(id: @task.id), notice: 'YAY! Task Completed!' 
       end

@@ -159,7 +159,38 @@ describe TasksController do
   end
   
   # Complete for Wave 4
-  describe "toggle_complete" do
-    # Your tests go here
+  describe "toggle_complete using the existing update action in the controller" do
+    before do
+      @task = Task.create(name: "sample task", description: "this is an example for a test", completed_at: nil)
+    end
+    
+    it "can update an existing task" do
+      task = Task.first
+      mark_complete_params = {
+        task: {
+          name: task.name, 
+          description: task.description, 
+          completed_at: Time.now,
+        }
+      }
+
+      expect { 
+        patch task_path(task.id),
+        params: mark_complete_params
+      }.wont_change "Task.count"
+
+      must_redirect_to task_path
+
+      task.reload
+      expect(task.name).must_equal mark_complete_params[:task][:name]
+      expect(task.description).must_equal mark_complete_params[:task][:description]
+      expect(task.completed_at).must_equal mark_complete_params[:task][:completed_at]
+    end
+    
+    it "will redirect to the root page if given an invalid id" do
+      patch task_path(-1)
+
+      must_redirect_to root_path
+    end
   end
 end

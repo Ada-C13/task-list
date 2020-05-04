@@ -1,3 +1,5 @@
+require "date"
+
 class TasksController < ApplicationController
   def index
     @tasks = Task.all
@@ -30,13 +32,18 @@ class TasksController < ApplicationController
   def edit
     task_id = params[:id].to_i
     @task = Task.find_by(id: task_id)
-    
-    @task.name = @task[:name]
-    @task.description = @task[:description]
-    @task.completed_at = @task[:completed_at]
+
+    if @task.nil?
+      head :not_found
+    else
+      @task.name = @task[:name]
+      @task.description = @task[:description]
+      @task.completed_at = @task[:completed_at]
+    end
   end
 
   def update
+    # raise
     task_id = params[:id].to_i
     @task = Task.find_by(id: task_id)
 
@@ -49,17 +56,35 @@ class TasksController < ApplicationController
       return
     else
       render :new, :bad_request
-      return 
+      return
     end
   end
 
-  # def destroy
-  #   book = @book.find_by(id: params[:id])
-  #   if book.nil?
-  #     head :not_found
-  #     return
-  #   end
-  #   book.destroy
-  #   redirect_to '/tasks'
-  # end
+  def destroy
+    @task = Task.find_by(id: params[:id])
+    if @task.nil?
+      head :not_found
+      return
+    else
+      @task.destroy
+      redirect_to "/tasks"
+    end
+  end
+
+  def mark_complete
+    task_id = params[:id].to_i
+    @task = Task.find_by(id: task_id)
+
+    if @task[:completed_at].empty?
+      @task[:completed_at] = Date.today.to_s
+    end
+
+    if @task.save
+      redirect_to "/tasks"
+      return
+    else
+      render :new, :bad_request
+      return
+    end
+  end
 end

@@ -24,7 +24,7 @@ class TasksController < ApplicationController
       completed_at: params[:task][:completed_at]
     )
     if @task.save
-      redirect_to tasks_path
+      redirect_to task_path(@task.id)
     else
       render :new, :bad_request
     end

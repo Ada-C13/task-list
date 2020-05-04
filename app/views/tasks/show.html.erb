@@ -1,7 +1,8 @@
-<h3> Task Name: <%= @task.name %></h3>
-<h3> Task Description: <%= @task.description %></h3>
-<h3>When was it completed? : <%= @task.completed_at %></h3>
-<p><%= link_to "Edit Task", edit_task_path %></p>
+<p> Task Name: <%= @task.name %></p>
+<p> Task Description: <%= @task.description %></p>
+<p>When was it completed? : </p>
+<%= @task.completed_at %>
 
- <p><%= link_to "Delete #{@task.name}", task_path(@task.id), method: :delete, data: { confirm: "Are you sure?" } %></p>
- <p><%= link_to "List all", tasks_path %></p>
+<%= link_to "Edit Task", edit_task_path %>|
+ <%= link_to "Delete Task #{@task.name}", task_path(@task.id), method: :delete, data: { confirm: "Are you sure?" } %>
+ <p><%= link_to "List all", tasks_path %><p>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TaskList</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <h1>Nataliya's TODOs:</h1>
+      <nav>
+        <ul>
+          <li><button><%= link_to "All Tasks", tasks_path %></button></li>
+          <li><button><%= link_to "Add Task", new_task_path %></li></button>
+          
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+  </body>
+</html>

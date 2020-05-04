@@ -11,20 +11,21 @@
 
   <body>
   <header>
+  <div>
+  <div>
   <section class="title"><h1>TaskList</h1><section>
+  </div>
   <nav>
-  <ul>
-  <li><a href="/">Home</li>
-  <li><a href="tasks">TaskList</a></li>
-  <li>New Task</li>
-  </ul>
+  <li><%= link_to "Add Task", new_task_path %></li>
+  <li><%= link_to "All Task", tasks_path %></li>
   </nav>
   <header>
+  </div>
   <main>
     <%= yield %>
     <main>
     <footer>
-    <p>All rights Reserved</p>
+    <p>Copyright Ada 13 2020</p>
     </footer>
   </body>
 </html>

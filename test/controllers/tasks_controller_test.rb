@@ -140,8 +140,22 @@ describe TasksController do
   
   # Complete these tests for Wave 4
   describe "destroy" do
-    # Your tests go here
+    before do
+      @task = Task.create(name: "sample task", description: "this is an example for a test", completed_at: nil)
+    end
     
+    it "task count will decrease by 1 after destroying a book from the database" do
+      task = Task.first
+      expect{delete task_path(task.id)}.must_change "Task.count", 1
+
+      must_respond_with :redirect
+    end
+
+    it "will redirect to the task_path (aka index page) if given an invalid id " do
+      delete task_path(-1)
+      must_respond_with :missing
+    end
+
   end
   
   # Complete for Wave 4

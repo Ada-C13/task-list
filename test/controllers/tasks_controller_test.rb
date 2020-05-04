@@ -78,7 +78,7 @@ describe TasksController do
       
       new_task = Task.find_by(name: task_hash[:task][:name])
       expect(new_task.description).must_equal task_hash[:task][:description]
-      expect(new_task.completed_at).must_equal task_hash[:task][:completed_at]
+      assert_nil new_task.completed_at
       
       must_respond_with :redirect
       must_redirect_to task_path(new_task.id)
@@ -164,7 +164,43 @@ describe TasksController do
   end
   
   # Complete for Wave 4
-  describe "toggle_complete" do
-    # Your tests go here
+  describe "mark_complete" do
+    before do
+      Task.create(name: "Finish tests for Task List", description: "Wave 3 and 4")
+    end
+
+    it "can mark complete an existing incomplete task" do 
+      id = Task.first.id
+      expect {
+        patch task_complete_path(id), params: {task: {completed_at: Date.today.to_s}}
+      }.wont_change "Task.count"
+
+      must_redirect_to tasks_path
+
+      task = Task.find_by(id: id)
+      expect(task.name).must_equal "Finish tests for Task List"
+      expect(task.description).must_equal "Wave 3 and 4"
+      expect(task.completed_at).must_equal Date.today.to_s
+
+      expect {
+        patch task_complete_path(id), params: {task: {completed_at: nil}}
+      }.wont_change "Task.count"
+
+      must_redirect_to tasks_path
+
+      task = Task.find_by(id: id)
+      expect(task.name).must_equal "Finish tests for Task List"
+      expect(task.description).must_equal "Wave 3 and 4"
+      assert_nil task.completed_at
+    end
+    
+    it "will redirect to the index page if given an invalid id" do
+      id = -1
+      expect {
+        patch task_complete_path(id), params: {task: {completed_at: Date.today.to_s}}
+      }.wont_change "Task.count"
+
+      must_redirect_to tasks_path
+    end  
   end
 end

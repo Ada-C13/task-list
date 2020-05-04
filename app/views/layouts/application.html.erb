@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ada Task List</title>
+    <%# for forms %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %> 
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <header>
+    <h2 class="title">Welcome to Task Manager</h2>
+    <nav>
+      <ul>        
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Create new task", new_task_path %></li>
+      </ul>
+      </nav>
+  </header>
+  <body>
+  <%= yield %>
+  </body>
+  <footer>
+    <p>All Rights Reserved</p>
+  </footer>
+</html>

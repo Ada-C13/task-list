@@ -1,0 +1,15 @@
+<%= form_with model: @task, class: 'task-form' do |f| %>
+
+<p>Please provide the following information to save your task to our database:</p>
+  
+  <div>
+    <%= f.label :name, "Name:" %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :description, "Description:" %>
+    <%= f.text_field :description %>
+  </div>
+
+  <%= f.submit "Add this task! "%>
+<% end %>

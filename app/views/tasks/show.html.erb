@@ -1,0 +1,13 @@
+<h3><%= @task.name %></h3>
+
+<h5>Description: <%= @task.description %> </h5>
+<h5>Completed on: <%= @task.completed_at %></h5>
+
+<p><%= link_to "Edit task", edit_task_path %> |
+  <%= link_to "Delete task", task_path(@task), method: :delete, data: {confirm: 'Are you sure you want to delete?'} %>  |
+  <%= link_to "Mark/Unmark task as completed", task_done_path(@task), method: :patch %>
+</p>
+
+<p><a href="<%= tasks_path %>">Back</a></p>
+
+

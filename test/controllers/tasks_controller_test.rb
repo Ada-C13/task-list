@@ -34,11 +34,12 @@ describe TasksController do
       must_respond_with :success
     end
     
-    it "will redirect for an invalid task" do
+    it "will create a flash alert and redirect for an invalid task" do
       # Act
       get task_path(-1)
       
       # Assert
+      expect(flash[:alert]).must_equal "Couldn't find Task with 'id'=-1"
       must_respond_with :redirect
     end
   end
@@ -84,8 +85,9 @@ describe TasksController do
       must_respond_with :success
     end
     
-    it "will respond with redirect when attempting to edit a nonexistant task" do
+    it "will create a flash alert and respond with redirect when attempting to edit a nonexistant task" do
       get edit_task_path(-1)
+      expect(flash[:alert]).must_equal "Couldn't find Task with 'id'=-1"
       must_respond_with :redirect
     end
   end
@@ -121,15 +123,17 @@ describe TasksController do
       task = Task.find(id)
       expect(task.name).must_equal edited_task_hash[:task][:name]
       expect(task.description).must_equal edited_task_hash[:task][:description]
-      expect(task.completed_at).must_equal edited_task_hash[:task][:completed_at]
+      expect(task.completed_at).must_be_nil
     end
     
-    it "will redirect to the root page if given an invalid id" do
+    it "will create a flash alert and redirect to the root page if given an invalid id" do
       id = -1
 
       expect {
         patch task_path(id), params: edited_task_hash
       }.wont_change "Task.count"
+
+      expect(flash[:alert]).must_equal "Couldn't find Task with 'id'=-1"
 
       must_redirect_to root_path
     end
@@ -150,10 +154,12 @@ describe TasksController do
       expect{delete task_path(id)}.must_change "Task.count", 1
     end
 
-    it "will redirect to the root page if given an invalid id" do
+    it "will create a flash alert and redirect to the root page if given an invalid id" do
       id = -1
 
       expect{delete task_path(id)}.wont_change "Task.count"
+
+      expect(flash[:alert]).must_equal "Couldn't find Task with 'id'=-1"
 
       must_redirect_to root_path
     end
@@ -178,7 +184,7 @@ describe TasksController do
         task: {
           name: "completed task",
           description: "completed task description",
-          completed_at: "#{Time.now}",
+          completed_at: Time.now.to_s,
         },
       }
     }
@@ -206,7 +212,7 @@ describe TasksController do
       expect(task.completed_at).must_be_nil
     end
 
-    it "will redirect to the root page if given an invalid id" do
+    it "will create a flash alert and redirect to the root page if given an invalid id" do
       id = -1
 
       expect { 

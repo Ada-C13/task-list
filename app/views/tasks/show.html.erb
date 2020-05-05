@@ -3,5 +3,6 @@
   <p><%= @task.description%></p>
   <p><%= @task.completed_at %></p>
   <%= link_to "Edit", edit_task_path(@task) %>
+  <%= link_to "Delete", task_path(@task), method: :delete, data: {confirm: "Delete #{@task.name}?"}%>
 </div>
-<button><%= link_to "back to all tasks", tasks_path %></button>
+<%= link_to "back to all tasks", tasks_path %>

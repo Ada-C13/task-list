@@ -30,6 +30,13 @@ class TasksController < ApplicationController
     return render :edit
   end
 
+  def destroy 
+    @task = Task.find_by(id: params[:id])
+    return redirect_to :task if @task.nil?
+    return redirect_to tasks_path  if @task.destroy
+    
+  end
+
   def task_params
     return params.require(:task).permit(:name, :description, :completed_at)
   end

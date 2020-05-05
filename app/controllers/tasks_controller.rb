@@ -13,12 +13,12 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(name: params[:task][:name], description: params[:task][:description], completed_at: params[:task][:completed_at]) #instantiate a new book
+    @task = Task.new(name: params[:task][:name], description: params[:task][:description], completed_at: params[:task][:completed_at])
+
     if @task.save 
       return redirect_to @task
     else
-      render :new
-      return
+      return render :new
     end
   end
 

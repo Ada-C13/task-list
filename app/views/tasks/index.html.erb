@@ -1,0 +1,23 @@
+<h2>Task</h2>
+
+<% if @tasks.length > 0 %>
+  <ul>
+    <% i = 0 %>
+    <% @tasks.each do |task| %>
+      <li>
+      <%= i += 1 %>). Task: 
+      <%= task.name.upcase %></li>
+        <% if task[:status] == "completed" %>
+        <%= link_to "Unmark Complete", unmark_path(task.id), method: :patch %>|
+         <% end %>
+        <% if task[:status] == "not complete" %>
+          <%= link_to "Mark Complete", complete_path(task.id), method: :patch %>|
+        <% end %>
+        <%= link_to "Edit", edit_task_path(task.id) %> |
+        <%= link_to "Delete", task_path(task.id), method: :delete, data: { confirm: "Are you sure?" } %> 
+    <% end %>
+  </ul>
+<% else %>
+  <h3>No Task<h3>
+<% end %>
+

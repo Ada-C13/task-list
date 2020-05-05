@@ -1,0 +1,16 @@
+<%= form_with model: @task, class: "create-task" do |f| %>
+  <p>Please enter the following infomation you would like to edit:</p>
+  
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+ 
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+ 
+ <%= f.label "Completed at:" %>
+ <%= @task.completed_at %>
+
+
+  <%= f.submit "Edit a task", class: "edit-button" %>
+<% end %>
+<p><%= link_to "List all task", tasks_path %>

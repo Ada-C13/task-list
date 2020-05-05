@@ -1,0 +1,8 @@
+<p> Task Name: <%= @task.name %></p>
+<p> Task Description: <%= @task.description %></p>
+<p>When was it completed? : </p>
+<%= @task.completed_at %>
+
+<%= link_to "Edit Task", edit_task_path %>|
+ <%= link_to "Delete Task #{@task.name}", task_path(@task.id), method: :delete, data: { confirm: "Are you sure?" } %>
+ <p><%= link_to "List all", tasks_path %><p>

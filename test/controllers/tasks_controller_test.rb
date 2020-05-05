@@ -56,7 +56,6 @@ describe TasksController do
 
   describe "create" do
     it "can create a new task" do
-
       # Arrange
       task_hash = {
         task: {
@@ -145,7 +144,7 @@ describe TasksController do
   # Complete for Wave 4
   describe "mark_complete" do
     before do
-      @task = Task.create(name: "test task", description: "test task description", completed_at: '' )
+      @task = Task.create(name: "test task", description: "test task description", completed_at: "")
     end
 
     it "can mark an existing task as completed on the day the button was clicked" do

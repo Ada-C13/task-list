@@ -20,12 +20,14 @@ class TasksController < ApplicationController
   end
 
   def create
-    task = Task.new(name: params[:task][:name], description: params[:task][:description], completed_at: params[:task][:completed_at])
+    task = Task.new(task_params)
 
     if task.save
       redirect_to task_path(task.id)
+      return
     else
       render :new, :bad_request
+      return
     end
   end
 
@@ -35,6 +37,7 @@ class TasksController < ApplicationController
 
     if @task.nil?
       head :not_found
+      return
     else
       @task.name = @task[:name]
       @task.description = @task[:description]
@@ -48,17 +51,13 @@ class TasksController < ApplicationController
 
     if @task.nil?
       head :not_found
+      return
+    elsif @task.update(task_params)
+      redirect_to task_path(@task.id)
+      return
     else
-      @task[:name] = params[:task][:name]
-      @task[:description] = params[:task][:description]
-      @task[:completed_at] = params[:task][:completed_at]
-      if @task.save
-        redirect_to task_path(@task.id)
-        return
-      else
-        render :new, :bad_request
-        return
-      end
+      render :new, :bad_request
+      return
     end
   end
 
@@ -70,6 +69,7 @@ class TasksController < ApplicationController
     else
       @task.destroy
       redirect_to root_path
+      return
     end
   end
 
@@ -79,17 +79,25 @@ class TasksController < ApplicationController
 
     if @task.nil?
       head :not_found
-    else
-      if @task[:completed_at].empty?
-        @task[:completed_at] = Date.today.to_s
-      end
-      if @task.save
-        redirect_to root_path
-        return
-      else
-        render :new, :bad_request
-        return
-      end
+      return
     end
+
+    if @task[:completed_at].empty?
+      @task[:completed_at] = Date.today.to_s
+    end
+
+    if @task.save
+      redirect_to root_path
+      return
+    else
+      render :new, :bad_request
+      return
+    end
+  end
+
+  private
+
+  def task_params
+    return params.require(:task).permit(:name, :description, :completed_at)
   end
 end

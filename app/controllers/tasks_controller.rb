@@ -54,4 +54,16 @@ def update
   end
 end
 
+def destroy
+  id = params[:id]
+  @task = Task.find_by(id: id)
+  if @task.nil?
+    redirect_to root_path
+    return
+  else
+    @task.destroy
+    redirect_to root_path
+end
+end
+
 end

@@ -1,5 +1,6 @@
 require "test_helper"
 
+
 describe TasksController do
   let (:task) {
     Task.create name: "sample task", description: "this is an example for a test",
@@ -113,31 +114,28 @@ describe TasksController do
   # Uncomment and complete these tests for Wave 3
   # check for a valid update and a non-existant Task
   describe "update" do
-    before do
-      Task.create(name: "Rails Testing", description: "videos/lectures", completed_at: nil)
-    end
-    let (:new_task_hash) {
-      {
-        task: {
-          name: "CS_Fun",
-          description: "really hard coding",
-          completed_at: "NOW",
-        },
-      }
-    }
+    it "will update a model with a valid post request" do
 
+      new_task = Task.create(name: "Rails Testing", description: "videos/lectures", completed_at: nil)
+      new_task_hash = {
+        task: {
+          name: "Rails Testing",
+          description: "really hard coding",
+          completed_at: "NOW"
+        }
+      }
+      puts new_task.id
     
     # Note:  If there was a way to fail to save the changes to a task, that would be a great
     #        thing to test.
-    it "will update a model with a valid post request" do
-      task = Task.first
       expect {
-        patch task_path(task.id), params: new_task_hash
+        patch task_path(new_task.id), params: new_task_hash
+        puts Task.count
       }.wont_change 'Task.count'
 
       must_redirect_to tasks_path
 
-      task = Task.find_by(id: id)
+      task = Task.find_by(id: new_task.id)
       expect(task.name).must_equal new_task_hash[:task][:name]
       expect(task.description).must_equal new_task_hash[:task][:description]
       expect(task.completed_at).must_equal new_task_hash[:task][:completed_at]

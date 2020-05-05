@@ -1,11 +1,11 @@
-<h1 class="bg-info text-white">Current Tasks:<h1>
+<h1 class="bg-info text-white text">Current Tasks:<h1>
         <div class="">
             <% @tasks.each do |task| %>
             <div class="dl-horizontal">
                 <% css_class = (task.completed_at.nil? || task.completed_at.empty?) ? 'nostrike' : 'strike' %>
                 <% mark_complete_link= (task.completed_at.nil? || task.completed_at.empty?) ? 'Mark Completed' : 'Un_Mark Completed'%>
                 <% mark_complete_css= (task.completed_at.nil? || task.completed_at.empty?) ? "btn btn-outline-warning": "btn btn-outline-success" %>
-                <%= link_to task.name, task_path(task), class: css_class.concat("w-100 p-2 text-uppercase") %><%= link_to "Edit Task", edit_task_path(task), class:"btn btn-info" %> <%= link_to "Delete Task", task_path(task), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-info" %> <%= link_to mark_complete_link, update_completed_task_path(task), method: :Patch, class:mark_complete_css %> </div>
+                <%= link_to task.name, task_path(task), class: css_class.concat("") %><%= link_to "Edit Task", edit_task_path(task), class:"btn btn-info" %> <%= link_to "Delete Task", task_path(task), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-info" %> <%= link_to mark_complete_link, update_completed_task_path(task), method: :Patch, class:mark_complete_css %> </div>
             <% end %>
-            <%= link_to "Add Task", new_task_path, class:"bg-info text-white" %>
+            <%= link_to "Add Task", new_task_path, class:" text" %>
         </div>

@@ -6,11 +6,13 @@
 .strike {
     text-decoration: line-through;
     padding: 2rem;
+    font-family: fantasy,chalkduster;
 
 }
 
 .nostrike {
     padding: 2rem;
+    font-family: fantasy,chalkduster;
 
 }
 
@@ -24,4 +26,8 @@
     border-radius: 5px;
     color: white;
     font-weight: bold;
+}
+
+.text {
+    font-family: fantasy,chalkduster;
 }

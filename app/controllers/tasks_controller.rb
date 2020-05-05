@@ -30,11 +30,17 @@ class TasksController < ApplicationController
     return render :edit
   end
 
-  def toggle
+  def mark_incomplete
     @task = Task.find_by(id: params[:id])
     return redirect_to :task if @task.nil?
-    @time_toggle = @task.completed_at.empty? ? Time.now.strftime("%d/%m/%Y") : ""
-    @task.update(completed_at: @time_toggle )
+    @task.update(completed_at: "")
+    return redirect_to :tasks
+  end
+
+  def mark_complete
+    @task = Task.find_by(id: params[:id])
+    return redirect_to :task if @task.nil?
+    @task.update(completed_at: Time.now.strftime("%d/%m/%Y"))
     return redirect_to :tasks
   end
 

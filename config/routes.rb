@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   root 'tasks#index'
 
   resources :tasks do
-    patch 'toggle', on: :member
+    patch 'mark_incomplete', on: :member
+    patch 'mark_complete', on: :member
   end
 
 end

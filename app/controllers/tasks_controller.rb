@@ -4,8 +4,9 @@ class TasksController < ApplicationController
   end
 
   def show
+    # note: per my discussion with a teacher, since find throws an exception for invalid ids whereas find_by returns nil for invalid ids, it's easier to work with. I asked whether a begin/rescue block would work, and was encouraged to try it! 
     begin
-      @task = Task.find(params[:id]) 
+      @task = Task.find(params[:id])
     rescue => error
       redirect_to root_path, alert: "#{error}"
       return
@@ -19,7 +20,8 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(
       name: params[:task][:name], 
-      description: params[:task][:description]
+      description: params[:task][:description],
+      completed_at: nil
     )
 
     @task.save ? (redirect_to task_path(@task)) : (render :new, alert: "Error: Task not saved")
@@ -42,10 +44,11 @@ class TasksController < ApplicationController
       redirect_to root_path, alert: "#{error}"
       return
     end
-
+    
     @task.update(
       name: params[:task][:name], 
-      description: params[:task][:description]
+      description: params[:task][:description],
+      completed_at: params[:task][:completed_at].presence # this ensures that an empty input will be converted to nil (Source: Komsun K. and Pedro Henrique Ramos Souza, https://stackoverflow.com/questions/15419285/converting-an-empty-string-to-nil-in-place)
     ) ? (redirect_to task_path(@task)) : (render :edit, alert: "Error: Task not updated")
     return
   end

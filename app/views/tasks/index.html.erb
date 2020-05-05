@@ -3,12 +3,12 @@
 	<% @tasks.each do |task| %>
 		<li class="task-container">
 
-			<section class="task-container--task <%= 'task-container--completed' if task.completed_at != "" %>">
+			<section class="task-container--task <%= 'task-container--completed' if task.completed_at != nil %>">
 				<%= link_to task.name, task_path(task)%><br>
 			</section>
 
-			<nav class="options <%= 'options--completed' if task.completed_at != "" %>">
-				<% if task.completed_at == "" %>
+			<nav class="options <%= 'options--completed' if task.completed_at != nil %>">
+				<% if task.completed_at == nil %>
 					<%= link_to 'Mark as Complete', complete_task_path(task), method: :patch %>
 				<% else %>
 					<%= link_to 'Unmark as Complete', complete_task_path(task), method: :patch %>

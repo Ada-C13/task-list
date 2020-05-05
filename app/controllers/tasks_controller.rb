@@ -21,7 +21,7 @@ class TasksController < ApplicationController
 	end
 
 	def create
-    @task = Task.new(task_params.merge(completed_at: ""))
+    @task = Task.new(task_params.merge(completed_at: nil))
 		
 		if @task.save # if a new task is made and saved
       redirect_to task_path(@task)
@@ -46,7 +46,7 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: params[:id])
 
     if @task.nil?
-      head :not_found
+      redirect_to root_path
       return
     elsif @task.update(
 			name: params[:task][:name], 
@@ -78,10 +78,10 @@ class TasksController < ApplicationController
   def completed?
     @task = Task.find_by(id: params[:id])
 
-    if (@task.completed_at == "") == true
+    if (@task.completed_at == nil) == true
       @task.update(completed_at: Time.now)
     else
-      @task.update(completed_at: "")
+      @task.update(completed_at: nil)
     end
 
     redirect_to root_path

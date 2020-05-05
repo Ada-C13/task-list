@@ -146,7 +146,7 @@ describe TasksController do
         patch task_path(-1), params: task_hash
       }.must_differ "Task.count", 0
             
-      must_redirect_to tasks_path
+      must_redirect_to root_path
     end
   end
   

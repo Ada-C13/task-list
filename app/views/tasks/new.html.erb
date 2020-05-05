@@ -1,0 +1,16 @@
+<h4>Add Task</h4>
+
+<%# Source: https://www.rubyguides.com/2019/11/rails-flash-messages/ %>
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
+<p>Please enter the following information for your new task:</p>
+
+<%= render "task_form" %>
+
+<nav>
+  <%= button_to "View All Tasks", root_path, method: :get %>
+</nav>

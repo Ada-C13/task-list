@@ -83,11 +83,11 @@ class ApplicationController < ActionController::Base
     end
 
     if task.task_completed == false
-      task.task_completed, @task.completed_at = true, Date.today
+      task.task_completed, task.completed_at = true, Date.today
       task.save
       redirect_to tasks_path
     else
-      task.task_completed, @task.completed_at = false, nil 
+      task.task_completed, task.completed_at = false, nil 
       task.save
       redirect_to tasks_path
     end

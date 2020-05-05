@@ -63,4 +63,23 @@ class TasksController < ApplicationController
     redirect_to root_path
     return
   end
+
+  def toggle_complete
+    begin
+      @task = Task.find(params[:id]) 
+    rescue => error
+      redirect_to root_path, alert: "#{error}"
+      return
+    end
+
+    if @task[:completed_at].nil?
+      @task.update(
+        completed_at: Time.now
+      ) ? (redirect_to root_path) : (redirect_to root_path, alert: "Error: Task unable to be marked as complete")
+    else
+      @task.update(
+        completed_at: nil
+      ) ? (redirect_to root_path) : (redirect_to root_path, alert: "Error: Task unable to be marked as incomplete")
+    end
+  end
 end

@@ -22,4 +22,10 @@ class TasksController < ApplicationController
     end
   end
 
+  def edit 
+    @task = Task.find_by(id: params[:id])
+    return redirect_to :tasks if @task.nil?
+  end
+
+
 end

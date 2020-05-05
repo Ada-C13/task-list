@@ -1,0 +1,24 @@
+<h1>All Tasks</h1>
+<h3>Click on a Task name to view the details:</h3>
+
+<% if @tasks.length > 0 %>
+  <ul>
+    <% @tasks.each do |task|%>
+      <li>
+      <%= link_to task.name, task_path(task.id)%>
+          <%= button_to('Mark Complete', mark_complete_task_path(task.id), {class: 'button', method: :put, alt: 'complete task button'}) %> 
+            <%= button_to('Edit Task', edit_task_path(task.id), {class: 'button', method: :get, alt: 'edit task button' }) %>
+              <%= button_to('Delete Task!', delete_task_path(task.id), {class: 'button', method: :delete, data: {confirm: 'Are you sure?'}, alt: 'delete task button'}) %>
+      </li>
+    <% end %>
+  </ul>
+
+  <h2>Would you like to add a task? or return Home?</h2>
+    <ul>
+      <li><%= button_to('Add Task', new_task_path, {class: 'button', method: :get, alt: 'new task button'}) %></li>
+          <li><%= button_to('Home', root_path, {class: 'link', method: :get, alt: 'home button'}) %></li>
+    </ul>
+
+<% else %>
+  <h3>No tasks in the system!</h3>
+<% end %>

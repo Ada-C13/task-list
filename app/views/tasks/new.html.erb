@@ -1,0 +1,18 @@
+
+<h1>Add New Task Here:</h1><%# form_with takes a hash - model - and then creates a loop %>
+<%= form_with model: @task, class: "create_task" do |f| %>
+<p>Please provide the following information to save your task to the database:</p>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+
+  <%= f.label :completed_at %>
+  <%= f.text_field :completed_at %>
+
+  <%= f.submit "Save Task", class: "task-button" %>
+
+
+<% end %>

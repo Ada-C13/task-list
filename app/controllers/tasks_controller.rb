@@ -23,7 +23,9 @@ class TasksController < ApplicationController
     @task = Task.new(
       name: params[:task][:name], 
       description: params[:task][:description], 
-      completed_at: "")
+      completed_at: "~not yet completed~",
+      completed: false
+      )
     if @task.save
       redirect_to task_path(@task.id)
       return
@@ -51,8 +53,7 @@ class TasksController < ApplicationController
       return
     elsif @task.update(
       name: params[:task][:name], 
-      description: params[:task][:description], 
-      completed_at: ""
+      description: params[:task][:description]
     )
       redirect_to task_path(task_id)
       return
@@ -82,7 +83,8 @@ class TasksController < ApplicationController
       head :not_found
       return
     elsif @task.update(
-      completed_at: Time.now.strftime("%B %e, %Y at %I:%M %p")
+      completed_at: Time.now.strftime("%B %e, %Y at %I:%M %p"),
+      completed: true
     )
       redirect_to tasks_path
       return

@@ -25,7 +25,7 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find_by(id: params[:id])
-    return redirect_to :task if @task.nil?
+    return redirect_to tasks_path if @task.nil?
     return redirect_to task_path if @task.update(task_params)
     return render :edit
   end
@@ -46,7 +46,7 @@ class TasksController < ApplicationController
 
   def destroy 
     @task = Task.find_by(id: params[:id])
-    return redirect_to :task if @task.nil?
+    return redirect_to tasks_path if @task.nil?
     return redirect_to tasks_path  if @task.destroy
     
   end

@@ -79,7 +79,6 @@ describe TasksController do
       expect(new_task.description).must_equal task_hash[:task][:description]
       expect(new_task.completed_at).must_equal task_hash[:task][:completed_at]
       
-      must_respond_with :redirect
       must_redirect_to task_path(new_task.id)
     end
   end
@@ -99,7 +98,7 @@ describe TasksController do
       get edit_task_path(-1)
 
       # Assert 
-      must_respond_with :redirect
+      must_redirect_to tasks_path
       
     end
   end
@@ -124,7 +123,7 @@ describe TasksController do
         patch task_path(Task.first.id), params: new_task_hash
       }.wont_change "Task.count"
       
-      must_respond_with :redirect
+      must_redirect_to task_path(Task.first.id)
 
       task = Task.find_by(id: Task.first.id)
       expect(task.name).must_equal new_task_hash[:task][:name]
@@ -137,7 +136,7 @@ describe TasksController do
         patch task_path(-1), params: new_task_hash
       }.wont_change "Task.count"
 
-      must_respond_with :redirect
+      must_redirect_to tasks_path
     end
   end
   
@@ -152,7 +151,7 @@ describe TasksController do
         delete task_path(Task.first.id)
       }.must_change "Task.count", -1
 
-      must_respond_with :redirect
+      must_redirect_to tasks_path
     end
 
     it "will redirect to the root page if deleting an invalid task" do
@@ -160,27 +159,35 @@ describe TasksController do
         delete task_path(-1)
       }.wont_change "Task.count"
 
-      must_respond_with :redirect
+      must_redirect_to tasks_path
     end
     
   end
   
   # Complete for Wave 4
-  describe "toggle_complete" do
+  describe "mark_complete" do
     before do 
-      Task.create(name: "go to sleep", description: "catch up on those zzzs", completed_at: Time.now)
+      Task.create(name: "go to sleep", description: "catch up on those zzzs", completed_at: "")
       @id = Task.first.id
     end
 
-    it "will toggle to incomplete" do
-      patch toggle_task_path(@id)
-      expect(Task.first.completed_at).must_be :empty?
+    it "will mark task as complete" do
+      patch mark_complete_task_path(@id)
+      expect(Task.first.completed_at).must_be_kind_of String
     end
 
-    it "will toggle again back to complete" do
-      patch toggle_task_path(@id)
-      patch toggle_task_path(@id)
-      expect(Task.first.completed_at).wont_be_empty
+  end
+
+  describe "mark_incomplete" do
+    before do 
+      Task.create(name: "learn to fly", description: "to infinity and beyond", completed_at: Time.now)
+      @id = Task.first.id
     end
+
+    it "will mark task as incomplete" do
+      patch mark_incomplete_task_path(@id)
+      expect(Task.first.completed_at).must_equal ""
+    end
+    
   end
 end

@@ -29,11 +29,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(
-      name: params[:task][:name],
-      description: params[:task][:description],
-      completed_at: params[:task][:completed_at],
-    )
+    @task = Task.new(task_params)
 
     if @task.save
       redirect_to task_path(@task.id)
@@ -59,11 +55,7 @@ class TasksController < ApplicationController
       redirect_to root_path
       return
       # If the task exist edit (patch) the field.
-    elsif @task.update(
-      name: params[:task][:name],
-      description: params[:task][:description],
-      completed_at: params[:task][:completed_at],
-    )
+    elsif @task.update(task_params)
       # go to the index so we can see the task edited in the list
       redirect_to tasks_path
       return
@@ -71,5 +63,40 @@ class TasksController < ApplicationController
       render :edit # show the new task form view again
       return
     end
+  end
+
+  def completed_at
+    task_id = params[:id]
+    task = Task.find_by(id: task_id)
+
+    if task.nil?
+      head :not_found
+      return
+    elsif task.completed_at
+      task.completed_at = nil
+    else
+      time = Time.now
+      task.completed_at = time.strftime("%d of %B, %Y")
+    end
+
+    task.save
+    redirect_to tasks_path
+  end
+
+  def destroy
+    task = Task.find_by(id: params[:id])
+    if task.nil?
+      head :not_found
+      return
+    else
+      task.destroy
+      redirect_to root_path
+    end
+  end
+
+  private
+
+  def task_params
+    return params.require(:task).permit(:name, :description, :completed_at)
   end
 end

@@ -11,7 +11,10 @@ Rails.application.routes.draw do
 
   #Add routes that deal with a specific task 
   get '/tasks/:id', to: 'tasks#show', as: 'task' #shows details for one task
-  get 'tasks/:id/edit', to: 'tasks#edit', as: 'edit_book' #brings up the form to edit a task
+  get 'tasks/:id/edit', to: 'tasks#edit', as: 'edit_task' #brings up the form to edit a task
   patch '/tasks/:id', to: 'tasks#update' #makes a change to a task
   delete '/tasks/:id', to: 'tasks#destroy' #deletes a task
+
+  patch '/tasks/:id/mark_complete', to:'tasks#mark_complete' #Marks a task complete
+  patch '/tasks/:id/mark_incomplete', to:'tasks#mark_incomplete' #Marks a task complete
 end

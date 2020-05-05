@@ -1,0 +1,7 @@
+<ul id = "show">
+  <li>Name for your task:  <%=@task.name %></li>
+  <li>Description:  <%= @task.description %></li>
+  <li>Completed at: <%= @task.completed_at %></li>
+  |--<%= link_to "Edit", edit_task_path(@task.id) %>--|-- 
+  <%= link_to "Delete", task_path(@task), method: :delete, data: {confirm: "Are you sure?"}%>--|
+<ul>

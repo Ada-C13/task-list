@@ -17,7 +17,6 @@ describe TasksController do
     end
     
     it "can get the root path" do
-      skip
       # Act
       get root_path
       

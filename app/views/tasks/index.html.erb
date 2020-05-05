@@ -1,0 +1,11 @@
+<h1>Tasks</h1>
+<button><%= link_to "add new task", new_task_path %></button>
+<section class="tasks">
+  <% @tasks.each do |task|  %>
+    <div class="task">
+      <%= link_to "#{task.id}. #{task.name}", task_path(task), class: "#{task.completed_at.empty? ? 'undone' : 'done'}" %><span> | </span>
+      <%= link_to_if(task.completed_at.empty?, "mark complete", mark_complete_task_path(task), method: :patch ) { link_to( "mark incomplete", mark_incomplete_task_path(task), method: :patch ) } %>
+    </div>
+  <% end %>
+</section>
+

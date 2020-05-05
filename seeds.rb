@@ -17,4 +17,5 @@ tasks = [
 
 tasks.each do |task|
   Task.create task
+  puts task
 end

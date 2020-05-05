@@ -134,7 +134,7 @@ describe TasksController do
     
     it "will redirect to the root page if given an invalid id" do
       expect {
-        path task_path(-1), params: new_task_hash
+        patch task_path(-1), params: new_task_hash
       }.wont_change "Task.count"
 
       must_respond_with :redirect

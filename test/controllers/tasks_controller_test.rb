@@ -143,8 +143,19 @@ describe TasksController do
   
   # Complete these tests for Wave 4
   describe "destroy" do
-    # Your tests go here
-    
+    it "can delete existing task and redirect to tasks upon successful deletion" do 
+      task = Task.create(name: "Grocery Shopping", description: "Buy milk", completed_at: "Today")
+      task_count = Task.count
+      delete destroy_task_path(task.id)
+      new_task_count = Task.count
+      expect(task_count - new_task_count).must_equal 1
+    end
+
+    it "will display not found if given an invalid id" do 
+      delete destroy_task_path(-1)
+      
+      must_respond_with :not_found
+    end
   end
   
   # Complete for Wave 4

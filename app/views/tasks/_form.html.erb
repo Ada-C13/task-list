@@ -1,0 +1,23 @@
+<section>
+  <fieldset>
+  <h3>Task</h3>
+  <%= form_with model: @task, id: form_css_id do |f| %>
+    <p>
+      <%= f.label :name, 'Action: ' %>
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :description, "Description: " %>
+      <%= f.text_field :description %>
+    </p>
+    <p>
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+    </p>
+    <p>
+      <%= f.submit submit_label%>
+    </<%=  %>>
+
+  </fieldset>
+  <% end %>
+</section>

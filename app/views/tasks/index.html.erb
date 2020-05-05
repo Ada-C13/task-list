@@ -1,8 +1,8 @@
-<h1>Tasks List</h1>
+<h1>TASKLIST</h1>
 
-<h1>Tasks</h1>
+<h3>Team Tasks</h3>
 <ul>
-  <% @tasks.each do |task|  %>
+  <% @tasks.sort.each do |task|  %>
     <li>
       <%= link_to "Task ##{task[:id]}" , task_path(task[:id]) %><br>
       <%= task[:name] %> must <%= task[:description] %><br>

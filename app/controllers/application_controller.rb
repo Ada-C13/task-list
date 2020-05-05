@@ -75,20 +75,20 @@ class ApplicationController < ActionController::Base
   end
 
   def completed
-    @task = Task.find_by(id: params[:id])
+    task = Task.find_by(id: params[:id])
 
-    if @task.nil?
+    if task.nil?
       redirect_to task_path
       return
     end
 
-    if @task.task_completed == false
-      @task.task_completed, @task.completed_at = true, Date.today
-      @task.save
+    if task.task_completed == false
+      task.task_completed, @task.completed_at = true, Date.today
+      task.save
       redirect_to tasks_path
     else
-      @task.task_completed, @task.completed_at = false, nil 
-      @task.save
+      task.task_completed, @task.completed_at = false, nil 
+      task.save
       redirect_to tasks_path
     end
   end

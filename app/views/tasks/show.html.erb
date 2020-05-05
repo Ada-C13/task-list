@@ -1,7 +1,7 @@
 <h4><%= @task[:name] %></h4>
 <p><%= @task[:description] %></p>
 
-<% if @task.completed_at.nil? %>
+<% if @task.completed_at.nil? || @task.completed_at.empty? %>
   <p>Completed: N/A</p>
   <%= button_to "Mark Complete", toggle_complete_path(@task.id), method: :patch %>
 <% else %>

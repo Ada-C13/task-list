@@ -6,7 +6,7 @@
       <li>
         <%= link_to task[:name], task_path(task) %>
 
-        <% if task.completed_at.nil? %>
+        <% if task.completed_at.nil? || task.completed_at.empty? %>
           <%= button_to "Mark Complete", toggle_complete_path(task.id), method: :patch %>
         <% else %>
           <%= button_to "Mark Incomplete", toggle_complete_path(task.id), method: :patch %>

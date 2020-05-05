@@ -57,7 +57,7 @@ class TasksController < ApplicationController
       description: params[:task][:description]
     )
     if @task.save
-      redirect_to task_path(@task.id) # Send them to the list of all tasks
+      redirect_to task_path(@task.id) # Send them to the task just created
       return
     else
       render :new, :bad_request # show the new task form again
@@ -87,7 +87,7 @@ class TasksController < ApplicationController
       name: params[:task][:name],
       description: params[:task][:description]
     )
-      redirect_to tasks_path
+      redirect_to root_path # go to the index
       return
     else
       render :edit

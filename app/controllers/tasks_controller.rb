@@ -61,16 +61,22 @@ class TasksController < ApplicationController
 
     def update_completed_task
         @task= Task.find_by(id: params[:id])
-        if @task.nil?
-            head :not_found
-            return 
-        elsif @task.update(
-            name: params[:task][:name],
-            description: params[:task][:description],
-            completed_at: Time.now
-        )
-            redirect_to tasks_path
-            return
+        if @task.completed_at == nil
+            if @task.update(
+                completed_at: Date.today.to_s
+            ) 
+                # redirect_to tasks_path, notice:"Task Completed"
+                redirect_to request.referrer
+                return
+            end
+        elsif @task.completed_at != nil
+            if @task.update(
+                completed_at: nil
+            ) 
+                # redirect_to tasks_path, notice:"Task Completed"
+                redirect_to request.referrer
+                return
+            end
         end
     end
 

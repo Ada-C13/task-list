@@ -4,6 +4,8 @@
     <p> <%= @task.completed_at %></p>
     <%= link_to "Edit", edit_task_path(@task) %>
     <%= link_to "Delete", task_path(@task), method: :delete, data: {confirm: "Are you sure?"}%>
+    <% mark_complete_link= (@task.completed_at.nil? || @task.completed_at.empty?) ? 'Mark Completed' : 'Un_Mark Completed'%>
+    <%= link_to mark_complete_link, update_completed_task_path(@task), method: :Patch %>
 </div>
 
 

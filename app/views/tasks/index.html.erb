@@ -2,7 +2,7 @@
         <% @tasks.each do |task| %>
         <div>
             <% css_class = (task.completed_at.nil? || task.completed_at.empty?) ? 'nostrike' : 'strike' %>
-            <%= link_to task.name, task_path(task), class: css_class %><%= link_to "Edit Task", edit_task_path(task) %> <%= link_to "Delete Task", task_path(task), method: :delete, data: {confirm: "Are you sure?"} %> <%= link_to "Mark Complete", tasks_path(task) %>
-        </div>
+            <% mark_complete_link= (task.completed_at.nil? || task.completed_at.empty?) ? 'Mark Completed' : 'Un_Mark Completed'%>
+            <%= link_to task.name, task_path(task), class: css_class %><%= link_to "Edit Task", edit_task_path(task) %> <%= link_to "Delete Task", task_path(task), method: :delete, data: {confirm: "Are you sure?"} %> <%= link_to mark_complete_link, update_completed_task_path(task), method: :Patch %> </div>
         <% end %>
         <%= link_to "Add Task", new_task_path %>

@@ -92,7 +92,6 @@ class TasksController < ApplicationController
     else 
       render :index
     end
-    
   end
 
 

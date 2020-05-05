@@ -1,12 +1,18 @@
 <h2>Welcome to my Tasks Page</h2>
   <% if @tasks.length > 0 %>
     <ul>
-      <%= @tasks.each do |task| %>
+      <% @tasks.each do |task| %>
         <li>
           <% id = task[:id]%>
-          <%= link_to task.name, task_path(id) %> --  <%=task[:description]%>
-          <%= link_to "Edit Task", edit_task_path(id)%> --
-          <%= link_to "Delete Task", task_path(id), method: :delete, data: {confirm: "Are you sure you want to delete this task?"}%> -- 
+          <%= link_to task.name, task_path(id) %> --  
+          <%if task[:description] != ""%>
+            <%=task[:description]%> |
+          <%else%>
+            no details |
+          <%end%>
+
+          <%= link_to "Edit Task", edit_task_path(id)%> |
+          <%= link_to "Delete Task", task_path(id), method: :delete, data: {confirm: "Are you sure you want to delete this task?"}%> |
           
           <% if task[:completed_at]%>
             <span>Completed</span>

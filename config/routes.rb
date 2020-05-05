@@ -13,10 +13,7 @@ Rails.application.routes.draw do
   delete '/tasks/:id', to: 'tasks#destroy' #deleted task
   patch '/tasks/:id/mark_complete', to: 'tasks#mark_complete', as: 'mark_complete' # will mark task complete
 
-  #custom routes - making a book as read 
-  #patch '/books/:id/mark_read', to: 'books#mark_read', as: 'book_read' #making up new extension is ok 
-  ## would nn to make view with touch app/views/books/mark_read.html.erb
-  ## then add path to application 
+
 
   
 end

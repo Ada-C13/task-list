@@ -4,7 +4,10 @@
         <li>
             <h2><%= link_to task.name, task_path(task) %></h2>
             <%= link_to 'Edit Task', edit_task_path(task) %>
-            <%= link_to 'Delete this Task', task_path(task), method: :delete, data: {confirm: 'Are you sure?'} %>
+            <%= button_to 'Delete this Task', task_path(task), method: :delete, data: {confirm: 'Are you sure?'} %>
+            <% if task.completed_at == '' %>
+                <%= button_to 'Mark as Completed', mark_completed_path(task), method: :patch %>
+            <% end %>
         </li>
     <% end %>
 </ul>

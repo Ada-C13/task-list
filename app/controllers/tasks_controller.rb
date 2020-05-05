@@ -2,6 +2,7 @@ class TasksController < ApplicationController
     def index
         @tasks = Task.all
     end
+
     def show
         task_id = params[:id]
         @task = Task.find_by(id: task_id)
@@ -10,9 +11,11 @@ class TasksController < ApplicationController
             return
         end
     end
+
     def new
         @task = Task.new
     end
+
     def create
         @task = Task.new(task_params)
         if @task.save
@@ -23,6 +26,7 @@ class TasksController < ApplicationController
             return
         end
     end
+
     def edit
         task_id = params[:id]
         @task = Task.find_by(id: task_id)
@@ -31,17 +35,14 @@ class TasksController < ApplicationController
             return
         end
     end
+
     def update
         task_id = params[:id]
         @task = Task.find_by(id: task_id)
         if @task.nil?
             redirect_to root_path
             return
-        elsif @task.update(
-            name: params[:task][:name],
-            description: params[:task][:description],
-            completed_at: params[:task][:completed_at]
-        )
+        elsif @task.update(task_params)
             redirect_to tasks_path
             return
         else
@@ -49,6 +50,7 @@ class TasksController < ApplicationController
             return
         end
     end
+    
     def destroy
         task_id = params[:id]
         @task = Task.find_by(id: task_id)
@@ -58,6 +60,19 @@ class TasksController < ApplicationController
         end
         @task.destroy
         redirect_to tasks_path
+    end
+
+    def mark_completed
+        task_id = params[:id]
+        @task = Task.find_by(id: task_id)
+        if @task.nil?
+            redirect_to root_path
+            return
+        else
+            @task.completed_at = Date.today
+            @task.save
+            redirect_to task_path(@task.id)
+        end   
     end
 
     private

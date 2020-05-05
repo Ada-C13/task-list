@@ -1,13 +1,13 @@
 <header>
-  <h1>Tasks</h1>
+  <h1>Task List</h1>
 </header>
 
-<section class="all-tasks">
-  <div>
+<section class="tasks">
+  <div class="tasks_left">
     <%= link_to "Add new task", new_task_path, class: "task-button"%>
     <%= link_to "All tasks", tasks_path, class: "task-button"%>
   </div>
-  <div class="tasks">
+  <div class="tasks_right">
     <ol>
       <% @tasks.each do |task|  %>
         <li class="task">

@@ -23,7 +23,7 @@ class TasksController < ApplicationController
     @task = Task.new(
       name: params[:task][:name], 
       description: params[:task][:description], 
-      completed_at: params[:task][:completed_at])
+      completed_at: "")
     if @task.save
       redirect_to task_path(@task.id)
       return
@@ -52,7 +52,7 @@ class TasksController < ApplicationController
     elsif @task.update(
       name: params[:task][:name], 
       description: params[:task][:description], 
-      completed_at: params[:task][:completed_at]
+      completed_at: ""
     )
       redirect_to task_path(task_id)
       return
@@ -73,5 +73,21 @@ class TasksController < ApplicationController
     @task.destroy
     redirect_to tasks_path
     return
+  end
+
+  def mark_complete
+    task_id = params[:id].to_i
+    @task = Task.find_by(id: task_id)
+    if @task.nil?
+      head :not_found
+      return
+    elsif @task.update(
+      completed_at: Time.now.strftime("%B %e, %Y at %I:%M %p")
+    )
+      redirect_to tasks_path
+      return
+    else
+      render :index, :bad_request
+    end
   end
 end

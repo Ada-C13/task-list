@@ -80,7 +80,7 @@ describe TasksController do
   
   describe "edit" do
     it "can get the edit page for an existing task" do
-      get edit_task_path
+      get edit_task_path(task.id)
       must_respond_with :success
     end
     

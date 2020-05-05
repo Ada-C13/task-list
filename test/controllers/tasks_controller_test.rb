@@ -157,14 +157,13 @@ describe TasksController do
 
   end
   
-  # # Complete these tests for Wave 4
-  # describe "destroy" do
-  #   # Your tests go here
-    
-  # end
-  
-  # # Complete for Wave 4
-  # describe "toggle_complete" do
-  #   # Your tests go here
-  # end
+
+  describe "destroy" do
+    #TODO
+  end
+
+  describe "toggle_complete" do
+    # TODO
+  end
+
 end

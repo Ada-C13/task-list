@@ -1,8 +1,8 @@
-<h2>Chosen Task:<h2>
+<h2>Selected Task:<h2>
 
 <p><%= @task[:name] %></p>
 <p><%= @task[:description] %></p>
 <p><%= @task[:completed_at] %></p>
-<p><%= link_to "Edit", edit_task_path(@task.id) %></p>
+<button class="task-action"><%= link_to "Edit", edit_task_path(@task.id), class: "task-action-link" %></button>
 
-<p><%= link_to "Back to all tasks", tasks_path %></p> 
+<p><%= link_to "Back to all tasks", tasks_path, class: "task-action-link" %></p> 

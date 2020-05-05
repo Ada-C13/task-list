@@ -39,7 +39,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find_by(id: params[:id])
     if @task.nil?
-      head :not_found
+      redirect_to root_path
       return
     elsif @task.update(
       name: params[:task][:name],

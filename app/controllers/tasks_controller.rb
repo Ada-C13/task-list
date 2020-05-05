@@ -80,7 +80,7 @@ class TasksController < ApplicationController
       description: params[:task][:description],
       completed_at: params[:task][:completed_at]
     )
-      redirect_to task_path # return to index to view list of tasks
+      redirect_to tasks_path # return to index to view list of tasks
       return
     else #if the save fails
       render :edit # show the form view again

@@ -87,7 +87,6 @@ describe TasksController do
       must_redirect_to tasks_path(new_task.id)
     end
   end
-  #  RIGHT HERE CHARLOTTE $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
   # Unskip and complete these tests for Wave 3
   describe "edit" do
     it "can get the edit page for an existing task" do
@@ -107,17 +106,44 @@ describe TasksController do
       must_redirect_to tasks_path
     end
   end
+
   
+    #  RIGHT HERE CHARLOTTE $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
   # Uncomment and complete these tests for Wave 3
+  # check for a valid update and a non-existant Task
   describe "update" do
+    before do
+      Task.create(name: "Rails Testing", description: "videos/lectures", completed_at: nil)
+    end
+    let (:new_task_hash) {
+      {
+        task: {
+          name: "CS_Fun",
+          description: "really hard coding",
+          completed_at: "NOW",
+        },
+      }
+    }
+
     
     # Note:  If there was a way to fail to save the changes to a task, that would be a great
     #        thing to test.
-    it "can update an existing task" do
-      # Your code here
+    it "will update a model with a valid post request" do
+      task = Task.first
+      expect {
+        patch task_path(task.id), params: new_task_hash
+      }.wont_change 'Task.count'
+
+      must_redirect_to tasks_path
+
+      task = Task.find_by(id: id)
+      expect(task.name).must_equal new_task_hash[:task][:name]
+      expect(task.description).must_equal new_task_hash[:task][:description]
+      expect(task.completed_at).must_equal new_task_hash[:task][:completed_at]
     end
     
-    it "will redirect to the root page if given an invalid id" do
+    it "will respond with not_found for invalid ids" do
       # Your code here
     end
   end

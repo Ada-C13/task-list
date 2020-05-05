@@ -39,7 +39,6 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: params[:id])
 
     if @task.nil?
-      # head :not_found
       redirect_to tasks_path
       return
     end
@@ -51,7 +50,6 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: params[:id])
    
     if @task.nil?
-      # head :not_found
       redirect_to tasks_path
       return
     elsif @task.update(name: params[:task][:name], description: params[:task][:description]) # update task
@@ -61,6 +59,22 @@ class TasksController < ApplicationController
       render :edit
       return
     end
+  end
+
+
+  def destroy
+    @task = Task.find_by(id: params[:id])
+
+    if @task.nil?
+      redirect_to tasks_path
+      return
+    end
+
+    @task.destroy
+
+    redirect_to tasks_path
+    return
+
   end
 
 end

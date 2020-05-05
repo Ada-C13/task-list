@@ -1,3 +1,14 @@
-<h2><%= @task.name %></h2>
-<h3><%= @task.description %></h3>
-<%= link_to "Edit task", edit_task_path(@task.id)%>
+<div>
+  <header>
+    <h4><%= @task.name %></h4>
+  </header>
+  <p><%= @task.description %></p>
+  <% if @task.completed_at %>
+    <p><strong>Completed</strong>: <%= @task.completed_at %></p>
+  <% end %>
+  <p>
+    <%= link_to "Edit", edit_task_path(@task.id)%> | 
+    <%= link_to "Mark complete", mark_complete_path(@task.id), method: :patch %>  | 
+    <%= link_to "Delete", task_path(@task), method: :delete, data: {confirm: "Are you sure?"} %> 
+  </p>
+</div>

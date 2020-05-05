@@ -1,10 +1,10 @@
-<h2>Edit task</h2>
+<h4>Edit task</h4>
 <%= form_with model: @task do |f|%>
-<div>
+<div class="edit_field">
   <%= f.label :name %>
   <%= f.text_field :name %>
 </div>
-<div>
+<div class="edit_field">
   <%= f.label :description %>
   <%= f.text_field :description %>
 </div>

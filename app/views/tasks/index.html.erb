@@ -1,15 +1,16 @@
 <ol>
   <% @tasks.each do |task|  %>
     <li class="task">
+      <strong>
       <% if task.completed_at %>
-        <s><%= task.name %>: <%= task.description %></s>
+        <s><%= task.name %></s>
       <% else %>
-        <%= task.name %>: <%= task.description %>
-      <% end%><br/>
-      <%= link_to "Task details", task_path(task.id)%> | 
-      <%= link_to "Edit task", edit_task_path(task.id)%> | 
-      <%= link_to "Mark Complete", mark_complete_path(task.id), method: :patch %>  | 
-      <%= link_to "Delete this task", task_path(task), method: :delete, data: {confirm: "Are you sure?"} %> 
+        <%= task.name %>
+      <% end%></strong><br/>
+      <%= link_to "Details", task_path(task.id)%> | 
+      <%= link_to "Edit", edit_task_path(task.id)%> | 
+      <%= link_to "Mark complete", mark_complete_path(task.id), method: :patch %>  | 
+      <%= link_to "Delete", task_path(task), method: :delete, data: {confirm: "Are you sure?"} %> 
     </li>
   <% end %>
 </ol>

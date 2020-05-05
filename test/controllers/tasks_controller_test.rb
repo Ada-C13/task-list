@@ -158,8 +158,38 @@ describe TasksController do
     end
   end
   
-  # Complete for Wave 4
   describe "toggle_complete" do
-    # Your tests go here
+    before do
+      Task.create(
+        name: "incomplete task",  
+        description: "incomplete task description",
+        completed_at: nil
+      )
+      Task.create(
+        name: "completed task",  
+        description: "completed description",
+        completed_at: Time.now
+      )
+    end
+
+    it "can mark an incomplete task as complete" do
+      id = Task.first.id
+
+      # expect toggle_complete_path(id) to change the value of Task.first.completed_at to Time.now
+    end
+
+    it "can mark a completed task as incomplete" do
+      id = Task.first.id
+
+      # expect toggle_complete_path(id) to change the value of Task.first.completed_at to nil
+    end
+
+    it "will redirect to the root page if given an invalid id" do
+      id = -1
+
+      # expect toggle_complete_path(id) to not change the task record
+
+      must_redirect_to root_path
+    end
   end
 end

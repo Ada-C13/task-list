@@ -130,14 +130,32 @@ describe TasksController do
         patch task_path(id), params: edited_task_hash
       }.wont_change "Task.count"
 
-      must_respond_with :redirect
+      must_redirect_to root_path
     end
   end
   
-  # Complete these tests for Wave 4
   describe "destroy" do
-    # Your tests go here
-    
+    before do
+      Task.create(
+        name: "existing task",  
+        description: "existing task description",
+        completed_at: nil
+      )
+    end
+
+    it "can delete an existing task" do
+      id = Task.first.id
+
+      expect{delete task_path(id)}.must_change "Task.count", 1
+    end
+
+    it "will redirect to the root page if given an invalid id" do
+      id = -1
+
+      expect{delete task_path(id)}.wont_change "Task.count"
+
+      must_redirect_to root_path
+    end
   end
   
   # Complete for Wave 4

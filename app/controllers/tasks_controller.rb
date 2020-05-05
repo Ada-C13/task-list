@@ -13,7 +13,7 @@ class TasksController < ApplicationController
     end 
   end 
   
-  def edit #form to edit 
+  def edit 
     @task = Task.find_by(id: params[:id])
     
     if @task.nil?
@@ -24,11 +24,11 @@ class TasksController < ApplicationController
   
   def update #Send form data to the server to update an existing book
     @task = Task.find_by(id: params[:id])
-    puts "Updating"
+    
     if @task.nil? 
       head :not_found
       return 
-    elsif @task.update(name: params[:task][:name], description: params[:task][:description]) 
+    elsif @task.update(task_params) 
       redirect_to task_path
       return 
     else 
@@ -43,14 +43,9 @@ class TasksController < ApplicationController
   end 
   
   def create 
-    
-    @task = Task.new(
-      name: params[:task][:name],
-      description: params[:task][:description],
-      completed_at: nil
-    )
+    @task = Task.new(task_params)
     if @task.save
-      redirect_to tasks_path #send them to the '/tasks' path
+      redirect_to root_path
     else 
       render :new, :bad_request
     end 
@@ -62,13 +57,13 @@ class TasksController < ApplicationController
     if @task.nil? 
       head :not_found
       return 
-    else
-      @task.update(completed_at: Time.now) #should be a string with the date 
+    elsif @task.completed_at == ""
+      @task.update(completed_at: Time.now) 
       redirect_to tasks_path
       return 
+    else 
+      @task.update(completed_at: "")
     end 
-    
-    
   end 
   
   def destroy
@@ -82,5 +77,9 @@ class TasksController < ApplicationController
     redirect_to tasks_path
     return  
   end
-  #when user clicks 'mark as complete', it should change the data base with the date it completed 
+  private 
+  
+  def task_params
+    return params.require(:task).permit(:name, :description, :completed_at)
+  end 
 end 

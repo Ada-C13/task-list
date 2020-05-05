@@ -116,7 +116,7 @@ describe TasksController do
         },
       }
 
-      new_task = task;
+      task
       
       # Act-Assert
       expect {
@@ -152,7 +152,26 @@ describe TasksController do
   
   # Complete these tests for Wave 4
   describe "destroy" do
-    # Your tests go here
+    it "deletes task when valid id is provided and redirects to root" do
+      task  
+      # Act-Assert
+      expect {
+        delete task_path(task[:id])
+      }.must_differ "Task.count", -1
+            
+      must_respond_with :redirect
+      must_redirect_to root_path
+    end
+
+    it "does not change anything when invalid id is provided and redirects to root" do
+      task  
+      # Act-Assert
+      expect {
+        delete task_path(-1)
+      }.must_differ "Task.count", 0
+            
+      must_respond_with :not_found
+    end
     
   end
   

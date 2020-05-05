@@ -45,7 +45,7 @@ class TasksController < ApplicationController
     return
   end
 
-  def delete
+  def destroy
     begin
       @task = Task.find(params[:id]) 
     rescue => error

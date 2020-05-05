@@ -1,0 +1,25 @@
+// Place all the styles related to the Tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.complete {
+  text-decoration: line-through
+}
+
+
+.index {
+  background-color: lemonchiffon;
+  border: black solid 2px;
+  width: 70%;
+  border-radius: 10px;
+  text-align: left;
+  padding: 2rem;
+  
+}
+h1 {
+  margin: 1em;
+}
+
+h2 {
+  text-align: center;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TaskList</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  
+    </head>
+    <h1>TASKLIST</h1>
+    <div class = "container">
+      <div>
+        <nav>
+          <ul>
+            <li class = "application_layout" ><%= link_to "Add Task", new_task_path %></li>
+            <li class = "application_layout"><%= link_to "All Tasks", tasks_path %></li>  
+          </ul>
+        </nav>
+      </div>
+      <div>
+        <body>
+          <%= yield %>
+        </body>
+      </div>
+    </div>
+  <footer><strong>All rights reserved 2020 Tithvorlak Mok</strong></footer>
+</html>

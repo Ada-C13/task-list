@@ -1,0 +1,23 @@
+// Place all the styles related to the Tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+body {
+  background-color: lightgray;
+  margin-left: 2rem;
+}
+
+.tasks {
+  margin-top: 2rem;
+}
+
+h1, h2 {
+  color: darksalmon;
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+

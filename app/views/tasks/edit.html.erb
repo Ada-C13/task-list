@@ -1,0 +1,13 @@
+<%= form_with model: @task do |f| %>
+ <p>Please provide the following new information to edit the task in our database:</p>
+ <div>
+    <%= f.label :name%>
+    <%= f.text_field :name %>
+ </div>
+ <div>
+    <%= f.label :name%>
+    <%= f.text_area :description %> 
+ </div>
+  <%= f.submit "Edit task", class: "task-button"%>
+
+<% end %>

@@ -1,0 +1,16 @@
+<div class="list-task">
+  <h5>Your tasks</h5>
+  <ul>
+    <% @tasks.each do |task| %>
+    <li>
+      
+      <%= link_to task.name, task_path(task.id) %>
+
+      <%=  link_to "#{ task.completed_at == "" ? "Mark complete" : "Mark incomplete"} |", complete_task_path(task.id), method: :patch%>
+      <%=  link_to "Edit |", edit_task_path(task.id)%>
+      <%=  link_to "Delete", task_path(task), method: :delete, data: {confirm: "Are you sure?"}%>
+    
+    </li>
+    <% end %>
+  </ul>
+</div>

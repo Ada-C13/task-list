@@ -84,7 +84,7 @@ class TasksController < ApplicationController
       return
     elsif @task.update(
       completed_at: Time.now.strftime("%B %e, %Y at %I:%M %p"),
-      completed: true
+      completed: !@task.completed
     )
       redirect_to tasks_path
       return

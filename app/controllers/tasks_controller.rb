@@ -18,11 +18,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(
-      name: params[:task][:name], 
-      description: params[:task][:description],
-      completed_at: nil
-    )
+    @task = Task.new(task_params)
 
     @task.save ? (redirect_to task_path(@task)) : (render :new, alert: "Error: Task not saved")
     return 
@@ -45,11 +41,7 @@ class TasksController < ApplicationController
       return
     end
     
-    @task.update(
-      name: params[:task][:name], 
-      description: params[:task][:description],
-      completed_at: params[:task][:completed_at].presence # this ensures that an empty input will be converted to nil (Source: Komsun K. and Pedro Henrique Ramos Souza, https://stackoverflow.com/questions/15419285/converting-an-empty-string-to-nil-in-place)
-    ) ? (redirect_to task_path(@task)) : (render :edit, alert: "Error: Task not updated")
+    @task.update(task_params) ? (redirect_to task_path(@task)) : (render :edit, alert: "Error: Task not updated")
     return
   end
 
@@ -75,7 +67,7 @@ class TasksController < ApplicationController
       return
     end
 
-    if @task[:completed_at].nil?
+    if @task[:completed_at].nil? || @task[:completed_at].empty?
       @task.update(
         completed_at: Time.now
       ) ? (redirect_to root_path) : (redirect_to root_path, alert: "Error: Task unable to be marked as complete")
@@ -84,5 +76,11 @@ class TasksController < ApplicationController
         completed_at: nil
       ) ? (redirect_to root_path) : (redirect_to root_path, alert: "Error: Task unable to be marked as incomplete")
     end
+  end
+
+  private
+
+  def task_params
+    return params.require(:task).permit(:name, :description, :completed_at)
   end
 end

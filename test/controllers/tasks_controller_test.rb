@@ -39,7 +39,7 @@ describe TasksController do
       get task_path(-1)
       
       # Assert
-      expect(flash[:alert]).must_equal "Couldn't find Task with 'id'=-1"
+      expect(flash[:alert]).must_equal "Error: Couldn't find Task with 'id'=-1"
       must_respond_with :redirect
     end
   end
@@ -87,7 +87,7 @@ describe TasksController do
     
     it "will create a flash alert and redirect for an invalid task" do
       get edit_task_path(-1)
-      expect(flash[:alert]).must_equal "Couldn't find Task with 'id'=-1"
+      expect(flash[:alert]).must_equal "Error: Couldn't find Task with 'id'=-1"
       must_respond_with :redirect
     end
   end
@@ -133,7 +133,7 @@ describe TasksController do
         patch task_path(id), params: edited_task_hash
       }.wont_change "Task.count"
 
-      expect(flash[:alert]).must_equal "Couldn't find Task with 'id'=-1"
+      expect(flash[:alert]).must_equal "Error: Couldn't find Task with 'id'=-1"
 
       must_redirect_to root_path
     end
@@ -159,7 +159,7 @@ describe TasksController do
 
       expect{delete task_path(id)}.wont_change "Task.count"
 
-      expect(flash[:alert]).must_equal "Couldn't find Task with 'id'=-1"
+      expect(flash[:alert]).must_equal "Error: Couldn't find Task with 'id'=-1"
 
       must_redirect_to root_path
     end
@@ -218,7 +218,7 @@ describe TasksController do
         patch toggle_complete_path(id) 
       }.wont_change "Task.count"
 
-      expect(flash[:alert]).must_equal "Couldn't find Task with 'id'=-1"
+      expect(flash[:alert]).must_equal "Error: Couldn't find Task with 'id'=-1"
       
       must_redirect_to root_path
     end

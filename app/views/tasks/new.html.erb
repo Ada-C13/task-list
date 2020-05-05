@@ -1,11 +1,11 @@
 <div id = new_form>
   <%= form_with model: @task, class: "create-book" do |f|%>
   <p>Please provide the following information to create new task:</p>
-
+     <br>
   <%= f.text_field :name , placeholder: "Task Name" %>
-
+     <br>
   <%= f.text_field :description, placeholder: "Description"%>
-
+     <br>
   <%= f.submit "Save Task", class: "task-button" %>
   <% end %>
 </div>

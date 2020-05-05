@@ -1,11 +1,13 @@
 <div id = "edit_form">
   <%= form_with model: @task, class: "create-book" do |f|%>
   <p>Please provide the following information to edit your task in our database:</p>
-
-  <%= f.text_field :name, placeholder: "Task Name" %>
-
-  <%= f.text_field :description, placeholder: "Description"%>
-
+   <br>
+  <%= f.label :name %>
+  <%= f.text_field :name%>
+   <br>
+  <%= f.label :description %>
+  <%= f.text_field :description%>
+   <br>
   <%= f.submit "Edit Task", class: "task-button" %>
   <% end %>
 </div>

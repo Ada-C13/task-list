@@ -167,6 +167,20 @@ describe TasksController do
   
   # Complete for Wave 4
   describe "toggle_complete" do
-    # Your tests go here
+    before do 
+      Task.create(name: "go to sleep", description: "catch up on those zzzs", completed_at: Time.now)
+      @id = Task.first.id
+    end
+
+    it "will toggle to incomplete" do
+      patch toggle_task_path(@id)
+      expect(Task.first.completed_at).must_be :empty?
+    end
+
+    it "will toggle again back to complete" do
+      patch toggle_task_path(@id)
+      patch toggle_task_path(@id)
+      expect(Task.first.completed_at).wont_be_empty
+    end
   end
 end

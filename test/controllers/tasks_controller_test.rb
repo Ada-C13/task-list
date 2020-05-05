@@ -85,13 +85,29 @@ describe TasksController do
 
   # Unskip and complete these tests for Wave 3
   describe "edit" do
-    it "can get the edit page for an existing task" do
-
-      # Your code here
+    before do
+      Task.create(name: "Do this", description: "By this time", completed_at: nil)
     end
+    let (:task_hash) {
+      {
+        task: {
+          name: "Test Task Name",
+          description: "Test Task Description",
+          completed_at: nil,
+        },
+      }
+    }
 
+    it "can get the edit page for an existing task" do
+      # Your code here - leaving so I know what test I wrote SW
+      task = Task.first
+
+      expect {
+        get edit_task_path(task.id), params: task_hash
+      }.must_equal task_hash[:task][:name]
+    end
     it "will respond with redirect when attempting to edit a nonexistant task" do
-
+      skip
       # Your code here
     end
   end
@@ -100,12 +116,39 @@ describe TasksController do
   describe "update" do
     # Note:  If there was a way to fail to save the changes to a task, that would be a great
     #        thing to test.
+    before do
+      Task.create(name: "Do this", description: "By this time", completed_at: nil)
+    end
+    let (:task_hash) {
+      {
+        task: {
+          name: "Test Task Name",
+          description: "Test Task Description",
+          completed_at: nil,
+        },
+      }
+    }
     it "can update an existing task" do
-      # Your code here
+      # Your code here - leaving so I know what test I wrote SW
+      task = Task.first
+      expect {
+        patch task_path(task.id), params: task_hash
+      }.must_differ "Task.count", 0
+
+      must_redirect_to task_path
+      expect(Task.last.name).must_equal task_hash[:task][:name]
+      expect(Task.last.description).must_equal task_hash[:task][:description]
+      expect(Task.last.completed_at).must_equal task_hash[:task][:completed_at]
     end
 
     it "will redirect to the root page if given an invalid id" do
-      # Your code here
+      # Your code here - leaving so I know what test I wrote SW
+      task = Task.first
+      expect {
+        patch task_path(-1), params: task_hash
+      }.must_differ "Task.count", 0
+
+      must_respond_with :not_found
     end
   end
 

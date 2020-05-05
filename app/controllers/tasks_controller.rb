@@ -6,12 +6,8 @@ class TasksController < ApplicationController
   def show
     @task = Task.find_by(id: params[:id].to_i)
     if @task.nil?
-      head :not_found
       redirect_to tasks_path
       return
-    end
-    if @task.status == "complete"
-      task.completed_at
     end
   end
 

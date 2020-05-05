@@ -1,0 +1,18 @@
+<%= form_with model: @task, class: 'create-task' do |f| %>
+  <p>Enter the following to save task:</p>
+
+  <section class="form-section">
+    <p class="form-label"><%= f.label :name %>:</p>
+    <p><%= f.text_field :name %></p>
+  </section>
+
+  <section class="form-section">
+    <p class="form-label"><%= f.label :description %>:</p>
+    <p><%= f.text_field :description %></p>
+  </section>
+
+  <%= yield f %>
+
+<% end %>
+
+<p><%= link_to "Back to all tasks", tasks_path, class: "task-action-link" %></p> 

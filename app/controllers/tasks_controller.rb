@@ -21,4 +21,13 @@ class TasksController < ApplicationController
     @task.save ? (redirect_to task_path(@task)) : (render :new, alert: "Error: Task not saved")
     return 
   end
+
+  def edit
+    begin
+      @task = Task.find(params[:id]) 
+    rescue => error
+      redirect_to root_path, alert: "#{error}"
+      return
+    end
+  end
 end

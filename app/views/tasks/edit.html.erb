@@ -1,0 +1,13 @@
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
+<p>Please make your changes to this task:</p>
+
+<%= render "task_form" %>
+
+<nav>
+  <button><%= link_to "View All Tasks", root_path %></button>
+</nav>

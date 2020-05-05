@@ -18,14 +18,16 @@
 @import "**/*";
 
 
-* {
+html {
   display: flex;
   // justify-content: center;
   flex-direction: column;
   align-content: center;
-
 }
 
+a {
+  color: black;
+}
 .task {
   font-style: italic;
 }

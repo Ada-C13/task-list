@@ -1,11 +1,13 @@
 TASKS = [
-  { title: "Kids", description: "Get more workbooks", completed_at: "today"},
-  { title: "Home", description: "Get more toothpaste"},
-  { title: "Home", description: "Get coffee now"},
-  { title: "Charlie", description: "Update shots"},
-  { title: "Costco", description: "Toilet Paper"},
-  { title: "Costco", description: "Chicken"},
+  { name: "Kids", description: "Get more workbooks", completed_at: DateTime.now},
+  { name: "Home", description: "Get more toothpaste"},
+  { name: "Home", description: "Get coffee now"},
+  { name: "Charlie", description: "Update shots"},
+  { name: "Costco", description: "Toilet Paper"},
+  { name: "Costco", description: "Chicken"},
 ]
+
+
 
 class TasksController < ApplicationController
   

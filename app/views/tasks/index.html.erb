@@ -1,0 +1,22 @@
+<main>
+  <h2> List of Tasks</h2>
+
+
+    <% if @tasks.length > 0 %>
+    <ul>
+      <li><%= link_to "Add a task", new_task_path %></li>
+      <% @tasks.each do |task|%>
+        <li> 
+        Task: <%= task.name %> <br> 
+        Description: <%= task.description %> <br> 
+        Completed at: <%= task.completed_at %> <br>
+        <%= link_to "Edit task", edit_task_path(task) %> <br> 
+        <%= link_to "Delete task", task_path(task), method: :delete, data: {confirm: "Are you sure you want to delete this task?"} %> <br></li>
+        <%= button_to "Mark complete", complete_path(task), method: :post, :class => "btn btn-outline-dark" %>
+      <% end %>
+    </ul>
+    <% else %>
+    <h3>No tasks in the system!</h3>
+    <% end %>
+
+</main>

@@ -4,10 +4,12 @@
 <% if @tasks.length > 0 %>
   <ul>
     <% @tasks.each do |task|%>
-      <li>
-        <%= task.name %> description: <%= task.description %>  Completed_at: <%= task.completed_at %> 
-        <%= link_to "Edit", edit_task_path(task) %>
-      </li>
+      <p><%= task.name %></p> 
+      <p> description: <%= task.description %></p> 
+      <p> Completed_at: <%= task.completed_at %></p>
+      <%= button_to "Edit Task", edit_task_path(task.id), method: :get %>
+      <%= button_to 'Delete', task_path(task.id), method: :delete, data: {confirm: "Are you sure?"} %>
+      <%= button_to "#{task.completed_at ? "Pending" : "Done"}", completed_task_path(task[:id]), method: :patch %>
     <% end %>
   </ul>
 <% else %>

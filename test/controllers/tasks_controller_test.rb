@@ -85,7 +85,7 @@ describe TasksController do
       must_respond_with :success
     end
     
-    it "will create a flash alert and respond with redirect when attempting to edit a nonexistant task" do
+    it "will create a flash alert and redirect for an invalid task" do
       get edit_task_path(-1)
       expect(flash[:alert]).must_equal "Couldn't find Task with 'id'=-1"
       must_respond_with :redirect
@@ -126,7 +126,7 @@ describe TasksController do
       expect(task.completed_at).must_be_nil
     end
     
-    it "will create a flash alert and redirect to the root page if given an invalid id" do
+    it "will create a flash alert and redirect for an invalid task" do
       id = -1
 
       expect {
@@ -154,7 +154,7 @@ describe TasksController do
       expect{delete task_path(id)}.must_change "Task.count", 1
     end
 
-    it "will create a flash alert and redirect to the root page if given an invalid id" do
+    it "will create a flash alert and redirect for an invalid task" do
       id = -1
 
       expect{delete task_path(id)}.wont_change "Task.count"
@@ -189,7 +189,6 @@ describe TasksController do
       }
     }
 
-
     it "can mark an incomplete task as complete" do
       id = Task.first.id
 
@@ -212,7 +211,7 @@ describe TasksController do
       expect(task.completed_at).must_be_nil
     end
 
-    it "will create a flash alert and redirect to the root page if given an invalid id" do
+    it "will create a flash alert and redirect for an invalid task" do
       id = -1
 
       expect { 

@@ -9,9 +9,7 @@
     <li>
       <p>
         <%= link_to task.name, task_path( task.id ) %>
-        <% mark_complete_text = task.completed ? "Mark Incomplete" : "Mark Complete" %>
         <%= task.description %> | 
-        <%= link_to  mark_complete_text, toggle_completed_path( task.id ), method: :patch %> | 
         <%= link_to "delete", task_path( task.id ), method: :delete %>
       </p>
     </li>

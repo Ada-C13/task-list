@@ -22,7 +22,7 @@ class TasksController < ApplicationController
     )
 
     if @new_task.save
-      redirect_to task_path( @new_task.id )
+      redirect_to task_path(@new_task.id)
     else
       render new_task_path 
     end
@@ -57,16 +57,18 @@ class TasksController < ApplicationController
     end
   end
 
-  def toggle_completed
+  def toggle_complete
     task = Task.find_by(id: params[:id])
 
     if task.nil?
       redirect_to root_path
-   elsif @task.update(
-      completed_at: Time.now.strftime("%B %e, %Y at %I:%M %p")
-    )
+      return
+   elsif @task.update(completed_at: Time.now.strftime("%B %e, %Y at %I:%M %p"))
+      redirect_to task_path(@task.id)
+      return
     else
-      redirect_to tasks_path
+      render :edit
+      return
     end
   end
 

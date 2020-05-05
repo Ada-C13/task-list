@@ -1,16 +1,20 @@
 <ol>
-  <% @tasks.each do |task|  %>
-    <li class="task">
-      <strong>
-      <% if task.completed_at %>
-        <s><%= task.name %></s>
-      <% else %>
-        <%= task.name %>
-      <% end%></strong><br/>
-      <%= link_to "Details", task_path(task.id)%> | 
-      <%= link_to "Edit", edit_task_path(task.id)%> | 
-      <%= link_to "Mark complete", mark_complete_path(task.id), method: :patch %>  | 
-      <%= link_to "Delete", task_path(task), method: :delete, data: {confirm: "Are you sure?"} %> 
-    </li>
+  <% if @tasks.count == 0%>
+    <h4> No tasks in list currently.</h4>
+  <% else %>
+    <% @tasks.each do |task|  %>
+      <li class="task">
+        <strong>
+        <% if task.completed_at %>
+          <s><%= task.name %></s>
+        <% else %>
+          <%= task.name %>
+        <% end%></strong><br/>
+        <%= link_to "Details", task_path(task.id)%> | 
+        <%= link_to "Edit", edit_task_path(task.id)%> | 
+        <%= link_to "Mark complete", mark_complete_path(task.id), method: :patch %>  | 
+        <%= link_to "Delete", task_path(task), method: :delete, data: {confirm: "Are you sure?"} %> 
+      </li>
+    <% end %>
   <% end %>
 </ol>

@@ -71,10 +71,12 @@ class TasksController < ApplicationController
       @task.update(
         completed_at: Time.now
       ) ? (redirect_to root_path) : (redirect_to root_path, alert: "Error: Task unable to be marked as complete")
+      return
     else
       @task.update(
         completed_at: nil
       ) ? (redirect_to root_path) : (redirect_to root_path, alert: "Error: Task unable to be marked as incomplete")
+      return
     end
   end
 

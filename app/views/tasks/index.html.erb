@@ -1,5 +1,23 @@
-<ul class='tasks'>
-  <% @to_do.each do |task| %>
-    <li><%= task %></li>
-  <%end%>
-</ul>
+<h1>To-Do:</h1>
+
+<section>
+  <aside>
+    <%= link_to "Add New Task", new_task_path %>
+  </aside>
+  <ul>
+    <% @task.each do |task|%>
+    <li>
+      <p>
+        <%= link_to task.name, task_path( task.id ) %>
+        <% mark_complete_text = task.completed ? "Unmark Complete" : "Mark Complete" %>
+        <%= task.description %> | 
+        <%= link_to  mark_complete_text, toggle_completed_path( task.id ), method: :patch %> | 
+        <%= link_to "delete", task_path( task.id ), method: :delete %>
+      </p>
+      <p>
+        <%= "Complete by " + task.due_date.to_s%>
+      </p>
+    </li>
+    <% end %>
+  </ul>
+</section>

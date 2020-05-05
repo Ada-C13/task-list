@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.order("id")
+    @tasks = Task.order("id") # with Task.all, everytime a task was updated, it would jump to the bottom of the list
   end
 
   def show

@@ -1,6 +1,7 @@
 <h4><%= @task[:name] %></h4>
 <p><%= @task[:description] %></p>
 <p>Completed: <%= @task[:completed_at] %></p>
+<%= button_to "Edit", edit_task_path(@task[:id]), method: :get %>
 
 <nav>
   <button><%= link_to "View All Tasks", root_path %></button>

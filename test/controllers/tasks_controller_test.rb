@@ -108,13 +108,25 @@ describe TasksController do
   # Unskip and complete these tests for Wave 3
   describe "edit" do
     it "can get the edit page for an existing task" do
-      skip
-      # Your code here
+      #skip
+      # Act
+      get edit_task_path(task.id)
+      
+      # Assert
+      must_respond_with :success
     end
     
     it "will respond with redirect when attempting to edit a nonexistant task" do
-      skip
-      # Your code here
+      # Arrange
+      invalid_id = 999
+      
+      #Act 
+      get task_path(invalid_id)
+
+      #Assert
+      must_respond_with :redirect
+      
+      # skip
     end
   end
   
@@ -123,21 +135,55 @@ describe TasksController do
     
     # Note:  If there was a way to fail to save the changes to a task, that would be a great
     #        thing to test.
+
     it "can update an existing task" do
-      skip
-      # Your code here
+      Task.create(name: "Get Shit Done", description: "You gotta werk.")
+
+      update_task_hash = {
+        task: {
+          name: "GSD",
+          description: "You still gotta werk.",
+        },
+      }
+
+      # skip
+      id = Task.first.id
+      expect {
+        patch task_path(id), params: update_task_hash
+      }.wont_change "Task.count"
+
+      task = Task.find_by(id: id)
+      expect(task.name).must_equal update_task_hash[:task][:name]
+      expect(task.description).must_equal update_task_hash[:task][:description]
     end
     
     it "will redirect to the root page if given an invalid id" do
-      skip
-      # Your code here
+      #skip
+      # Arrange
+      invalid_id = 999
+
+      #Act 
+      get task_path(invalid_id)
+
+      #Assert
+      must_respond_with :redirect
+      
+      # skip
     end
   end
   
   # Complete these tests for Wave 4
   describe "destroy" do
     # Your tests go here
-    
+    it "will remove an item from the db and the task count will decrease" do
+      Task.create(name: "Get Shit Done", description: "You gotta werk.")
+
+      id = Task.last.id
+      expect {
+        delete task_path(id)
+      }.must_change "Task.count"
+
+    end
   end
   
   # Complete for Wave 4

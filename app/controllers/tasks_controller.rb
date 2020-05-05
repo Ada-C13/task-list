@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   def show
     @task = Task.find_by(id: params[:id].to_i)
     if @task.nil?
-      redirect_to tasks_path
+      redirect_to root_path
       return
     end
   end
@@ -61,7 +61,7 @@ class TasksController < ApplicationController
     elsif @task.update(
       completed_at: Time.now
     )
-      redirect_to tasks_path
+      redirect_to root_path
       return
     else
       render :edit
@@ -75,7 +75,7 @@ class TasksController < ApplicationController
       head :not_found
       return
     elsif @task.destroy
-      redirect_to tasks_path
+      redirect_to root_path
       return
     else
       render :show

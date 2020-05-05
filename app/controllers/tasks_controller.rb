@@ -1,7 +1,5 @@
 class TasksController < ApplicationController
   def index
-    #array of hard-coded tasks
-    # @tasks_array = ["Run Laundry", "Make Tea", "Finish a Sewing Project", "Draft a Sewing Pattern", "Weed the Yard"]
     @tasks = Task.all
   end
 
@@ -52,14 +50,14 @@ class TasksController < ApplicationController
       head :not_found
       return
     elsif @task.update(
-      name: params[:task][:name], 
-      description: params[:task][:description]
-    )
-      redirect_to task_path(task_id)
-      return
+          name: params[:task][:name], 
+          description: params[:task][:description]
+        )
+          redirect_to task_path(task_id)
+          return
     else
-      render :edit
-      return
+        render :edit
+        return
     end
   end
 

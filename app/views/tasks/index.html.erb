@@ -1,10 +1,9 @@
-<%# Display the tasks from the controller action%>
 <ul class="tasks">
   --------
   <% @tasks.each do |task| %>
   <% status = "Mark Completed" if !task.completed %>
   <% status = "Unmark Completed" if task.completed %>
   <li class="task"><%=link_to task.name, task_path(task.id) %>
-  <%= button_to status, task_path(task.id), method: :patch %>      -      <%= link_to "edit", edit_task_path(task.id) %>  -  <%= link_to "delete", task_path(task.id), method: :delete %><br>--------</li>
+  <%= button_to status, task_path(task.id), method: :put %>      -      <%= link_to "edit", edit_task_path(task.id) %>  -  <%= link_to "delete", task_path(task.id), method: :delete %><br>--------</li>
   <% end %>
 </ul>

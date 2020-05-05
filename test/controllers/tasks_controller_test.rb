@@ -168,26 +168,28 @@ describe TasksController do
       Task.create(
         name: "completed task",  
         description: "completed description",
-        completed_at: Time.now
+        completed_at: Time.parse("2020-05-04")
       )
     end
 
     it "can mark an incomplete task as complete" do
       id = Task.first.id
-
-      # expect toggle_complete_path(id) to change the value of Task.first.completed_at to Time.now
+      toggle_complete_path(id) 
+      expect(Task.first.completed_at).must_equal Time.now
     end
 
     it "can mark a completed task as incomplete" do
-      id = Task.first.id
-
-      # expect toggle_complete_path(id) to change the value of Task.first.completed_at to nil
+      id = Task.second.id
+      toggle_complete_path(id) 
+      expect(Task.second.completed_at).must_be_nil
     end
 
-    it "will redirect to the root page if given an invalid id" do
+    it "will throw an exception and redirect to the root page if given an invalid id" do
       id = -1
 
-      # expect toggle_complete_path(id) to not change the task record
+      expect { 
+        toggle_complete_path(id) 
+      }.must_raise ArgumentError
 
       must_redirect_to root_path
     end

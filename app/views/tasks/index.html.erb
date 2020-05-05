@@ -1,0 +1,21 @@
+<h2>All Tasks</h2>
+<ul>
+	<% @tasks.each do |task| %>
+		<li class="task-container">
+
+			<section class="task-container--task <%= 'task-container--completed' if task.completed_at != nil %>">
+				<%= link_to task.name, task_path(task)%><br>
+			</section>
+
+			<nav class="options <%= 'options--completed' if task.completed_at != nil %>">
+				<% if task.completed_at == nil %>
+					<%= link_to 'Mark as Complete', complete_task_path(task), method: :patch %>
+				<% else %>
+					<%= link_to 'Unmark as Complete', complete_task_path(task), method: :patch %>
+				<% end %>
+				<%= link_to 'Edit', edit_task_path(task) %>
+				<%= link_to 'Delete', task_path(task), method: :delete, data: {confirm: "Are you sure?"} %>
+			</nav>
+		</li>
+	<% end %>
+</ul>

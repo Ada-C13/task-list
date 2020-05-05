@@ -106,7 +106,7 @@ describe TasksController do
 
     it "can update an existing task" do
       expect {
-        patch update_task_path(@task.id), params: @task_hash
+        patch tasks_path(@task.id), params: @task_hash
       }.must_differ "Task.count", 0
 
       #making sure it gets saved
@@ -119,7 +119,7 @@ describe TasksController do
     end
 
     it "will respond with not_found when given an invalid id" do
-      patch update_task_path(-1)
+      patch tasks_path(-1)
       must_respond_with :not_found
     end
   end
@@ -128,13 +128,16 @@ describe TasksController do
   describe "destroy" do
     it "removes a task with a valid id" do
       test_task = Task.create(name: "test task", description: "test task description", completed_at: "test task not completed")
+
       expect {
-        delete remove_task_path(test_task.id)
+        delete tasks_path(test_task.id)
       }.must_differ "Task.count", -1
+
+      must_redirect_to root_path
     end
 
     it "will respond with not_found when given an invalid id" do
-      delete remove_task_path(-1)
+      delete tasks_path(-1)
       must_respond_with :not_found
     end
   end
@@ -153,7 +156,7 @@ describe TasksController do
       expect(Task.last.completed_at).must_equal Date.today.to_s
 
       must_respond_with :redirect
-      must_redirect_to '/tasks'
+      must_redirect_to root_path
     end
 
     it "will respond with not_found when given an invalid id" do

@@ -1,0 +1,14 @@
+<h1> Task </h1>
+<p class="show">
+  Task: <%= @task.name %>
+  <br>
+  Description: <%= @task.description %>
+  <br>
+  Completed at: <%= Time.parse(@task.completed_at).strftime("%B %d, %Y at %I:%M %p") if @task.completed_at %> 
+  <br>
+  <%= link_to "Edit Task", edit_task_path %>
+  <br>
+  <%= @task.completed_at ? link_to("Unmark Complete", mark_complete_path(@task.id), method: :patch) : link_to("Mark Complete", mark_complete_path(@task.id), method: :patch) %>
+  <br>
+  <%= link_to "Delete Task", task_path(@task), method: :delete, data: {confirm: "Are you sure?"} %>
+</p>

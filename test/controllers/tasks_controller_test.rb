@@ -104,17 +104,20 @@ describe TasksController do
   describe "update" do
     # Note:  If there was a way to fail to save the changes to a task, that would be a great
     #        thing to test.
-    it "can update an existing task" do
+    before do 
       Task.create(name: "Grocery Shopping", description: "Buy milk", completed_at: "Today")
-
-      task_hash = {
+    end
+    let(:task_hash) {
+      {
         task: {
           name: "Go for a walk",
           description: "40 minutes walk",
           completed_at: "not yet"
         }
-      }
+      } 
+    }
 
+    it "can update an existing task" do
       task = Task.first
 
       expect {
@@ -128,16 +131,6 @@ describe TasksController do
     end
     
     it "will redirect to the root page if given an invalid id" do
-      Task.create(name: "Grocery Shopping", description: "Buy milk", completed_at: "Today")
-
-      task_hash = {
-        task: {
-          name: "Go for a walk",
-          description: "40 minutes walk",
-          completed_at: "not yet"
-        }
-      }
-
       task = Task.first
 
       expect {

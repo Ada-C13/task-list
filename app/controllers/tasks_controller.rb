@@ -24,7 +24,7 @@ class TasksController < ApplicationController
   
   def update #Send form data to the server to update an existing book
     @task = Task.find_by(id: params[:id])
-    
+    puts "Updating"
     if @task.nil? 
       head :not_found
       return 
@@ -43,10 +43,11 @@ class TasksController < ApplicationController
   end 
   
   def create 
+    
     @task = Task.new(
       name: params[:task][:name],
       description: params[:task][:description],
-      completed_at: nil 
+      completed_at: nil
     )
     if @task.save
       redirect_to tasks_path #send them to the '/tasks' path
@@ -56,6 +57,19 @@ class TasksController < ApplicationController
   end 
   
   
+  def complete
+    @task = Task.find_by(id: params[:id])
+    if @task.nil? 
+      head :not_found
+      return 
+    else
+      @task.update(completed_at: Time.now) #should be a string with the date 
+      redirect_to tasks_path
+      return 
+    end 
+    
+    
+  end 
   
   def destroy
     @task = Task.find_by(id: params[:id])

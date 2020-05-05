@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   get '/tasks/:id', to: 'tasks#show', as: 'task' #shows details about one book
   get '/tasks/:id/edit', to: 'tasks#edit' , as: 'edit_task' #brings up the form to edit a book
   patch '/tasks/:id', to: 'tasks#update' #update an existing book
+  patch '/tasks/:id/complete', to: 'tasks#complete', as: 'complete_task' #update an existing book
   delete '/tasks/:id', to: 'tasks#destroy' #destroy a given book
 end

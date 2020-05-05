@@ -1,6 +1,6 @@
 
 <div class="new">
-  <%= form_for @task do |f| %>
+  <%= form_with model: @task do |f| %>
     <%= f.label :name %>:
     <%= f.text_field :name %> <br />
 
@@ -9,4 +9,4 @@
 
     <%= f.submit %>
   <% end %>
- </div> 
+</div> 

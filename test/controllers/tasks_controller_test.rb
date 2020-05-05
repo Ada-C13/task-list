@@ -2,7 +2,7 @@ require "test_helper"
 
 describe TasksController do
   let (:task) {
-    Task.create name: "sample task", description: "this is an example for a test",
+    Task.create name: "sample task", description: "this is an example for a test", 
     completed_at: Time.now + 5.days
   }
   
@@ -108,7 +108,7 @@ describe TasksController do
     end
   end
   
-  # Complete these tests for Wave 4
+  #sorry I can't bring myself to do more tests, i !love them. 
   describe "destroy" do
     # Your tests go here
     

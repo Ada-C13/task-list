@@ -1,1 +1,7 @@
-rak
+<h1><%= @task.name %></h1>
+
+<section>
+  <h3><%= @task.description%></h3>
+  <p>Completed on: <%= @task.completed_at%></p>
+  <p><%=link_to "edit", edit_task_path%>
+</section>

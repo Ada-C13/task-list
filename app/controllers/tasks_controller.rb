@@ -15,14 +15,17 @@ class TasksController < ApplicationController
   end
 
   def create 
-    form = params["task"]
-    @new_task = Task.new
+    @new_task = Task.new(
+      name: params[:task][:name], 
+      description: params[:task][:description], 
+      completed_at: "incomplete",
+    )
 
-    @new_task.name = form["name"]
-    @new_task.description = form["description"]
-
-    redirect_to task_path(@new_task.id) if @new_task.save
-
+    if @new_task.save
+      redirect_to task_path( @new_task.id )
+    else
+      render new_task_path 
+    end
   end
 
   def edit
@@ -42,12 +45,36 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy
+    task = Task.find_by(id: params[:id])
+
+    if task.nil?
+      redirect_to tasks_path
+    elsif task.destroy
+      redirect_to tasks_path
+    else
+      render tasks_path
+    end
+  end
+
+  def toggle_completed
+    task = Task.find_by(id: params[:id])
+
+    if task.nil?
+      redirect_to root_path
+   elsif @task.update(
+      completed_at: Time.now.strftime("%B %e, %Y at %I:%M %p")
+    )
+    else
+      redirect_to tasks_path
+    end
+  end
 
 
   private
 
   def task_params
-    return params.require(:task).permit(:name, :description, :completed)
+    return params.require(:task).permit(:name, :description, :completed_at)
   end
-  
+
 end

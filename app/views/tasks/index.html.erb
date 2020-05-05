@@ -1,0 +1,19 @@
+<h1>Task List</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= link_to task.name, task_path(task) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h4><a href="<%= new_task_path %>">Create a new task</a></h4>

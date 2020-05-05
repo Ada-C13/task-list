@@ -112,7 +112,7 @@ describe TasksController do
       id = Task.first.id
 
       expect {
-        patch tasks_path(id), params: edited_task_hash
+        patch task_path(id), params: edited_task_hash
       }.wont_change "Task.count"
 
       must_respond_with :redirect
@@ -127,7 +127,7 @@ describe TasksController do
       id = -1
 
       expect {
-        patch tasks_path(id), params: edited_task_hash
+        patch task_path(id), params: edited_task_hash
       }.wont_change "Task.count"
 
       must_respond_with :not_found

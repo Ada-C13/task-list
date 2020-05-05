@@ -1,0 +1,85 @@
+// Place all the styles related to the Tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+body {
+  background-color: rgb(165, 165, 194);
+}
+
+.tasks, .tasks_left, .tasks_right {
+  display: flex;
+}
+
+.tasks {
+  flex-direction: row;
+  margin: 0 auto;
+  width: 70vw;
+  max-width: 650px;
+}
+
+.tasks_left, .tasks_right {
+  flex-direction: column;
+}
+
+.tasks_left {
+  width: 20%;
+  margin-right: 20px;
+}
+
+.tasks_right {
+  width: 80%;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.task-button {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+  background-color: white;
+}
+
+.tasks_header {
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.edit_field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px;
+}
+
+.edit_field > label {
+  width: 110px;
+  text-align: right;
+  padding: 5px;
+  margin-bottom: 0;
+}
+
+.edit_field > input {
+  width: 100%;
+  border-radius: 5px;
+  padding: 5px;
+  border: 1px solid rgb(131, 122, 122);
+}
+
+input[type=submit] {
+  width: 100%;
+  margin-top: 10px;
+  padding: 5px;
+  font-weight: bold;
+  border-radius: 10px;
+  background: none;
+}
+
+input[type=submit]:hover {
+  background-color: rgb(198, 192, 204);
+}

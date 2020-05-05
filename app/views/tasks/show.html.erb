@@ -1,0 +1,7 @@
+<h2>Task Name: <%=@task.name%></h2>
+<p><strong>Description:</strong> <%=@task.description%></p>
+<p><strong><%=@task.completed_at ? "Completed at:" : ""%></strong>  <%=@task.completed_at%>  </p>
+
+<%=button_to "Edit Task", edit_task_path(@task)%>
+<%= button_to "Complete Task", task_complete_path(@task), method: :patch%> 
+<%= button_to "Delete Task", task_path(@task), method: :delete, data: {confirm: "Are you sure?"}%>

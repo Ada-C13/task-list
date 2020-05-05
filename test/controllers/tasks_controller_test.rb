@@ -56,7 +56,6 @@ describe TasksController do
   
   describe "create" do
     it "can create a new task" do
-      
       # Arrange
       task_hash = {
         task: {
@@ -109,13 +108,53 @@ describe TasksController do
   end
   
   describe "update" do
-    it "can update an existing task" do
+    before do
+      Task.create(name: "existing task", description: "this is an example task", completed_at: nil)
+    end
 
+    let(:task_hash){
+      {
+        task: {
+          name: "existing task is now updated",
+          description: "new task description is also updated",
+          completed_at: nil,
+        },
+      }
+    }
+
+    it "can update an existing task for valid id" do
+      # Arrange
+      existing_task = Task.first
+
+      # Act-Assert
+      # no tasks should be added or deleted when updating
+      expect {
+        patch task_path(existing_task.id), params: task_hash
+      }.wont_change "Task.count"
+      
+      # app should take the user back to the task's show page after the task is updated
+      must_respond_with :redirect
+      must_redirect_to task_path(existing_task.id)
+
+      # update local variable to reflect values in DB
+      existing_task.reload 
+
+      # values do change
+      expect(existing_task.name).must_equal task_hash[:task][:name]
+      expect(existing_task.description).must_equal task_hash[:task][:description]
     end
     
-    it "will redirect to the root page if given an invalid id" do
+  
+    it "will not update if the params are invalid" do
+      invalid_id = -1
 
+      expect {
+        patch task_path(invalid_id), params: task_hash
+      }.wont_change "Task.count"
+  
+      must_respond_with :not_found
     end
+
   end
   
   # # Complete these tests for Wave 4

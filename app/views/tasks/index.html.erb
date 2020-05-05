@@ -2,7 +2,8 @@
 <ul>
   <%@tasks.each do |task|%>
     <li>
-      <%= link_to task.name, task_path(task) %> -- <em><%= link_to "Delete Task", task_path(task), method: :delete, data: {confirm: "Are you sure?"}%></em>
+      <%= link_to task.name, task_path(task) %> -- <em><%= link_to "Delete Task", task_path(task), method: :delete, data: {confirm: "Are you sure?"}%></em> -- <em><%= link_to "Complete Task", task_complete_path(task), method: :patch%></em> 
+
     </li>
   <%end%>
 </ul>

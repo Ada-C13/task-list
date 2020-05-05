@@ -42,7 +42,7 @@ class TasksController < ApplicationController
       redirect_to task_path 
       return
     else 
-      render :edit
+      render :edit, :bad_request
       return
     end
   end
@@ -60,7 +60,7 @@ class TasksController < ApplicationController
     return 
   end
   
-  def mark_done
+  def toogle_done
     @task = Task.find_by(id: params[:id])
     if @task.nil?
       redirect_to tasks_path
@@ -70,7 +70,8 @@ class TasksController < ApplicationController
       @task.update( completed_at: Date.today )
       redirect_to tasks_path 
       return
-    elsif @task.completed_at
+    else 
+      @task.completed_at
       @task.update( completed_at: nil)
       redirect_to tasks_path 
       return

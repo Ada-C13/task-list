@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/tasks/:id', to: 'tasks#show', as: 'task' # Shows details for a task
   get '/tasks/:id/edit', to: 'tasks#edit', as: 'edit_task' # Brings up form to edit task
   patch '/tasks/:id', to: 'tasks#update' # Update an existing task
-  patch '/tasks/:id/mark_done', to: 'tasks#mark_done', as: 'task_done'
+  patch '/tasks/:id/toogle_done', to: 'tasks#toogle_done', as: 'task_done'
   delete '/tasks/:id', to: 'tasks#destroy' # Destroys a given task
 
 end

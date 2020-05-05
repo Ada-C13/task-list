@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
+  #Add route for root
+  root to: 'tasks#index'
+
   #Add routes that have to do with the collection 
   get '/tasks', to: 'tasks#index', as: 'tasks' #lists all tasks
   get '/tasks/new', to: 'tasks#new', as: 'new_task' #gets form for new task

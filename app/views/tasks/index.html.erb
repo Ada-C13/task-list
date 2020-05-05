@@ -1,14 +1,8 @@
 <h1>Tasks<h1>
-        <ul>
-            <% @tasks.each do |task| %>
-            <li>
-                <%= task.name %>
-            <li>
-            <li>
-                <%= task.description %>
-            <li>
-            <li>
-                <%= task.completed_at %>
-            <li>
-                <% end %>
-        </ul>
+        <% @tasks.each do |task| %>
+        <div>
+            <% css_class = (task.completed_at.nil? || task.completed_at.empty?) ? 'nostrike' : 'strike' %>
+            <%= link_to task.name, task_path(task), class: css_class %><%= link_to "Edit Task", edit_task_path(task) %> <%= link_to "Delete Task", task_path(task), method: :delete, data: {confirm: "Are you sure?"} %> <%= link_to "Mark Complete", tasks_path(task) %>
+        </div>
+        <% end %>
+        <%= link_to "Add Task", new_task_path %>

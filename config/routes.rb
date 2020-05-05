@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   # verb 'path', to: 'controller#action'
   get '/tasks', to: 'tasks#index'
   # verb 'root', to: 'controller#action'
+  # get '/', to: 'tasks#index'
   root 'tasks#index'
 end

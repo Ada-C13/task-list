@@ -51,8 +51,11 @@ class TasksController < ApplicationController
     
   end
 
+  private
+
   def task_params
     return params.require(:task).permit(:name, :description, :completed_at)
   end
+
 
 end

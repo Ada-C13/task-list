@@ -68,7 +68,7 @@ describe TasksController do
 
       # Act-Assert
       expect {
-        post create_task_path, params: task_hash
+        post tasks_path, params: task_hash
       }.must_change "Task.count", 1
 
       new_task = Task.find_by(name: task_hash[:task][:name])
@@ -106,7 +106,7 @@ describe TasksController do
 
     it "can update an existing task" do
       expect {
-        patch tasks_path(@task.id), params: @task_hash
+        patch task_path(@task.id), params: @task_hash
       }.must_differ "Task.count", 0
 
       #making sure it gets saved
@@ -119,7 +119,7 @@ describe TasksController do
     end
 
     it "will respond with not_found when given an invalid id" do
-      patch tasks_path(-1)
+      patch task_path(-1)
       must_respond_with :not_found
     end
   end
@@ -130,14 +130,14 @@ describe TasksController do
       test_task = Task.create(name: "test task", description: "test task description", completed_at: "test task not completed")
 
       expect {
-        delete tasks_path(test_task.id)
+        delete task_path(test_task.id)
       }.must_differ "Task.count", -1
 
       must_redirect_to root_path
     end
 
     it "will respond with not_found when given an invalid id" do
-      delete tasks_path(-1)
+      delete task_path(-1)
       must_respond_with :not_found
     end
   end

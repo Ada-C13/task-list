@@ -21,7 +21,7 @@ class TasksController < ApplicationController
 	end
 
 	def create
-    @task = Task.new(task_params.merge(completed_at: nil))
+    @task = Task.new(task_params)
 		
 		if @task.save # if a new task is made and saved
       redirect_to task_path(@task)

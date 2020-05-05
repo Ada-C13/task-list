@@ -8,6 +8,7 @@
 			<%= f.label :description %><br>
 			<%= f.text_field :description %>
 		</section>
+		<%= f.hidden_field :complete_at, :value => nil %>
 		<section>
 			<%= f.submit action_name %>
 		</section>

@@ -109,7 +109,6 @@ describe TasksController do
   describe "update" do
     # Note:  If there was a way to fail to save the changes to a task, that would be a great
     #        thing to test.
-
     before do 
       Task.create(name: "new task", description: "new task description", completed_at: nil)
     end
@@ -152,7 +151,7 @@ describe TasksController do
   describe "destroy" do
     it "can delete a task" do
       Task.create(name: "new task", description: "new task description", completed_at: nil)
-      new_task = Task.find_by(name: "new task")
+      new_task = Task.first
 
       expect {
         delete task_path(new_task.id)
@@ -166,6 +165,8 @@ describe TasksController do
   
   # Complete for Wave 4
   describe "toggle_complete" do
-    # Your tests go here
+    it "can change the completion status of an existing task" do
+      skip
+    end
   end
 end

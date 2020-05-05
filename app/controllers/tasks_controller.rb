@@ -1,9 +1,3 @@
-# TASKS = [
-#   { name: "interview prep", description: "solving algorithms on leetcode"},
-#   { name: "grocery shopping", description: "buy bread, banans and apples"},
-#   { name: "practice rails", description: "read videos and code along"}
-# ]
-
 class TasksController < ApplicationController
 
   def index 
@@ -15,8 +9,6 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: task_id)
 
     if @task.nil?
-      # head :not_found
-      # redirect instead of :not found to pass the test
       redirect_to tasks_path
       return
     end
@@ -105,7 +97,7 @@ class TasksController < ApplicationController
       redirect_to tasks_path
       return
     else
-      render :new, :bad_request
+      render :tasks, :bad_request
       return
     end
   end

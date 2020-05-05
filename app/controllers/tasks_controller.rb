@@ -49,4 +49,18 @@ class TasksController < ApplicationController
     ) ? (redirect_to task_path(@task)) : (render :edit, alert: "Error: Task not updated")
     return
   end
+
+  def delete
+    begin
+      @task = Task.find(params[:id]) 
+    rescue => error
+      redirect_to root_path, alert: "#{error}"
+      return
+    end
+
+    @task.destroy
+    
+    redirect_to root_path
+    return
+  end
 end

@@ -102,7 +102,6 @@ describe TasksController do
 
       # Assert
       must_respond_with :redirect
-
     end
   end
 
@@ -110,12 +109,50 @@ describe TasksController do
   describe "update" do
     # Note:  If there was a way to fail to save the changes to a task, that would be a great
     #        thing to test.
+    before do
+      Task.create(
+        name: "New task to update test",
+        description: " Test task # 1",
+        completed_at: nil,
+      )
+    end
+
+    let (:task_hash) {
+      {
+        task: {
+          name: "Task updated",
+          description: "TODO",
+          completed_at: "Feb 25",
+        },
+      }
+    }
+
     it "can update an existing task" do
       # Your code here
+
+      task = Task.last
+
+      expect {
+        patch task_path(task.id), params: task_hash
+      }.must_differ "Task.count", 0
+
+      must_redirect_to tasks_path
+
+      expect(Task.last.name).must_equal task_hash[:task][:name]
+      expect(Task.last.description).must_equal task_hash[:task][:description]
+      expect(Task.last.completed_at).must_equal task_hash[:task][:completed_at]
     end
 
     it "will redirect to the root page if given an invalid id" do
       # Your code here
+
+      task = Task.last
+
+      expect {
+        patch task_path(-1), params: task_hash
+      }.must_differ "Task.count", 0
+
+      must_redirect_to root_path
     end
   end
 

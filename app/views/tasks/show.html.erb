@@ -2,10 +2,10 @@
     <h1><%= @task.name %></h1>
     <p>: <%= @task.description %></p>
     <p> <%= @task.completed_at %></p>
-    <%= link_to "Edit", edit_task_path(@task) %>
-    <%= link_to "Delete", task_path(@task), method: :delete, data: {confirm: "Are you sure?"}%>
+    <%= link_to "Edit", edit_task_path(@task), class:"btn btn-info" %>
+    <%= link_to "Delete", task_path(@task), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-info" %>
     <% mark_complete_link= (@task.completed_at.nil? || @task.completed_at.empty?) ? 'Mark Completed' : 'Un_Mark Completed'%>
-    <%= link_to mark_complete_link, update_completed_task_path(@task), method: :Patch %>
+    <%= link_to mark_complete_link, update_completed_task_path(@task), method: :Patch, class:"btn btn-info" %>
 </div>
 
 

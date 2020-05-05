@@ -65,7 +65,6 @@ class TasksController < ApplicationController
             if @task.update(
                 completed_at: Date.today.to_s
             ) 
-                # redirect_to tasks_path, notice:"Task Completed"
                 redirect_to request.referrer
                 return
             end
@@ -73,7 +72,6 @@ class TasksController < ApplicationController
             if @task.update(
                 completed_at: nil
             ) 
-                # redirect_to tasks_path, notice:"Task Completed"
                 redirect_to request.referrer
                 return
             end

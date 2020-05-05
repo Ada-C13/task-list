@@ -1,0 +1,6 @@
+  
+<h1><%= @task.name %></h1>
+<h2><%= @task.description %></h2>
+<p>Status: <%= @task.completed_at ? "You finished this task at #{@task.completed_at}" : "You haven't finished this task yet." %></p>
+<%= link_to "Edit #{@task.name}", edit_task_path(@task.id) %><br />
+<%= button_to "Delete this task", task_path(@task.id), method: :delete, data: {confirm: "Are you sure?"} %>

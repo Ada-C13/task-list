@@ -19,10 +19,7 @@ class TasksController < ApplicationController
   end
 
   def create 
-    @task = Task.new(
-      name: params[:task][:name],
-      description: params[:task][:description],
-      completed_at: params[:task][:completed_at])
+    @task = Task.new(book_params) # strong params
     
     if @task.save
       redirect_to task_path(@task.id)
@@ -52,12 +49,8 @@ class TasksController < ApplicationController
       return
     end
 
-    result = @task.update(
-      name: params[:task][:name],
-      description: params[:task][:description],
-      completed_at: params[:task][:completed_at]
-    )
-
+    result = @task.update(book_params) # strong params
+    
     if result
       redirect_to task_path(@task.id)
       return
@@ -100,5 +93,11 @@ class TasksController < ApplicationController
       render :tasks, :bad_request
       return
     end
+  end
+
+  private
+
+  def book_params
+    return params.require(:task).permit(:name, :description, :completed_at)
   end
 end

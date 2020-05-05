@@ -28,7 +28,7 @@ class TasksController < ApplicationController
   def edit
     @task = Task.find_by(id: params[:id])
     if @task.nil?
-      head :not_found
+      redirect_to root_path
       return
     end
   end
@@ -47,14 +47,17 @@ class TasksController < ApplicationController
     end
   end
 
-  def mark_complete
+  def toggle_complete
     @task = Task.find_by(id: params[:id])
     if @task.nil?
-      head :not_found
+      redirect_to root_path
       return
-    elsif @task.update(
-      completed_at: Time.now
-    )
+    elsif @task.completed_at
+      @task.update(completed_at: nil)
+      redirect_to root_path
+      return
+    elsif !@task.completed_at
+      @task.update(completed_at: Time.now)
       redirect_to root_path
       return
     else

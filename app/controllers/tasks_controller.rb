@@ -54,9 +54,9 @@ class TasksController < ApplicationController
   def update
     # Find the task based on the ID.
     @task = Task.find_by(id: params[:id])
-    # Return 404 if the ID does not exist.
+    # will redirect to the root page if given an invalid id
     if @task.nil?
-      head :not_found
+      redirect_to root_path
       return
       # If the task exist edit (patch) the field.
     elsif @task.update(

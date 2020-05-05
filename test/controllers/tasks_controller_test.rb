@@ -65,7 +65,7 @@ describe TasksController do
         task: {
           name: "new task",
           description: "new task description",
-          completed_at: nil,
+          # completed_at: nil,
         },
       }
       

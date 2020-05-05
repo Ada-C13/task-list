@@ -23,7 +23,7 @@ class TasksController < ApplicationController
     @task = Task.new(
       name: params[:task][:name], 
       description: params[:task][:description], 
-      completed_at: "~not yet completed~",
+      completed_at: nil,
       completed: false
       )
     if @task.save

@@ -151,6 +151,8 @@ describe TasksController do
       expect {
         delete task_path(Task.first.id)
       }.must_change "Task.count", -1
+
+      must_respond_with :redirect
     end
 
     it "will redirect to the root page if deleting an invalid task" do

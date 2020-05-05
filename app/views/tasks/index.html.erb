@@ -1,7 +1,7 @@
 <%# Display the tasks from the controller action%>
 <ul class="tasks">
-  ---
+  --------
   <% @tasks.each do |task| %>
-  <li class="task"><%=link_to task.name, task_path(task.id) %> - <%= link_to "edit", edit_task_path(task.id) %><br>---</li>
+  <li class="task"><%=link_to task.name, task_path(task.id) %>  -  <%= link_to "edit", edit_task_path(task.id) %><br>--------</li>
   <% end %>
 </ul>

@@ -25,7 +25,7 @@ class TasksController < ApplicationController
     @task = Task.new(name: params[:task][:name], description: params[:task][:description]) # instantiate a new task
     
     if @task.save # save returns true if the database insert succeeds
-      redirect_to tasks_path # go to the index so we can see the new task in the list
+      redirect_to task_path(@task.id) # go to the index so we can see the new task in the list
       return
     else # save failed :(
       render :new # show the new task form view again

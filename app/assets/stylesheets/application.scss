@@ -1,0 +1,46 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+/* Custom bootstrap variables must be set or imported *before* bootstrap. */
+@import "bootstrap";
+
+@import "**/*";
+
+
+html {
+  display: flex;
+  // justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  padding: 1rem;
+}
+
+a {
+  color: black;
+}
+.task {
+  font-style: italic;
+}
+
+.application-footer {
+  justify-content: flex-end;
+}
+
+.title {
+  visibility: hidden;
+}
+
+.page {
+  padding: 1rem;
+}

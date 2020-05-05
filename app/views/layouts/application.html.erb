@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title class="title">TaskList</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="header"><h3>My Tasks</h3></header>
+    <nav>
+      <p>~ <%= link_to "View Tasks", tasks_path %> ~</p>
+      <p>~ <%= link_to "Create New Task", new_task_path %> ~</p>
+    </nav>
+    <div class="page">
+    <%= yield %>
+    </div>
+    <footer class="application-footer">All Rights Reserved</footer>
+  </body>
+</html>

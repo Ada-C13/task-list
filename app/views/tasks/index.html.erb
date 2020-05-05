@@ -12,7 +12,11 @@
         <% end%></strong><br/>
         <%= link_to "Details", task_path(task.id)%> | 
         <%= link_to "Edit", edit_task_path(task.id)%> | 
-        <%= link_to "Mark complete", toggle_complete_path(task.id), method: :patch %>  | 
+        <% if task.completed_at %>
+          <%= link_to "Mark incomplete", toggle_complete_path(task.id), method: :patch %>  
+        <% else %>
+          <%= link_to "Mark complete", toggle_complete_path(task.id), method: :patch %> 
+        <% end%> | 
         <%= link_to "Delete", task_path(task), method: :delete, data: {confirm: "Are you sure?"} %> 
       </li>
     <% end %>

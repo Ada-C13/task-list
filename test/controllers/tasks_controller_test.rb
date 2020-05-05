@@ -98,6 +98,7 @@ describe TasksController do
         completed_at: nil
       )
     end
+
     let (:edited_task_hash) {
       {
         task: {
@@ -168,29 +169,52 @@ describe TasksController do
       Task.create(
         name: "completed task",  
         description: "completed description",
-        completed_at: Time.parse("2020-05-04")
+        completed_at: Time.now
       )
     end
 
+    let (:completed_task_hash) {
+      {
+        task: {
+          name: "completed task",
+          description: "completed task description",
+          completed_at: "#{Time.now}",
+        },
+      }
+    }
+
+
     it "can mark an incomplete task as complete" do
       id = Task.first.id
-      toggle_complete_path(id) 
-      expect(Task.first.completed_at).must_equal Time.now
+
+      expect { 
+        patch toggle_complete_path(id) 
+      }.wont_change "Task.count"
+      
+      task = Task.find(id)
+      expect(task.completed_at).must_equal completed_task_hash[:task][:completed_at]
     end
 
     it "can mark a completed task as incomplete" do
       id = Task.second.id
-      toggle_complete_path(id) 
-      expect(Task.second.completed_at).must_be_nil
+
+      expect { 
+        patch toggle_complete_path(id) 
+      }.wont_change "Task.count"
+
+      task = Task.find(id)
+      expect(task.completed_at).must_be_nil
     end
 
-    it "will throw an exception and redirect to the root page if given an invalid id" do
+    it "will redirect to the root page if given an invalid id" do
       id = -1
 
       expect { 
-        toggle_complete_path(id) 
-      }.must_raise ArgumentError
+        patch toggle_complete_path(id) 
+      }.wont_change "Task.count"
 
+      expect(flash[:alert]).must_equal "Couldn't find Task with 'id'=-1"
+      
       must_redirect_to root_path
     end
   end

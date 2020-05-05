@@ -1,12 +1,2 @@
 <h4>Edit task</h4>
-<%= form_with model: @task do |f|%>
-<div class="edit_field">
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-</div>
-<div class="edit_field">
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-</div>
-<%= f.submit "Submit edits"%>
-<% end %>
+<%= render partial: "form", locals: { action_name: "Submit edit" } %>

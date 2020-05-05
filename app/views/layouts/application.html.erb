@@ -10,17 +10,15 @@
   </head>
 
   <body>
-  <header>
+    <header>
       <h1 class='main-title'><h1>Welcome to Tisk Tisk Task!</h1>
       <h3>This is the place to make your tasks come true!</h3>
       <nav>
-      <ul>
-      <li><%= button_to('View All Tasks', tasks_path, {class: 'link', method: :get, alt: 'all tasks button'}) %></li>
-
-
-      </ul>
+        <ul>
+          <li><%= button_to('View All Tasks', tasks_path, {class: 'link', method: :get, alt: 'all tasks button'}) %></li>
+        </ul>
       </nav>
-    </header>
+      </header>
     <main>
     <%= yield %>
     </main>

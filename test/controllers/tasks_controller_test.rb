@@ -109,10 +109,8 @@ describe TasksController do
   end
 
   
-    #  RIGHT HERE CHARLOTTE $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
   # Uncomment and complete these tests for Wave 3
-  # check for a valid update and a non-existant Task
   describe "update" do
     it "will update a model with a valid post request" do
 

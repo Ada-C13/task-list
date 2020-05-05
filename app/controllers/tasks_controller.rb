@@ -8,7 +8,7 @@ class TasksController < ApplicationController
     begin
       @task = Task.find(params[:id])
     rescue => error
-      redirect_to root_path, alert: "#{error}"
+      redirect_to root_path, alert: "Error: #{error}"
       return
     end
   end
@@ -32,7 +32,7 @@ class TasksController < ApplicationController
     begin
       @task = Task.find(params[:id]) 
     rescue => error
-      redirect_to root_path, alert: "#{error}"
+      redirect_to root_path, alert: "Error: #{error}"
       return
     end
   end
@@ -41,7 +41,7 @@ class TasksController < ApplicationController
     begin
       @task = Task.find(params[:id]) 
     rescue => error
-      redirect_to root_path, alert: "#{error}"
+      redirect_to root_path, alert: "Error: #{error}"
       return
     end
     
@@ -57,7 +57,7 @@ class TasksController < ApplicationController
     begin
       @task = Task.find(params[:id]) 
     rescue => error
-      redirect_to root_path, alert: "#{error}"
+      redirect_to root_path, alert: "Error: #{error}"
       return
     end
 
@@ -71,7 +71,7 @@ class TasksController < ApplicationController
     begin
       @task = Task.find(params[:id]) 
     rescue => error
-      redirect_to root_path, alert: "#{error}"
+      redirect_to root_path, alert: "Error: #{error}"
       return
     end
 

@@ -1,0 +1,26 @@
+<h3 class="show__title">About <%= @task[:name] %></h3>
+<div class="show__div-container">
+  <p>
+  <span class="show__detail-title">Description:</span>
+  <%= @task[:description] %>
+  </p>
+  <% if @task[:completed_at] %>
+    <p>
+      <span class="show__detail-title">Completed at:</span>
+      <%= @task[:completed_at] %>
+    </p>
+  <% else %>
+    <p>
+      <span class="show__detail-title">Completed at:</span>
+      Not completed
+    </p>
+  <% end %>
+</div>
+
+<div class="show__btn">
+  <%= link_to "E D I T ✏️  ", edit_task_path(@task.id), class: 'show__edit-btn' %>
+</div>
+
+<div class="show__btn">
+  <%= link_to " Delete 🚮 ", task_path(@task.id), method: :delete, data: { confirm: '❗️ Would you like to delete the task?'}, class: 'show__delete-btn' %>
+</div>

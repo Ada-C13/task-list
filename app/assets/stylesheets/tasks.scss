@@ -1,0 +1,249 @@
+// Place all the styles related to the Tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+
+body {
+  color: white;
+  background-image: url("mountain.jpg");
+  background-color: #cccccc;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  animation: fadeIn 0.5s linear;
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  padding: 10px;
+}
+
+a {
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+a:hover {
+  color: #dbc7ba;
+  text-decoration: none;
+}
+
+
+header {
+  position: absolute; 
+  padding-left: 20px;
+  font-weight: bold;
+}
+
+header > h1 {
+  font-family: 'Dancing Script', cursive;
+}
+
+
+nav > ul {
+  display: flex;
+  list-style: none;
+}
+
+
+nav > ul > li {
+  padding-right: 30px;
+  font-size: 20px;
+  z-index: 2;
+}
+
+nav > ul:first-child {
+  padding-left: 0px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-right: 20px;
+}
+
+.index__title {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-family: 'Caveat', cursive;
+}
+
+
+.task-complete {
+  text-decoration-line: line-through;
+}
+
+.index__task-name {
+  text-decoration-color: black;
+  font-size: 22px;
+}
+
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  font-size: 30px;
+}
+
+.one-task-container {
+  display: flex;
+  margin-top: 15px;
+}
+
+.check-box {
+  margin-right: 10px;
+}
+
+.index__edit-btn, .index__delete-btn {
+  margin-left: 10px;
+}
+
+.index__edit-btn:hover, .index__delete-btn:hover, .show__edit-btn:hover, .show__delete-btn:hover {
+  opacity: 0.5;
+}
+
+
+.index__add-task-btn {
+  font-size: 20px;
+  padding: 5px 20px;
+  border-radius: 10px;
+  z-index: 1;
+  margin-bottom: 10px;
+  border: white solid 3px;
+}
+
+._form {
+  width: 600px;
+  margin-left: auto; 
+  margin-right: auto;
+}
+
+._form-text-container {
+  display: flex;
+  flex-direction: column;
+}
+
+._form__text_area, ._form__text_field {
+  width: 300px;
+  font-size: 18px; 
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border: 0;
+  border-radius: 5px;
+  opacity: 0.5;
+}
+
+._form {
+  display: flex;
+  flex-direction: column;
+}
+
+._form_instruction {
+  font-size: 23px;
+  word-wrap: break-word;
+  margin-top: 20px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+._form__label {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.edit__title, .new__title, .show__title {
+  margin-top: 80px;
+  font-weight: bold;
+  font-family: 'Caveat', cursive;
+}
+
+.show__div-container {
+  font-size: 20px;
+}
+
+.show__detail-title {
+  font-weight: 900;
+}
+
+.show__btn {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.show__edit-btn,  .show__delete-btn, .show__mark-complete-btn, ._form__task-btn {
+  padding: 5px 20px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: white solid 3px;
+  background-color: transparent;
+  color: white;
+  font-size: 18px;
+}
+
+._form__task-btn:hover, .index__add-task-btn:hover {
+  color: #dbc7ba;
+  border: #dbc7ba solid 3px;
+}
+
+
+
+@media only screen and (max-width: 1000px) {
+  body {
+    background-image: url("pink_and_green.jpg");
+    background-color: #cccccc;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    animation: fadeIn 0.5s linear;
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+  }
+
+  ._form_instruction {
+    font-size: 15px;
+    text-align: center;
+  }
+
+  ._form__text_area, ._form__text_field {
+    font-size: 15px; 
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .index__task-name {
+    font-size: 20px;
+  }
+
+  nav > ul {
+    display: flex;
+    flex-direction: column;
+  }
+}

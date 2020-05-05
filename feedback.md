@@ -59,4 +59,3 @@ Was the code particularly impressive in code style for any of these reasons (or 
 | Descriptive/Readable | ✅
 | Concise | ✅
 | Logical/Organized | ✅
-

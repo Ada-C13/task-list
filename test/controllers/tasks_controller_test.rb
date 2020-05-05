@@ -143,7 +143,15 @@ describe TasksController do
   
   # Complete these tests for Wave 4
   describe "destroy" do
-    # Your tests go here
+    before do 
+      Task.create(name: "join quidditch team", description: "hufflepuff will win this year", completed_at: "next year")
+    end
+    
+    it "will delete an existing task" do
+      expect {
+        delete task_path(Task.first.id)
+      }.must_change "Task.count", -1
+    end
     
   end
   

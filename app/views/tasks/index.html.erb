@@ -4,10 +4,8 @@
   <ol>
     <% @tasks.each do |task| %>
       <li>
-        <span>
-          <%= link_to task[:name], task_path(task) %>
-          <%= button_to "Edit", edit_task_path(task[:id]), method: :get %>
-        </span>
+        <%= link_to task[:name], task_path(task) %>
+        <%= button_to "Edit", edit_task_path(task[:id]), method: :get %>
       </li>
     <% end %>
   </ol>
@@ -16,5 +14,5 @@
 <% end %>
 
 <nav>
-  <button><%= link_to "Add Task", new_task_path %></button>
+  <%= button_to "Add Task", new_task_path, method: :get %>
 </nav>

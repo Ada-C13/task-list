@@ -13,7 +13,7 @@
         <strong>Description:</strong> <%= task.description %> | <strong>Completed At:</strong> <%= task.completed_at %>
       </p>
       <p>
-        <%= button_to "Mark Complete", task_path(task), method: :patch %>
+        <%= button_to "Mark Complete", mark_path(task), method: :patch %>
         <%= button_to "Delete Task", task_path(task), method: :delete , data: {confirm: "Are you sure?"}%>
       </p>
 

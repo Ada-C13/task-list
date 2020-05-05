@@ -118,16 +118,15 @@ describe TasksController do
         },
       }
     }
-    # Note:  If there was a way to fail to save the changes to a task, that would be a great
-    #        thing to test.
+
     it "can update an existing task" do
       expect {
-        patch task_path(task.id), params: new_task_hash
+        patch task_path(Task.first.id), params: new_task_hash
       }.wont_change "Task.count"
-
+      
       must_respond_with :redirect
 
-      task = Task.find_by(id: id)
+      task = Task.find_by(id: Task.first.id)
       expect(task.name).must_equal new_task_hash[:task][:name]
       expect(task.description).must_equal new_task_hash[:task][:description]
       expect(task.completed_at).must_equal new_task_hash[:task][:completed_at]

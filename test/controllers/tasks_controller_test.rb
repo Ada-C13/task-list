@@ -80,7 +80,6 @@ describe TasksController do
     end
   end
   
-  # Unskip and complete these tests for Wave 3
   describe "edit" do
     before do
       Task.create(name: "Angela", description: "Feed cat", completed_at: "05/04/2020")
@@ -99,7 +98,6 @@ describe TasksController do
     end
   end
   
-  # Uncomment and complete these tests for Wave 3
   describe "update" do
     before do
       Task.create(name: "Angela", description: "Feed cat", completed_at: "05/04/2020")

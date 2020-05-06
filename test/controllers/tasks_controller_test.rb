@@ -10,7 +10,7 @@ describe TasksController do
   describe "index" do
     it "can get the index path" do
       # Act
-      get '/tasks' #tasks_path
+      get tasks_path
       
       # Assert
       must_respond_with :success
@@ -18,7 +18,7 @@ describe TasksController do
     
     it "can get the root path" do
       # Act
-      get '/' #root_path
+      get root_path
       
       # Assert
       must_respond_with :success
@@ -26,64 +26,66 @@ describe TasksController do
   end
   
   # # Unskip these tests for Wave 2
-  # describe "show" do
-  #   it "can get a valid task" do
-  #     skip
-  #     # Act
-  #     get task_path(task.id)
-      
-  #     # Assert
-  #     must_respond_with :success
-  #   end
+  describe "show" do
+    it "can get a valid task" do
+      # skip
+      # Act
+      get task_path(task.id)
     
-  #   it "will redirect for an invalid task" do
-  #     skip
-  #     # Act
-  #     get task_path(-1)
       
-  #     # Assert
-  #     must_respond_with :redirect
-  #   end
-  # end
+      # Assert
+      must_respond_with :success
+    end
+    
+    it "will redirect for an invalid task" do
+      skip
+      # Act
+      get task_path(-1)
+      
+      # Assert
+      must_respond_with :redirect
+      #must_respond_with 404
+    end
+  end
   
-  # describe "new" do
-  #   it "can get the new task page" do
-  #     skip
+  describe "new" do
+    it "can get the new task page" do
+      # skip
       
-  #     # Act
-  #     get new_task_path
+      # Act
+      get new_task_path
       
-  #     # Assert
-  #     must_respond_with :success
-  #   end
-  # end
+      # Assert
+      must_respond_with :success
+    end
+  end
   
-  # describe "create" do
-  #   it "can create a new task" do
-  #     skip
+  describe "create" do
+    it "can create a new task" do
+      # skip
       
-  #     # Arrange
-  #     task_hash = {
-  #       task: {
-  #         name: "new task",
-  #         description: "new task description",
-  #         completed_at: nil,
-  #       },
-  #     }
+      # Arrange
+      task_hash = {
+        task: {
+          name: "new task",
+          description: "new task description",
+          completed_at: nil,
+        },
+      }
       
-  #     # Act-Assert
-  #     expect {
-  #       post tasks_path, params: task_hash
-  #     }.must_change "Task.count", 1
+      # Act-Assert
+      expect {
+        post tasks_path, params: task_hash
+      }.must_change "Task.count", 1
       
-  #     new_task = Task.find_by(name: task_hash[:task][:name])
-  #     expect(new_task.description).must_equal task_hash[:task][:description]
-  #     expect(new_task.completed_at).must_equal task_hash[:task][:completed_at]
+      new_task = Task.find_by(name: task_hash[:task][:name])
+      expect(new_task.description).must_equal task_hash[:task][:description]
+      expect(new_task.completed_at).must_equal task_hash[:task][:completed_at]
       
-  #     must_respond_with :redirect
-  #     must_redirect_to task_path(new_task.id)
-  #   end
-  # end
+      must_respond_with :redirect
+      must_redirect_to task_path(new_task.id)
+    end
+  end
   
   # # Unskip and complete these tests for Wave 3
   # describe "edit" do

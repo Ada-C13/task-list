@@ -101,7 +101,7 @@ describe TasksController do
       get task_path(invalid_id)
       
       # Assert
-      must_redirect_to tasks_path
+      must_redirect_to root_path
     end
 
   end

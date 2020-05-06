@@ -8,7 +8,7 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: params[:id])
 
     if @task.nil?
-      redirect_to tasks_path
+      redirect_to root_path
       return
     end
   end
@@ -33,7 +33,7 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: params[:id])
 
     if @task.nil?
-      redirect_to tasks_path
+      redirect_to root_path
       return
     end
   end
@@ -60,13 +60,13 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: params[:id])
 
     if @task.nil?
-      redirect_to tasks_path
+      redirect_to root_path
       return
     else
       @task.destroy
     end 
 
-    redirect_to tasks_path
+    redirect_to root_path
 
     return
   end
@@ -81,7 +81,7 @@ class TasksController < ApplicationController
       @task.update(completed_at: Time.now())
     end
 
-    redirect_to tasks_path
+    redirect_to root_path
     return
   end 
 

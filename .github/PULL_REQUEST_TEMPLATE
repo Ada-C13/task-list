@@ -4,10 +4,10 @@ Congratulations! You're submitting your assignment!
 ## Comprehension Questions
 Question | Answer
 :------------- | :-------------
-Describe in your own words what the Model is doing in Rails | 
-Describe in your own words what the Controller is doing in Rails | 
-Describe in your own words what the View is doing in Rails | 
-Describe an edge-case controller test you wrote |
-What is the purpose of using strong params? (i.e. the params method in the controller) | 
-How are Rails migrations related to Rails models? | 
-Describe one area of Rails that are still unclear on | 
+Describe in your own words what the Model is doing in Rails | The model interacts with the database and knows the attributes of the data. It is similar to classes in Ruby. |
+Describe in your own words what the Controller is doing in Rails | Controller is the central manager, taking in requests from the server, pulling in information from the data model, makes decisions, and hands information back to the view to render something back on the screen to the user. |
+Describe in your own words what the View is doing in Rails | The views is where the html.erb files live. The ERB is a preprocessor and evaluates any Ruby expressions before sending to the browser. The View also handles the index.html which gets sent to the browser which is the view template. |
+Describe an edge-case controller test you wrote | When the page was suppose to redirect to the main page after creating a new task.|
+What is the purpose of using strong params? (i.e. the params method in the controller) | Strong params are used in controllers to make sure that users can't update sensitive model attributes. Strong params requires the use of explicit access to attributes that we can pass onto the model methods. |
+How are Rails migrations related to Rails models? | Migrations are structured changes that can be made to a database schema. The schema is empty and lives in the model, the migration modifies it. |
+Describe one area of Rails that are still unclear on | Not really sure...|

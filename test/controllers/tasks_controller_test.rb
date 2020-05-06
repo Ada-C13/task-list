@@ -103,7 +103,6 @@ describe TasksController do
       # Assert
       must_redirect_to root_path
     end
-
   end
   
   describe "update" do
@@ -145,15 +144,16 @@ describe TasksController do
     
   
     it "will not update if the params are invalid" do
+      # Arrange
       invalid_id = -1
 
+      # Act - Assert
       expect {
         patch task_path(invalid_id), params: task_hash
       }.wont_change "Task.count"
   
       must_respond_with :not_found
     end
-
   end
   
 
@@ -178,8 +178,10 @@ describe TasksController do
     end
 
     it "will not delete anything if invalid id is given" do
+      # Arrange
       invalid_id = -1
 
+      # Act - Assert
       expect {
         delete task_path(invalid_id)
       }.wont_change "Task.count"
@@ -188,11 +190,68 @@ describe TasksController do
       must_respond_with :redirect
       must_redirect_to root_path
     end
-
   end
 
-  describe "toggle_complete" do
-    # TODO
+  describe "mark_complete" do
+    before do
+      Task.create(name: "existing task", description: "this is an example task", completed_at: nil)
+    end
+
+    it "can update the completed_at field of an existing task" do
+      # Arrange
+      existing_task = Task.first
+
+      # Note: this might cause test to fail if there's a second delay
+      current_time = Time.now().to_s
+
+      task_hash = {
+        task: {
+          # not changing name or description
+          completed_at: current_time,
+        },
+      }
+
+      # Act-Assert
+      # no tasks should be added or deleted when marking complete
+      expect {
+        patch mark_path(existing_task.id), params: task_hash
+      }.wont_change "Task.count"
+      
+      # app should refresh home page once a task has been marked complete
+      must_respond_with :redirect
+      must_redirect_to root_path
+
+      # update local variable to reflect values in DB
+      existing_task.reload 
+
+      # task name and description don't change, but completed_at does
+      expect(existing_task.name).must_equal "existing task"
+      expect(existing_task.description).must_equal "this is an example task"
+      expect(existing_task.completed_at).must_equal task_hash[:task][:completed_at]
+    end
+    
+  
+    it "will return error if invalid id is given" do
+      # Arrange
+      invalid_id = -1
+
+      current_time = Time.now().to_s
+
+      task_hash = {
+        task: {
+          name: "new task",
+          description: "new task description",
+          completed_at: current_time,
+        },
+      }
+
+      # Act - Assert 
+      expect {
+        patch mark_path(invalid_id), params: task_hash
+      }.wont_change "Task.count"
+  
+      must_respond_with :not_found
+    end
   end
 
 end

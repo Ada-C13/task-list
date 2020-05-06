@@ -158,7 +158,37 @@ describe TasksController do
   
 
   describe "destroy" do
-    #TODO
+    before do
+      Task.create(name: "existing task", description: "this is an example task", completed_at: nil)
+    end
+
+    it "can delete an existing task" do
+      # Arrange
+      existing_task = Task.first
+
+      # Act-Assert
+      # task database should go down by one
+      expect {
+        delete task_path(existing_task.id)
+      }.must_change "Task.count", -1
+      
+      # app should refresh home page once a task has been deleted
+      must_respond_with :redirect
+      must_redirect_to root_path
+    end
+
+    it "will not delete anything if invalid id is given" do
+      invalid_id = -1
+
+      expect {
+        delete task_path(invalid_id)
+      }.wont_change "Task.count"
+  
+      # app should return to home page
+      must_respond_with :redirect
+      must_redirect_to root_path
+    end
+
   end
 
   describe "toggle_complete" do

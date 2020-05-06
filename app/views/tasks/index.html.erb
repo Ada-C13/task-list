@@ -7,7 +7,7 @@
       Name: <%= task[:name] %> 
       Desc: <%= task[:description] %> Completed at:<%= task[:completed_at] %>
 
-      <%= link_to "Edit Task", task_path(task) %>
+      <%= link_to "Edit Task", edit_task_path(task.id) %>
     </li>
   <% end %>
 </ul>

@@ -74,7 +74,6 @@ describe TasksController do
       expect(new_task.description).must_equal task_hash[:task][:description]
       expect(new_task.completed_at).must_equal task_hash[:task][:completed_at]
       
-      must_respond_with :redirect
       must_redirect_to task_path(new_task.id)
     end
   end
@@ -115,8 +114,7 @@ describe TasksController do
         patch task_path(task.id), params: task_hash
       }.must_differ 'Task.count', 0
       
-      
-      #why do i need to use Task.first
+    
       expect(Task.first.name).must_equal task_hash[:task][:name]
           
     end

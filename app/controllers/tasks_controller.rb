@@ -40,16 +40,16 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find_by(id: params[:id])
-  if @task.nil?
-    redirect_to root_path
-    return
-  elsif @task.update(task_params)
-    redirect_to task_path(@task.id) # go to the index so we can see the task in the list
-    return
-  else # save failed :(
-    render :edit # show the new task form view again
-    return
-  end
+    if @task.nil?
+      redirect_to root_path
+      return
+    elsif @task.update(task_params)
+      redirect_to task_path(@task.id) # go to the index so we can see the task in the list
+      return
+    else # save failed :(
+      render :edit # show the new task form view again
+      return
+    end
   end
 
   def destroy

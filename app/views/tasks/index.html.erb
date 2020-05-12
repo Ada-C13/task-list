@@ -1,0 +1,17 @@
+
+<%= link_to "Add Task", new_task_path %>
+<h4>Your tasks</h4>
+<% if @tasks.length > 0 %>
+  <ol>
+    <% @tasks.each do |task|  %>
+      <li>
+        <header><strong><%= link_to(task.name, task_path(task.id) ) %></strong></header>
+        <%= task.description %>
+        <%=task.completed_at %>
+        
+      </li>
+    <% end %>
+  </ol>
+<% else %>
+  <h3>You are in luck, no tasks for today!</h3>
+<% end %>

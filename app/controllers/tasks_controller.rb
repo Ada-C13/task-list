@@ -17,7 +17,7 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: params[:id]) 
 
     if @task.nil?
-      redirect_to_to tasks_path
+      redirect_to tasks_path
       # head :not_found # you can also put 404 
       return
     end
@@ -29,7 +29,7 @@ class TasksController < ApplicationController
       head :not_found
       return
     elsif @task.update(task_params)
-      redirect_to tasks_path # go to the index so we can see the task in the list
+      redirect_to tasks_path(@task.id) # go to the index so we can see the task in the list
       return
     else # save failed :(
       render :edit # show the new task form view again

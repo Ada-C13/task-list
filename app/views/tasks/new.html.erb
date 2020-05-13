@@ -1,12 +1,15 @@
-<h2>Add new</h2>
+<h2>Add new Task</h2>
 <%= form_with model: @task, class: 'create-task' do |f| %>
   <p>Please provide the following information to save your task to a database:</p>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+    </div>
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+    </div>
 
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-
-  <%= f.submit "Save Task", class: "task-button" %>
+  <%= f.submit "Save Task", class: "save-button" %>
 <% end %> 

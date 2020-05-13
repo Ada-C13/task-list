@@ -1,5 +1,19 @@
 
+
+<ul>
+  <% if @task.errors %>
+    <% @task.errors.each do |name,message| %>
+    <li>
+    <%= name %>
+    <%=   message %>
+    </li>
+    <% end %>
+  <% end %> 
+</ul>
+
+
 <%= form_with model:@task do |f| %>
+  
   <p>Please add new task:</p>
   <div>
     <%= f.label :name %>
@@ -13,3 +27,4 @@
   <%= f.submit "Add Task" %>
 
 <% end %>
+

@@ -20,7 +20,15 @@
       <li><%= link_to "ADD TASK", new_task_path %> </li>
       <li><%= link_to "ALL TASKS", tasks_path %></li>
     </ul>
+   <section>
+    <% flash.each do |name,message| %>
+        <%= message %>
+    <% end %>
+    </section>
+
+
     </nav>
+ 
     <%= yield %>
   </div>
   

@@ -1,5 +1,5 @@
-
 <%= link_to "Add Task", new_task_path %>
+
 <h4>Your tasks</h4>
 <% if @tasks.length > 0 %>
   <ol>
@@ -7,11 +7,19 @@
       <li>
         <header><strong><%= link_to(task.name, task_path(task.id) ) %></strong></header>
         <%= task.description %>
-        <%=task.completed_at %>
-        
+       
+        <p><%= link_to "Delete Task", task_path(task), method:  :delete, class:"btn btn-danger", data: {confirm: "Are you sure you  want to delete this task?"} 
+        %></p>
+
+        <% if task.completed_at.nil? %>
+          <%= link_to "Mark Complete", mark_completed_path(task.id), method: :patch, class:"btn btn-primary" %>
+        <% else %>
+        <p> Completed On <%= task.completed_at %></p> 
+        <% end %>
+
       </li>
     <% end %>
   </ol>
 <% else %>
-  <h3>You are in luck, no tasks for today!</h3>
+  <h3>We are out of task, can you believe it?!</h3>
 <% end %>

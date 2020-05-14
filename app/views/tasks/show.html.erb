@@ -1,5 +1,10 @@
 <h2><%= @task.name %></h2>
-<h3><%= @task.description %></h3>
-<p><%= @task.completed_at %></p>
+<p><%= @task.description %></p>
 <p><%= link_to "Edit Task", edit_task_path(@task) %></p>
+<% if @task.completed_at.nil?%>
+  <p>Not completed</p>
+<% else %>
+  <p> Completed on <%= @task.completed_at %></p>
+<% end %>
+
 <%= link_to "All Tasks", tasks_path %>

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   patch '/tasks/:id', to: 'tasks#update'
   delete '/tasks/:id', to: 'tasks#destroy'
   # This is a custom route, and in this case, the mark_completed! 
-  patch '/tasks/:id/mark_complete', to: 'tasks#mark_complete', as: 'task_completed' 
+  patch '/tasks/:id/mark_complete', to: 'tasks#mark_complete', as: 'mark_completed' 
 end
 
 

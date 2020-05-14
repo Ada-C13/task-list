@@ -7,7 +7,6 @@
 #   {name: "Kyle", description: "High Five Somebody You Don't Know", completed_at: "a min ago"},
 # ]
 
-
 class TasksController < ApplicationController
   def index 
     @tasks = Task.all
@@ -17,7 +16,7 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: params[:id]) 
 
     if @task.nil?
-      redirect_to tasks_path
+      redirect_to root_path
       # head :not_found # you can also put 404 
       return
     end
@@ -26,10 +25,10 @@ class TasksController < ApplicationController
   def update
     @task = Task.find_by(id: params[:id])
     if @task.nil?
-      head :not_found
+     redirect_to root_path
       return
     elsif @task.update(task_params)
-      redirect_to tasks_path(@task.id) # go to the index so we can see the task in the list
+      redirect_to task_path(@task.id) # go to the index so we can see the task in the list
       return
     else # save failed :(
       render :edit # show the new task form view again
@@ -38,15 +37,36 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find_by(id: params[:id])
+    @task = Task.find_by(id: params[:id]) 
 
     if @task.nil?
-      head :not_found
+      redirect_to root_path
       return
     end
   end
 
   def destroy
+    @task = Task.find_by(id: params[:id])
+
+    if @task.nil?
+     redirect_to root_path
+      return
+    else 
+      @task.destroy
+      redirect_to root_path
+    end
+  end
+
+  def mark_complete
+    @task = Task.find_by(id: params[:id])
+
+    if @task.completed_at.nil?
+      @task.completed_at = Date.today
+    else
+      @task.completed_at = nil 
+    end
+      @task.save
+      redirect_to root_path
   end
 
   def new

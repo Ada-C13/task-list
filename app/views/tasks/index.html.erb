@@ -1,0 +1,10 @@
+<h1>Task List</h1>
+
+
+<% @tasks.each do |task|%>
+  <%= task.name%>
+  <%= task.description%>
+  <%= task.completed_at ? "completed": ""%>
+
+
+<%end%>

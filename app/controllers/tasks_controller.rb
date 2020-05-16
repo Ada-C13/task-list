@@ -9,7 +9,7 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: task_id)
 
     if @task.nil?
-      redirect_to task_path
+      redirect_to tasks_path
       return
     end
   end
@@ -33,7 +33,7 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: params[:id])
 
     if @task.nil?
-      redirect_to task_path
+      redirect_to task_path(@task.id)
       return
     end
   end
@@ -41,16 +41,16 @@ class TasksController < ApplicationController
   def update
     @task = Task.find_by(id: params[:id])
     if @task.nil?
-      redirect_to task_path
+      redirect_to task_path(@task.id)
       return
     end
 
     if @task.update(
       name: params[:task][:name], 
       description: params[:task][:description], 
-      completed: params[:task][:completed]
+      completed_at: params[:task][:completed]
     )
-      redirect_to tasks_path
+      redirect_to task_path
       return
     else 
       render :edit 
@@ -74,7 +74,7 @@ class TasksController < ApplicationController
   end
 
   def mark_complete
-    @task = Task.find_by(id: params[:id].to_i)
+    @task = Task.find_by(id: params[:id])
     if @task.completed_at
       @task.update(completed_at: nil)
       redirect_to tasks_path

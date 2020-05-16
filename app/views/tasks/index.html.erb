@@ -1,0 +1,17 @@
+<h2>All Tasks:</h2>
+
+<% if @tasks.length > 0%>
+  <ul>
+    <% @tasks.each do |task| %>
+      <% if task.completed_at %>
+        <li><%= link_to "#{task.name} : #{task.description} | #{task.completed_at}",  task_path(task.id) %></li>
+      <% else %>
+        <li><%= link_to "#{task.name} : #{task.description}",  task_path(task.id) %> | <%= link_to "Mark this Task Complete", task_path(task.id), method: :patch %></li>
+      <% end %>
+    <% end %>
+  </ul>
+<% else %>
+  <h3>No tasks in the system!</h3>
+<% end %>
+
+<p><%= link_to "Create New Task", new_task_path%></p>

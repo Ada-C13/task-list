@@ -1,4 +1,4 @@
-<h2>Current Tasks</h2>
+<h2>current tasks</h2>
 <main>
   <ul class="task-list">
   <% @tasks.each do |task| %>
@@ -6,4 +6,8 @@
       <%= link_to task.name, task_path(task)%>
     </li>
   <%end%>
+  </ul>
+  <%= link_to "add new task", new_task_path, class: "button" %>
 </main>
+
+<%#= button_to "Edit #{book.title}", edit_book_path(book.id) %>

@@ -7,9 +7,14 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
 
-  <body>
+    <h1>Task List</h1>
+      <nav>
+        <button><%= link_to "Show All Task", tasks_path %></button>
+        <button><%= link_to "Add Task", new_task_path %></button>
+      </nav>
+  </header>
+
     <%= yield %>
-  </body>
+  
 </html>

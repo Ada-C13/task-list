@@ -1,14 +1,12 @@
 <h1> Task </h1>
-<p class>
+
+<p class='show-tasks'>
   Task: <%= @task.name %>
   
   Description: <%= @task.description %>
-  
   Completed at: <%= Time.parse(@task.completed_at) if @task.completed_at %> 
   
   <%= link_to "Edit Task", edit_task_path %>
-  
-  <%= @task.completed_at ? link_to("Unmark Complete", mark_completed_path(@task.id), method: :patch) : link_to("Mark Complete", mark_completed_path(@task.id), method: :patch) %>
-  
+  <%= @task.completed_at ? link_to("Unmark Complete", mark_complete_path(@task.id), method: :patch) : link_to("Mark Complete", mark_complete_path(@task.id), method: :patch) %>
   <%= link_to "Delete Task", task_path(@task), method: :delete, data: {confirm: "Are you sure?"} %>
 </p> 

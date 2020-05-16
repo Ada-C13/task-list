@@ -2,6 +2,8 @@
 <main>
   <ul class="task-list">
   <% @tasks.each do |task| %>
-    <li><%=task.name%></li>
+    <li>
+      <%= link_to task.name, task_path(task)%>
+    </li>
   <%end%>
 </main>

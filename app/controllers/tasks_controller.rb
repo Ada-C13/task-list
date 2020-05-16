@@ -20,7 +20,7 @@ class TasksController < ApplicationController
   def create 
     @task = Task.new(name: params[:task][:name], description: params[:task][:description])
     if @task.save
-      redirect_to tasks_path
+      redirect_to task_path(@task)
       return
     else
       render :new

@@ -5,15 +5,15 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'%>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'%>
 
     <h1>Task List</h1>
-      <nav>
-        <button><%= link_to "Show All Task", tasks_path %></button>
+      <nav class='nav-bar'>
+        <button><%= link_to "Show All Tasks", tasks_path %></button>
         <button><%= link_to "Add Task", new_task_path %></button>
       </nav>
-  </header>
+  </head>
 
     <%= yield %>
   

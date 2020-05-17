@@ -3,7 +3,12 @@
   <ul class="task-list">
   <% @tasks.each do |task| %>
     <li>
-      <%= link_to task.name, task_path(task)%>
+      <%if task.completed %>
+        <%= link_to task.name, task_path(task), class: "completed"%> 
+      <%else%>
+        <%= link_to task.name, task_path(task) %>
+        <%= link_to "(mark complete)", mark_complete_path(task), method: :patch%>
+      <%end%>
     </li>
   <%end%>
   </ul>

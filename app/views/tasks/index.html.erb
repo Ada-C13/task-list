@@ -1,5 +1,3 @@
-<h1 class="index__title">Task List</h1>
-
 <div class: "index__add-task-btn-container">
   <%= link_to "➕ Add Task", new_task_path, class: "index__add-task-btn" %>
 </div>
@@ -30,8 +28,8 @@
           </span>
         <% end %>
 
-        <%= link_to " ✏️", edit_task_path(task.id), class: "index__edit-btn" %>
-        <%= link_to "  🚮 ", task_path(task.id), method: :delete, data: { confirm: '❗️ Would you like to delete the task?'}, class: "index__delete-btn" %>        
+        <%= link_to " ✐", edit_task_path(task.id), class: "index__edit-btn" %>
+        <%= link_to "  ␡ ", task_path(task.id), method: :delete, data: { confirm: '❗️ Would you like to delete the task?'}, class: "index__delete-btn" %>        
       </li>
     <% end %>
   </ul>

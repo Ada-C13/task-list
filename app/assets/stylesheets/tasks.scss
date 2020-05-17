@@ -2,13 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
 
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 body {
-  color: white;
-  background-image: url("mountain.jpg");
+  color: #000;
+  background-image: url("https://i.ibb.co/qD7pPvq/laptop.jpg");
   background-color: #cccccc;
   position: absolute;
   top: 0;
@@ -23,7 +30,7 @@ body {
 }
 
 a {
-  color: #fff;
+  color: #000;
   font-weight: bold;
   cursor: pointer;
 }
@@ -41,7 +48,7 @@ header {
 }
 
 header > h1 {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Caveat', cursive;
 }
 
 
@@ -79,14 +86,6 @@ footer {
   right: 0;
   padding-right: 20px;
 }
-
-.index__title {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  font-weight: bold;
-  font-family: 'Caveat', cursive;
-}
-
 
 .task-complete {
   text-decoration-line: line-through;
@@ -128,7 +127,7 @@ footer {
   border-radius: 10px;
   z-index: 1;
   margin-bottom: 10px;
-  border: white solid 3px;
+  border: #000 solid 3px;
 }
 
 ._form {
@@ -178,6 +177,7 @@ footer {
   margin-top: 80px;
   font-weight: bold;
   font-family: 'Caveat', cursive;
+  font-size: 50px;
 }
 
 .show__div-container {
@@ -199,9 +199,9 @@ footer {
   margin-top: 15px;
   margin-bottom: 10px;
   border-radius: 10px;
-  border: white solid 3px;
+  border: #000 solid 3px;
   background-color: transparent;
-  color: white;
+  color: #000;
   font-size: 18px;
 }
 
@@ -212,19 +212,17 @@ footer {
 
 
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 873px) {
   body {
-    background-image: url("pink_and_green.jpg");
-    background-color: #cccccc;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
+    background-image: url("https://i.ibb.co/yYy3yKN/flower.png");
     animation: fadeIn 0.5s linear;
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    background-image: url("https://i.ibb.co/hcGS2DM/person.jpg");
+    animation: fadeIn 0.5s linear;
   }
 
   ._form_instruction {

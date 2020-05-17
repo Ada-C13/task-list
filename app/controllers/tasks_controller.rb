@@ -40,7 +40,11 @@ class TasksController < ApplicationController
     if @task.nil?
       head :not_found
       return
-    elsif @task.update(name: params[:task][:name], description: params[:task][:description])
+    elsif @task.update(
+      name: params[:task][:name],
+      description: params[:task][:description],
+      completed_at: params[:task][:completed_at]
+    )
       redirect_to task_path(@task) 
       return
     else

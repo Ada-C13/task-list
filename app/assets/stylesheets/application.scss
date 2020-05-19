@@ -17,7 +17,7 @@
 
 body.container {
   width: 100vw;
-  background-image: url(white.jpeg);
+  background-image: asset-url('white.jpeg');
   background-size: cover;
   margin: 0;
 }

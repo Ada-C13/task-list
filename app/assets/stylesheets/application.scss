@@ -17,7 +17,7 @@
 
 body.container {
   width: 100vw;
-  background-image: url("https://i.ibb.co/qD7pPvq/laptop.jpg");
+  background-image: url(<%= asset_path("white.jpeg")%>);
   background-size: cover;
   margin: 0;
 }

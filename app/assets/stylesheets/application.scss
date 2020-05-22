@@ -1,8 +1,8 @@
 
 @font-face {
   font-family: 'indie_flowerregular';
-  src: url('./fonts/indieflower-regular-webfont.woff2') format('woff2'),
-       url('./fonts/indieflower-regular-webfont.woff') format('woff');
+  src: asset-url('./fonts/indieflower-regular-webfont.woff2') format('woff2'),
+       asset-url('./fonts/indieflower-regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 

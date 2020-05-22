@@ -1,0 +1,18 @@
+<h2>current tasks</h2>
+<main>
+  <ul class="task-list">
+  <% @tasks.each do |task| %>
+    <li>
+      <%if task.completed %>
+        <%= link_to task.name, task_path(task), class: "completed"%> 
+      <%else%>
+        <%= link_to task.name, task_path(task) %>
+        <%= link_to "(mark complete)", mark_complete_path(task), method: :patch%>
+      <%end%>
+    </li>
+  <%end%>
+  </ul>
+  <%= link_to "add new task", new_task_path, class: "button" %>
+</main>
+
+<%#= button_to "Edit #{book.title}", edit_book_path(book.id) %>
